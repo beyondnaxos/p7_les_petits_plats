@@ -12,7 +12,7 @@ let appliancesList = []
 
 recipes.forEach((recipes) => {
   ustensilsList.push(recipes.ustensils)
-    ingredientsList.push(recipes.ingredients)
+  ingredientsList.push(recipes.ingredients)
   appliancesList.push(recipes.appliance)
 })
 
@@ -20,7 +20,13 @@ console.log(ustensilsList)
 console.log(ingredientsList)
 console.log(appliancesList)
 
-recipeList.forEach((el) => {
+let arrOfActualRecipe = []
+
+recipes.forEach((recipes) => {
+  arrOfActualRecipe.push(recipes)
+})
+
+arrOfActualRecipe.forEach((el) => {
   const recipe = document.createElement('article')
   recipe.classList.add('recipe')
   // handle Image Prototype
@@ -112,13 +118,27 @@ recipeList.forEach((el) => {
 const searchBar = document.querySelector('#search__input')
 searchBar.addEventListener('input', (e) => {
   const searchValue = e.target.value
-  console.log(e.target.value)
-  console.log(actualRecipe)
-  actualRecipe.forEach((el) => {
-    if (el.textContent.toLowerCase().includes(searchValue.toLowerCase())) {
-      el.style.display = 'block'
+  //   actualRecipe.forEach((el) => {
+  //     if (el.textContent.toLowerCase().includes(searchValue.toLowerCase())) {
+  //       el.style.display = 'block'
+  //     } else {
+  //       el.style.display = 'none'
+  //     }
+  //   })
+  // })
+
+  // filtre par nom de recette
+  for (let i = 0; i < actualRecipe.length; i++) {
+    if (
+      arrOfActualRecipe[i].name
+        .toLowerCase()
+        .includes(searchValue.toLowerCase())
+    ) {
+      actualRecipe[i].style.display = 'block'
     } else {
-      el.style.display = 'none'
+      actualRecipe[i].style.display = 'none'
     }
-  })
+  }
 })
+
+console.log(arrOfActualRecipe)
