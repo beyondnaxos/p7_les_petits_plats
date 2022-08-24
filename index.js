@@ -2,29 +2,33 @@ import { recipes } from './data/recipes.js'
 
 console.log(recipes)
 
-let recipeList = recipes
-
 let actualRecipe = []
 
-let ustensilsList = []
-let ingredientsList = []
-let appliancesList = []
 
-recipes.forEach((recipes) => {
-  ustensilsList.push(recipes.ustensils)
-  ingredientsList.push(recipes.ingredients)
-  appliancesList.push(recipes.appliance)
-})
-
-console.log(ustensilsList)
-console.log(ingredientsList)
-console.log(appliancesList)
 
 let arrOfActualRecipe = []
+let ingredientsList = []
+let ingredientsListFull = []
+
 
 recipes.forEach((recipes) => {
   arrOfActualRecipe.push(recipes)
+  ingredientsList.push(recipes.ingredients)
 })
+
+// map on ingredientsList to get ingredientsListFull
+ingredientsList.map((ingredients) => {
+    ingredients.forEach((ingredient) => {
+        ingredientsListFull.push(ingredient.ingredient)
+    }
+    )
+}
+)
+
+console.log(ingredientsListFull)
+
+let stringedIngredients = ingredientsListFull.join(', ')
+console.log(stringedIngredients)
 
 arrOfActualRecipe.forEach((el) => {
   const recipe = document.createElement('article')
@@ -140,5 +144,30 @@ searchBar.addEventListener('input', (e) => {
     }
   }
 })
+
+
+// // filtre par ingredients
+// const searchBarIngredients = document.querySelector('#search__input-ingredients')
+// searchBarIngredients.addEventListener('input', (e) => {
+//     const searchValue = e.target.value
+//     for (let i = 0; i < actualRecipe.length; i++) {
+//         if (
+//             ingredientsListFull[i]
+//                 .toLowerCase()
+//                 .includes(searchValue.toLowerCase())
+//         ) {
+//             actualRecipe[i].style.display = 'block'
+//         }
+//         else {
+//             actualRecipe[i].style.display = 'none'
+//         }
+//     }
+// }
+// )
+
+
+
+
+
 
 console.log(arrOfActualRecipe)
