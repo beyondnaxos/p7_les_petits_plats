@@ -4,170 +4,143 @@ console.log(recipes)
 
 let actualRecipe = []
 
-
-
 let arrOfActualRecipe = []
-let ingredientsList = []
-let ingredientsListFull = []
-
 
 recipes.forEach((recipes) => {
   arrOfActualRecipe.push(recipes)
-  ingredientsList.push(recipes.ingredients)
 })
 
-// map on ingredientsList to get ingredientsListFull
-ingredientsList.map((ingredients) => {
-    ingredients.forEach((ingredient) => {
-        ingredientsListFull.push(ingredient.ingredient)
-    }
-    )
-}
-)
+const displayRecipes = (recipes) => {
+  recipes.forEach((el) => {
+    const recipe = document.createElement('article')
+    recipe.classList.add('recipe')
+    // handle Image Prototype
+    const img = new Image()
+    img.src = './assets/recipes_photos/limonade_coco.jpg'
+    recipe.appendChild(img)
+    img.classList.add('recipe__image')
 
-console.log(ingredientsListFull)
+    // handle  texts Container Prototype
+    const textsContainer = document.createElement('div')
+    textsContainer.classList.add('recipe__texts')
+    recipe.appendChild(textsContainer)
 
-let stringedIngredients = ingredientsListFull.join(', ')
-console.log(stringedIngredients)
+    // handle  title and Ingredients + time and Instructions Container Prototype
+    const titleIngredientsContainer = document.createElement('div')
+    const timeAndInstructionsContainer = document.createElement('div')
+    titleIngredientsContainer.classList.add('recipe__title-ingredients')
+    timeAndInstructionsContainer.classList.add('recipe__time-instructions')
 
-arrOfActualRecipe.forEach((el) => {
-  const recipe = document.createElement('article')
-  recipe.classList.add('recipe')
-  // handle Image Prototype
-  const img = new Image()
-  img.src = './assets/recipes_photos/limonade_coco.jpg'
-  recipe.appendChild(img)
-  img.classList.add('recipe__image')
+    textsContainer.appendChild(titleIngredientsContainer)
+    textsContainer.appendChild(timeAndInstructionsContainer)
 
-  // handle  texts Container Prototype
-  const textsContainer = document.createElement('div')
-  textsContainer.classList.add('recipe__texts')
-  recipe.appendChild(textsContainer)
+    // handle  title Prototype
+    const title = document.createElement('h2')
+    title.classList.add('recipe__title')
+    title.textContent = el.name
 
-  // handle  title and Ingredients + time and Instructions Container Prototype
-  const titleIngredientsContainer = document.createElement('div')
-  const timeAndInstructionsContainer = document.createElement('div')
-  titleIngredientsContainer.classList.add('recipe__title-ingredients')
-  timeAndInstructionsContainer.classList.add('recipe__time-instructions')
+    titleIngredientsContainer.appendChild(title)
 
-  textsContainer.appendChild(titleIngredientsContainer)
-  textsContainer.appendChild(timeAndInstructionsContainer)
+    // handle  ingredients Prototype
+    const ingredients = document.createElement('ul')
+    ingredients.classList.add('recipe__ingredients')
 
-  // handle  title Prototype
-  const title = document.createElement('h2')
-  title.classList.add('recipe__title')
-  title.textContent = el.name
+    el.ingredients.forEach((ingredient) => {
+      const ingredientItem = document.createElement('li')
+      ingredientItem.classList.add('recipe__ingredient')
+      if (ingredient.unit) {
+        ingredientItem.textContent =
+          ingredient.ingredient +
+          ' : ' +
+          ingredient.quantity +
+          ' ' +
+          ingredient.unit
+      } else if (
+        ingredient.ingredient &&
+        ingredient.quantity &&
+        !ingredient.unit
+      ) {
+        ingredientItem.textContent =
+          ingredient.ingredient + ' : ' + ingredient.quantity
+      } else if (
+        ingredient.ingredient &&
+        !ingredient.quantity &&
+        !ingredient.unit
+      ) {
+        ingredientItem.textContent = ingredient.ingredient
+      }
+      ingredients.appendChild(ingredientItem)
+    })
 
-  titleIngredientsContainer.appendChild(title)
+    titleIngredientsContainer.appendChild(ingredients)
 
-  // handle  ingredients Prototype
-  const ingredients = document.createElement('ul')
-  ingredients.classList.add('recipe__ingredients')
+    //  handle  time Prototype
 
-  el.ingredients.forEach((ingredient) => {
-    const ingredientItem = document.createElement('li')
-    ingredientItem.classList.add('recipe__ingredient')
-    if (ingredient.unit) {
-      ingredientItem.textContent =
-        ingredient.ingredient +
-        ' : ' +
-        ingredient.quantity +
-        ' ' +
-        ingredient.unit
-    } else if (
-      ingredient.ingredient &&
-      ingredient.quantity &&
-      !ingredient.unit
-    ) {
-      ingredientItem.textContent =
-        ingredient.ingredient + ' : ' + ingredient.quantity
-    } else if (
-      ingredient.ingredient &&
-      !ingredient.quantity &&
-      !ingredient.unit
-    ) {
-      ingredientItem.textContent = ingredient.ingredient
-    }
-    ingredients.appendChild(ingredientItem)
+    const time = document.createElement('div')
+    time.classList.add('recipe__time')
+    time.innerHTML =
+      "<img class='time__image' src='./assets/icons/clockIcon.png'></img>" +
+      `<p class='time-duration'>${el.time} min</p>`
+    timeAndInstructionsContainer.appendChild(time)
+
+    //  handle  instructions Prototype
+    const instructions = document.createElement('div')
+    instructions.classList.add('recipe__instructions')
+
+    const instructionContent = el.description
+
+    const instruction = document.createElement('p')
+    instruction.classList.add('recipe__instruction')
+    instruction.textContent = instructionContent
+    instructions.appendChild(instruction)
+
+    timeAndInstructionsContainer.appendChild(instructions)
+
+    document.querySelector('#recipes').appendChild(recipe)
+    actualRecipe.push(recipe)
   })
 
-  titleIngredientsContainer.appendChild(ingredients)
+  const searchBar = document.querySelector('#search__input')
+  searchBar.addEventListener('input', (e) => {
+    const searchValue = e.target.value
+    for (let i = 0; i < actualRecipe.length; i++) {
+      if (
+        arrOfActualRecipe[i].name
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
+      ) {
+        actualRecipe[i].style.display = 'block'
+      } else {
+        actualRecipe[i].style.display = 'none'
+      }
+    }
+  })
+}
 
-  //  handle  time Prototype
+displayRecipes(arrOfActualRecipe)
 
-  const time = document.createElement('div')
-  time.classList.add('recipe__time')
-  time.innerHTML =
-    "<img class='time__image' src='./assets/icons/clockIcon.png'></img>" +
-    `<p class='time-duration'>${el.time} min</p>`
-  timeAndInstructionsContainer.appendChild(time)
+function searchBigData(bigData, searchText) {
+  return bigData.filter((entry) =>
+    entry.ingredients.some((item) =>
+      item.ingredient.toLowerCase().includes(searchText)
+    )
+  )
+}
 
-  //  handle  instructions Prototype
-  const instructions = document.createElement('div')
-  instructions.classList.add('recipe__instructions')
+const searchBarIngredients = document.querySelector(
+  '#search__input-ingredients'
+)
 
-  const instructionContent = el.description
-
-  const instruction = document.createElement('p')
-  instruction.classList.add('recipe__instruction')
-  instruction.textContent = instructionContent
-  instructions.appendChild(instruction)
-
-  timeAndInstructionsContainer.appendChild(instructions)
-
-  document.querySelector('#recipes').appendChild(recipe)
-  actualRecipe.push(recipe)
-})
-
-const searchBar = document.querySelector('#search__input')
-searchBar.addEventListener('input', (e) => {
-  const searchValue = e.target.value
-  //   actualRecipe.forEach((el) => {
-  //     if (el.textContent.toLowerCase().includes(searchValue.toLowerCase())) {
-  //       el.style.display = 'block'
-  //     } else {
-  //       el.style.display = 'none'
-  //     }
-  //   })
-  // })
-
-  // filtre par nom de recette
+searchBarIngredients.addEventListener('input', (e) => {
+  let searchValue = e.target.value
   for (let i = 0; i < actualRecipe.length; i++) {
-    if (
-      arrOfActualRecipe[i].name
-        .toLowerCase()
-        .includes(searchValue.toLowerCase())
-    ) {
+    console.log(searchBigData(arrOfActualRecipe, searchValue.toLowerCase()))
+    if (searchBigData(arrOfActualRecipe, searchValue.toLowerCase())[i] ) {
       actualRecipe[i].style.display = 'block'
     } else {
       actualRecipe[i].style.display = 'none'
     }
   }
 })
-
-
-// // filtre par ingredients
-// const searchBarIngredients = document.querySelector('#search__input-ingredients')
-// searchBarIngredients.addEventListener('input', (e) => {
-//     const searchValue = e.target.value
-//     for (let i = 0; i < actualRecipe.length; i++) {
-//         if (
-//             ingredientsListFull[i]
-//                 .toLowerCase()
-//                 .includes(searchValue.toLowerCase())
-//         ) {
-//             actualRecipe[i].style.display = 'block'
-//         }
-//         else {
-//             actualRecipe[i].style.display = 'none'
-//         }
-//     }
-// }
-// )
-
-
-
-
-
 
 console.log(arrOfActualRecipe)
