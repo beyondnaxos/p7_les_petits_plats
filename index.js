@@ -3,6 +3,7 @@ import { recipes } from './data/recipes.js'
 console.log(recipes)
 
 let actualRecipe = []
+let ingredientRecipe 
 
 let arrOfActualRecipe = []
 
@@ -10,7 +11,7 @@ recipes.forEach((recipes) => {
   arrOfActualRecipe.push(recipes)
 })
 
-const displayRecipes = (recipes) => {
+const displayRecipes = (recipes, xList) => {
   recipes.forEach((el) => {
     const recipe = document.createElement('article')
     recipe.classList.add('recipe')
@@ -97,27 +98,32 @@ const displayRecipes = (recipes) => {
     timeAndInstructionsContainer.appendChild(instructions)
 
     document.querySelector('#recipes').appendChild(recipe)
-    actualRecipe.push(recipe)
+    xList.push(recipe)
   })
 
-  const searchBar = document.querySelector('#search__input')
-  searchBar.addEventListener('input', (e) => {
-    const searchValue = e.target.value
-    for (let i = 0; i < actualRecipe.length; i++) {
-      if (
-        arrOfActualRecipe[i].name
-          .toLowerCase()
-          .includes(searchValue.toLowerCase())
-      ) {
-        actualRecipe[i].style.display = 'block'
-      } else {
-        actualRecipe[i].style.display = 'none'
-      }
-    }
-  })
+
 }
 
-displayRecipes(arrOfActualRecipe)
+
+const searchBar = document.querySelector('#search__input')
+searchBar.addEventListener('input', (e) => {
+  const searchValue = e.target.value
+  for (let i = 0; i < actualRecipe.length; i++) {
+    if (
+      arrOfActualRecipe[i].name
+        .toLowerCase()
+        .includes(searchValue.toLowerCase())
+    ) {
+      actualRecipe[i].style.display = 'block'
+    } else {
+      actualRecipe[i].style.display = 'none'
+    }
+  }
+})
+
+displayRecipes(arrOfActualRecipe, actualRecipe)
+
+
 
 function searchBigData(bigData, searchText) {
   return bigData.filter((entry) =>
