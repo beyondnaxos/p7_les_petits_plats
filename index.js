@@ -3,7 +3,6 @@ import { recipes } from './data/recipes.js'
 console.log(recipes)
 
 let actualRecipe = []
-let ingredientRecipe 
 
 let arrOfActualRecipe = []
 
@@ -107,8 +106,10 @@ const displayRecipes = (recipes, xList) => {
 
 const searchBar = document.querySelector('#search__input')
 searchBar.addEventListener('input', (e) => {
+  
   const searchValue = e.target.value
   for (let i = 0; i < actualRecipe.length; i++) {
+
     if (
       arrOfActualRecipe[i].name
         .toLowerCase()
@@ -141,7 +142,7 @@ searchBarIngredients.addEventListener('input', (e) => {
   let searchValue = e.target.value
   for (let i = 0; i < actualRecipe.length; i++) {
     console.log(searchBigData(arrOfActualRecipe, searchValue.toLowerCase()))
-    if (searchBigData(arrOfActualRecipe, searchValue.toLowerCase())[i] ) {
+    if (searchBigData(arrOfActualRecipe, searchValue.toLowerCase())[i]) {
       actualRecipe[i].style.display = 'block'
     } else {
       actualRecipe[i].style.display = 'none'
@@ -150,3 +151,4 @@ searchBarIngredients.addEventListener('input', (e) => {
 })
 
 console.log(arrOfActualRecipe)
+
