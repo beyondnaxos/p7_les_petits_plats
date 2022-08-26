@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,16 +22,23 @@
 
     <header>
         <input id="search__input" type="text" placeholder="Rechercher une recette"></input>
-        <!-- icon searchIcon -->
         <img src="assets/icons/searchIcon.svg" alt="searchIcon" id="search__icon">
     </header>
     
     <div class="filter">
-      <input id="search__input-ingredients" type="text" placeholder="Ingredients"></input>
+      <input list="ice-cream-flavors" id="search__input-ingredients" type="text" placeholder="Ingredients"></input>
       <input id="search__input-appliance" type="text" placeholder="Appareils"></input>
-        <input id="search__input-ustensils" type="text" placeholder="Ustensiles"></input>
-        
+      <input id="search__input-ustensils" type="text" placeholder="Ustensiles"></input>
     </div>
+
+    <datalist id="ice-cream-flavors">
+      <option value="concombre">
+      <option value="Coconut">
+      <option value="Mint">
+      <option value="Strawberry">
+      <option value="Vanilla">
+  </datalist>
+  
 
     <section id="recipes" aria-label="recipes list">
      

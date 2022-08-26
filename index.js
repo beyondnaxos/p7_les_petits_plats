@@ -1,7 +1,5 @@
 import { recipes } from './data/recipes.js'
 
-console.log(recipes)
-
 let actualRecipe = []
 
 let arrOfActualRecipe = []
@@ -14,6 +12,7 @@ const displayRecipes = (recipes, xList) => {
   recipes.forEach((el) => {
     const recipe = document.createElement('article')
     recipe.classList.add('recipe')
+    recipe.dataset.id = el.id
     // handle Image Prototype
     const img = new Image()
     img.src = './assets/recipes_photos/limonade_coco.jpg'
@@ -99,56 +98,72 @@ const displayRecipes = (recipes, xList) => {
     document.querySelector('#recipes').appendChild(recipe)
     xList.push(recipe)
   })
-
-
 }
-
-
-const searchBar = document.querySelector('#search__input')
-searchBar.addEventListener('input', (e) => {
-  
-  const searchValue = e.target.value
-  for (let i = 0; i < actualRecipe.length; i++) {
-
-    if (
-      arrOfActualRecipe[i].name
-        .toLowerCase()
-        .includes(searchValue.toLowerCase())
-    ) {
-      actualRecipe[i].style.display = 'block'
-    } else {
-      actualRecipe[i].style.display = 'none'
-    }
-  }
-})
-
 displayRecipes(arrOfActualRecipe, actualRecipe)
 
+const recipeReduce = recipes.reduce((recipeObj, currentRecipe) => {
+  const { id } = currentRecipe
+  recipeObj[id] = currentRecipe
 
+  return recipeObj
+}, {})
 
-function searchBigData(bigData, searchText) {
-  return bigData.filter((entry) =>
-    entry.ingredients.some((item) =>
-      item.ingredient.toLowerCase().includes(searchText)
-    )
-  )
+console.log(recipeReduce)
+
+const recipesDiv = document.querySelectorAll('.recipe')
+const inputName = document.querySelector('#search__input')
+const inputIngredients = document.querySelector('#search__input-ingredients')
+const inputAppliance = document.querySelector('#search__input-appliance')
+const inputUstensil = document.querySelector('#search__input-ustensils')
+
+const checkIngredients = (ingredients, inputValue) => {
+  return ingredients.some(({ ingredient }) => {
+    return ingredient.toLowerCase().includes(inputValue.toLowerCase())
+  })
 }
 
-const searchBarIngredients = document.querySelector(
-  '#search__input-ingredients'
-)
+const checkName = (name, inputValue) => {
+  return name.toLowerCase().includes(inputValue.toLowerCase())
+}
 
-searchBarIngredients.addEventListener('input', (e) => {
-  let searchValue = e.target.value
-  for (let i = 0; i < actualRecipe.length; i++) {
-    console.log(searchBigData(arrOfActualRecipe, searchValue.toLowerCase()))
-    if (searchBigData(arrOfActualRecipe, searchValue.toLowerCase())[i]) {
-      actualRecipe[i].style.display = 'block'
-    } else {
-      actualRecipe[i].style.display = 'none'
-    }
-  }
-})
+const checkUstensils = (ustensils, inputValue) => {
+  return ustensils.some((ustensil) => {
+    return ustensil.toLowerCase().includes(inputValue.toLowerCase())
+  })
+}
 
-console.log(arrOfActualRecipe)
+const checkAppliance = (appliance, inputValue) =>
+  appliance.toLowerCase().includes(inputValue.toLowerCase())
+
+const handleSearch = () => {
+  const inputNameValue = inputName.value
+  const inputIngredientsValue = inputIngredients.value
+  const inputApplianceValue = inputAppliance.value
+  const inputUstensilValue = inputUstensil.value
+  console.time('search')
+  recipesDiv.forEach((recipeDiv) => {
+
+    const recipeId = recipeDiv.dataset.id
+    const { name, ingredients, ustensils, appliance } = recipeReduce[recipeId]
+
+    const includeName = checkName(name, inputNameValue)
+    const includeUstensils = checkUstensils(ustensils, inputUstensilValue)
+    const includeAppliance = checkAppliance(appliance, inputApplianceValue)
+    const includeIngredient = checkIngredients(
+      ingredients,
+      inputIngredientsValue
+    )
+
+    includeName && includeUstensils && includeAppliance && includeIngredient
+      ? recipeDiv.classList.remove('hide')
+      : recipeDiv.classList.add('hide')
+  })
+  console.timeEnd('search')
+}
+
+const inputs = document.querySelectorAll('input')
+inputs.forEach((input) => input.addEventListener('input', handleSearch))
+
+
+
 
