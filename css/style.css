@@ -71,9 +71,8 @@ header {
 
 #recipes {
     width: 1240px;
-    /* background-color: #d04f4f; */
     height: 700px;
-    margin-top: 50px;
+    margin-top: 25px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -206,3 +205,63 @@ ul {
 .hide {
     display: none;
 }
+
+.filter {
+    width: 1240px;
+    margin-top: 30px;   
+    font-family: 'Lato', sans-serif; 
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+}
+
+.filter input {
+    height: 69px;
+    width: 170px;
+    border-radius: 5px;
+    border: none;    
+    padding-left: 15px;
+    font-size: 18px;
+}
+
+.filter :nth-child(1) {
+   background-color: #3282F7;
+   color: white;
+   font-weight: bold;
+}
+.filter :nth-child(1)::placeholder {
+   color: white;
+}
+
+.filter :nth-child(1):focus {
+    outline: none;
+}
+
+.filter :nth-child(2) {
+   background-color: #68D9A4;
+   color: white;
+   font-weight: bold;
+}
+.filter :nth-child(2)::placeholder {
+   color: white;
+}
+
+.filter :nth-child(2):focus {
+    outline: none;
+}
+
+.filter :nth-child(3) {
+   background-color: #ED6454;
+   color: white;
+   font-weight: bold;
+}
+.filter :nth-child(3)::placeholder {
+   color: white;
+}
+
+.filter :nth-child(3):focus {
+    outline: none;
+}
+
+
+

@@ -101,6 +101,8 @@ const displayRecipes = (recipes, xList) => {
 }
 displayRecipes(arrOfActualRecipe, actualRecipe)
 
+
+
 const recipeReduce = recipes.reduce((recipeObj, currentRecipe) => {
   const { id } = currentRecipe
   recipeObj[id] = currentRecipe
@@ -140,7 +142,8 @@ const handleSearch = () => {
   const inputIngredientsValue = inputIngredients.value
   const inputApplianceValue = inputAppliance.value
   const inputUstensilValue = inputUstensil.value
-  console.time('search')
+
+
   recipesDiv.forEach((recipeDiv) => {
 
     const recipeId = recipeDiv.dataset.id
@@ -158,7 +161,7 @@ const handleSearch = () => {
       ? recipeDiv.classList.remove('hide')
       : recipeDiv.classList.add('hide')
   })
-  console.timeEnd('search')
+
 }
 
 const inputs = document.querySelectorAll('input')
