@@ -264,5 +264,8 @@ ul {
     outline: none;
 }
 
-
-
+.before-container {
+    width: 300px;
+    height: 60px;
+    background-color: blue;
+}

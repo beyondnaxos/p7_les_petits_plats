@@ -184,6 +184,7 @@ const getIngredients = () => {
     const option = document.createElement('option')
     option.value = ingredient
     ingredientsDataList.appendChild(option)
+
   } )
 }
 
