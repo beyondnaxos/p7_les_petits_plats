@@ -99,9 +99,8 @@ const displayRecipes = (recipes, xList) => {
     xList.push(recipe)
   })
 }
+
 displayRecipes(arrOfActualRecipe, actualRecipe)
-
-
 
 const recipeReduce = recipes.reduce((recipeObj, currentRecipe) => {
   const { id } = currentRecipe
@@ -166,6 +165,76 @@ const handleSearch = () => {
 
 const inputs = document.querySelectorAll('input')
 inputs.forEach((input) => input.addEventListener('input', handleSearch))
+
+const ingredientsDataList = document.querySelector('#ingredientsList') 
+const applianceDataList = document.querySelector('#applianceList')
+const ustensilsDataList = document.querySelector('#ustensilsList')
+
+
+//  get ingredients , remove duplicates and display them in the data list
+const getIngredients = () => {
+  const ingredients = []
+  arrOfActualRecipe.forEach((recipe) => {
+    recipe.ingredients.forEach((ingredient) => {
+      ingredients.push(ingredient.ingredient)
+    } )
+  } )
+  const uniqueIngredients = [...new Set(ingredients)]
+  uniqueIngredients.forEach((ingredient) => {
+    const option = document.createElement('option')
+    option.value = ingredient
+    ingredientsDataList.appendChild(option)
+  } )
+}
+
+const getAppliiances = () => {
+  const appliances = []
+  arrOfActualRecipe.forEach((recipe) => {
+    appliances.push(recipe.appliance)
+  } )
+  const uniqueAppliances = [...new Set(appliances)]
+  uniqueAppliances.forEach((appliance) => {
+    const option = document.createElement('option')
+    option.value = appliance
+    applianceDataList.appendChild(option)
+  } )
+}
+
+const getUstensils = () => {
+  const ustensils = []
+  arrOfActualRecipe.forEach((recipe) => {
+    recipe.ustensils.forEach((ustensil) => {
+      ustensils.push(ustensil)
+    } )
+  } )
+  const uniqueUstensils = [...new Set(ustensils)]
+  uniqueUstensils.forEach((ustensil) => {
+    const option = document.createElement('option')
+    option.value = ustensil
+    ustensilsDataList.appendChild(option)
+  } )
+}
+
+
+
+getIngredients()
+getAppliiances()
+getUstensils()
+
+
+
+// arrOfActualRecipe.forEach((recipe) => {
+//   recipe.ingredients.forEach((ingredient) => {
+//     // remove duplicates from ingredients list
+//     if (!ingredientsDataList.innerHTML.includes(ingredient.ingredient)) {
+//     const option = document.createElement('option')
+//     option.value = ingredient.ingredient
+//     ingredientsDataList.appendChild(option)
+//     }
+//   }
+//   )
+// }
+// )
 
 
 
