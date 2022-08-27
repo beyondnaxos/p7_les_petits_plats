@@ -224,19 +224,3 @@ getUstensils()
 
 
 
-// arrOfActualRecipe.forEach((recipe) => {
-//   recipe.ingredients.forEach((ingredient) => {
-//     // remove duplicates from ingredients list
-//     if (!ingredientsDataList.innerHTML.includes(ingredient.ingredient)) {
-//     const option = document.createElement('option')
-//     option.value = ingredient.ingredient
-//     ingredientsDataList.appendChild(option)
-//     }
-//   }
-//   )
-// }
-// )
-
-
-
-
