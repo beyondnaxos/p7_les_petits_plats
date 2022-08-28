@@ -209,7 +209,6 @@ ul {
 
 .filter {
     width: 1240px;
-    margin-top: 30px;   
     font-family: 'Lato', sans-serif; 
     display: flex;
     flex-direction: row;
@@ -225,7 +224,7 @@ ul {
     font-size: 18px;
 }
 
-.filter :nth-child(1) {
+.filter :nth-child(1){
    background-color: #3282F7;
    color: white;
    font-weight: bold;
@@ -265,7 +264,44 @@ ul {
 }
 
 .before-container {
-    width: 300px;
-    height: 60px;
-    background-color: blue;
+    width: 1240px;
+   display: flex;
+   flex-direction: row;
+   column-gap: 30px;
+   margin-top: 25px;
+   margin-bottom: 15px;
+}
+
+.filter-container {
+    /* width: 140px; */
+}
+
+.filter-button-stamp {
+/* width: 100%; */
+
+font-family: 'Lato', sans-serif;
+font-size: 14px;
+}
+
+
+.filter-container {
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.filter-container:nth-child(1) {
+    background-color: #3282F7;
+}
+
+.filter-container:nth-child(2) {
+    background-color: #68D9A4;
+}
+
+.filter-container:nth-child(3) {
+    background-color: #ED6454;
+}
+
+.filter-container p {
+    margin: 0;
 }

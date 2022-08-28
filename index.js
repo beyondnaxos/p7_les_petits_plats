@@ -4,6 +4,8 @@ let actualRecipe = []
 
 let arrOfActualRecipe = []
 
+let selectedItem = []
+
 recipes.forEach((recipes) => {
   arrOfActualRecipe.push(recipes)
 })
@@ -216,11 +218,118 @@ const getUstensils = () => {
   } )
 }
 
-
-
 getIngredients()
 getAppliiances()
 getUstensils()
+
+const beforeContainer = document.querySelector('.before-container')
+
+const createFilter = ( filterValue) => {
+  const filter = document.createElement('div')
+  filter.classList.add('filter-button-stamp')
+  filter.innerHTML = ` <p>${filterValue}</p>`
+  return filter
+}
+
+const createFilterContainer = (filterValue) => {
+  const filterContainer = document.createElement('div')
+  filterContainer.classList.add('filter-container')
+  filterContainer.appendChild(createFilter(filterValue))
+
+  return filterContainer
+}
+
+const createFilterContainerForIngredients = ( filterValue) => {
+  const filterContainer = document.createElement('div')
+  filterContainer.classList.add('filter-container')
+  filterContainer.appendChild(createFilter(filterValue))
+
+  return filterContainer
+}
+
+const createFilterContainerForAppliances = (filterValue) => {
+  const filterContainer = document.createElement('div')
+  filterContainer.classList.add('filter-container')
+  filterContainer.appendChild(createFilter( filterValue))
+
+  return filterContainer
+}
+
+const createFilterContainerForUstensils = ( filterValue) => {
+  const filterContainer = document.createElement('div')
+  filterContainer.classList.add('filter-container')
+  filterContainer.appendChild(createFilter( filterValue))
+
+  return filterContainer
+}
+
+
+const showFilters = () => {
+  
+  beforeContainer.innerHTML = ''
+  const filterValue = inputIngredients.value
+  const filterValue2 = inputAppliance.value
+  const filterValue3 = inputUstensil.value
+  
+  if (filterValue !== '') {
+    beforeContainer.appendChild(createFilterContainerForIngredients(filterValue))
+  }
+  if (filterValue2 !== '') {
+    beforeContainer.appendChild(createFilterContainerForAppliances(filterValue2))
+  }
+  if (filterValue3 !== '') {
+    beforeContainer.appendChild(createFilterContainerForUstensils(filterValue3))
+  }
+}
+
+const removeFilters = (filterContainer) => {
+  filterContainer.innerHTML = ''
+}
+
+console.log(inputIngredients.currentTarget)
+
+//  on change on input ingredients, show filters in the filter container
+inputIngredients.addEventListener('change', () => {
+  showFilters()
+}
+)
+
+inputAppliance.addEventListener('change', () => {
+  showFilters()
+}
+)
+
+inputUstensil.addEventListener('change', () => {
+  showFilters()
+}
+)
+
+// remove filters if empty input
+inputIngredients.addEventListener('input', () => {
+  if (inputIngredients.value === '') {
+    removeFilters(beforeContainer)
+  }
+}
+)
+
+inputAppliance.addEventListener('input', () => {  
+  if (inputAppliance.value === '') {
+    removeFilters(beforeContainer)
+  }
+}
+
+)
+
+inputUstensil.addEventListener('input', () => {
+  if (inputUstensil.value === '') {
+    removeFilters(beforeContainer)
+    // only remove filter before container nth:child(3)
+    
+
+
+  }
+}
+)
 
 
 
