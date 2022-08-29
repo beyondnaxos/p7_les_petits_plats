@@ -4,7 +4,15 @@ let actualRecipe = []
 
 let arrOfActualRecipe = []
 
-let selectedItem = []
+const ingredientsDataList = document.querySelector('#ingredientsList') 
+const applianceDataList = document.querySelector('#applianceList')
+const ustensilsDataList = document.querySelector('#ustensilsList')
+
+const recipesDiv = document.querySelectorAll('.recipe')
+const inputName = document.querySelector('#search__input')
+const inputIngredients = document.querySelector('#search__input-ingredients')
+const inputAppliance = document.querySelector('#search__input-appliance')
+const inputUstensil = document.querySelector('#search__input-ustensils')
 
 recipes.forEach((recipes) => {
   arrOfActualRecipe.push(recipes)
@@ -102,7 +110,6 @@ const displayRecipes = (recipes, xList) => {
   })
 }
 
-displayRecipes(arrOfActualRecipe, actualRecipe)
 
 const recipeReduce = recipes.reduce((recipeObj, currentRecipe) => {
   const { id } = currentRecipe
@@ -113,11 +120,6 @@ const recipeReduce = recipes.reduce((recipeObj, currentRecipe) => {
 
 console.log(recipeReduce)
 
-const recipesDiv = document.querySelectorAll('.recipe')
-const inputName = document.querySelector('#search__input')
-const inputIngredients = document.querySelector('#search__input-ingredients')
-const inputAppliance = document.querySelector('#search__input-appliance')
-const inputUstensil = document.querySelector('#search__input-ustensils')
 
 const checkIngredients = (ingredients, inputValue) => {
   return ingredients.some(({ ingredient }) => {
@@ -168,12 +170,6 @@ const handleSearch = () => {
 const inputs = document.querySelectorAll('input')
 inputs.forEach((input) => input.addEventListener('input', handleSearch))
 
-const ingredientsDataList = document.querySelector('#ingredientsList') 
-const applianceDataList = document.querySelector('#applianceList')
-const ustensilsDataList = document.querySelector('#ustensilsList')
-
-
-//  get ingredients , remove duplicates and display them in the data list
 const getIngredients = () => {
   const ingredients = []
   arrOfActualRecipe.forEach((recipe) => {
@@ -218,10 +214,6 @@ const getUstensils = () => {
   } )
 }
 
-getIngredients()
-getAppliiances()
-getUstensils()
-
 const beforeContainer = document.querySelector('.before-container')
 
 const createFilter = ( filterValue) => {
@@ -229,14 +221,6 @@ const createFilter = ( filterValue) => {
   filter.classList.add('filter-button-stamp')
   filter.innerHTML = ` <p>${filterValue}</p>`
   return filter
-}
-
-const createFilterContainer = (filterValue) => {
-  const filterContainer = document.createElement('div')
-  filterContainer.classList.add('filter-container')
-  filterContainer.appendChild(createFilter(filterValue))
-
-  return filterContainer
 }
 
 const createFilterContainerForIngredients = ( filterValue) => {
@@ -286,50 +270,32 @@ const removeFilters = (filterContainer) => {
   filterContainer.innerHTML = ''
 }
 
-console.log(inputIngredients.currentTarget)
-
-//  on change on input ingredients, show filters in the filter container
-inputIngredients.addEventListener('change', () => {
-  showFilters()
-}
-)
-
-inputAppliance.addEventListener('change', () => {
-  showFilters()
-}
-)
-
-inputUstensil.addEventListener('change', () => {
-  showFilters()
-}
-)
-
-// remove filters if empty input
-inputIngredients.addEventListener('input', () => {
-  if (inputIngredients.value === '') {
-    removeFilters(beforeContainer)
+const stampDisplay = (inputEl) => {
+  inputEl.addEventListener('change', () => {
+    showFilters()
   }
+  )
 }
-)
 
-inputAppliance.addEventListener('input', () => {  
-  if (inputAppliance.value === '') {
-    removeFilters(beforeContainer)
+const stampRemonve = (inputEl) => {
+  inputEl.addEventListener('input', () => {
+    if (inputEl.value === '') {
+      removeFilters(beforeContainer)
+    }
   }
-}
+  )
+} 
 
-)
+displayRecipes(arrOfActualRecipe, actualRecipe)
 
-inputUstensil.addEventListener('input', () => {
-  if (inputUstensil.value === '') {
-    removeFilters(beforeContainer)
-    // only remove filter before container nth:child(3)
-    
+getIngredients()
+getAppliiances()
+getUstensils()
 
+stampDisplay(inputIngredients)
+stampDisplay(inputAppliance)
+stampDisplay(inputUstensil)
 
-  }
-}
-)
-
-
-
+stampRemonve(inputIngredients)
+stampRemonve(inputAppliance)
+stampRemonve(inputUstensil)
