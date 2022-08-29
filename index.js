@@ -14,13 +14,10 @@ const inputIngredients = document.querySelector('#search__input-ingredients')
 const inputAppliance = document.querySelector('#search__input-appliance')
 const inputUstensil = document.querySelector('#search__input-ustensils')
 
-const beforeContainer = document.querySelector('.before-container')
-
 recipes.forEach((recipes) => {
   arrOfActualRecipe.push(recipes)
 })
 
-// Model d'affichage des recettes
 const displayRecipes = (recipes, xList) => {
   recipes.forEach((el) => {
     const recipe = document.createElement('article')
@@ -113,7 +110,7 @@ const displayRecipes = (recipes, xList) => {
   })
 }
 
-// Conversion de la liste des recettes en objet pour pouvoir les manipuler
+
 const recipeReduce = recipes.reduce((recipeObj, currentRecipe) => {
   const { id } = currentRecipe
   recipeObj[id] = currentRecipe
@@ -123,7 +120,7 @@ const recipeReduce = recipes.reduce((recipeObj, currentRecipe) => {
 
 console.log(recipeReduce)
 
-// parcours de la liste des recettes et affichage des recettes qui correspondent à la recherche
+
 const checkIngredients = (ingredients, inputValue) => {
   return ingredients.some(({ ingredient }) => {
     return ingredient.toLowerCase().includes(inputValue.toLowerCase())
@@ -143,8 +140,6 @@ const checkUstensils = (ustensils, inputValue) => {
 const checkAppliance = (appliance, inputValue) =>
   appliance.toLowerCase().includes(inputValue.toLowerCase())
 
-
-// Permet de gérer la recherche et filtrer en utilisant les fonctions checkIngredients, checkName, checkUstensils, checkAppliance
 const handleSearch = () => {
   const inputNameValue = inputName.value
   const inputIngredientsValue = inputIngredients.value
@@ -175,7 +170,6 @@ const handleSearch = () => {
 const inputs = document.querySelectorAll('input')
 inputs.forEach((input) => input.addEventListener('input', handleSearch))
 
-// permet d'obtenir la liste des ingredients, ustensils et appareils pour chaque recette
 const getIngredients = () => {
   const ingredients = []
   arrOfActualRecipe.forEach((recipe) => {
@@ -220,8 +214,8 @@ const getUstensils = () => {
   } )
 }
 
+const beforeContainer = document.querySelector('.before-container')
 
-// permet de créer un modèle stamp qui affiche l'ingredient, l'appareil et l'ustensil sélectionné
 const createFilter = ( filterValue) => {
   const filter = document.createElement('div')
   filter.classList.add('filter-button-stamp')
@@ -229,7 +223,6 @@ const createFilter = ( filterValue) => {
   return filter
 }
 
-// permet de remplir les stamps avec les filtres sélectionnés
 const createFilterContainerForIngredients = ( filterValue) => {
   const filterContainer = document.createElement('div')
   filterContainer.classList.add('filter-container')
@@ -254,7 +247,7 @@ const createFilterContainerForUstensils = ( filterValue) => {
   return filterContainer
 }
 
-// permet de remploir les stamps avec les bonnes datas
+
 const showFilters = () => {
   
   beforeContainer.innerHTML = ''
@@ -273,7 +266,6 @@ const showFilters = () => {
   }
 }
 
-// permet de supprimer les stamps de filtres sélectionnés
 const removeFilters = (filterContainer) => {
   filterContainer.innerHTML = ''
 }
@@ -293,7 +285,6 @@ const stampRemonve = (inputEl) => {
   }
   )
 } 
-
 
 displayRecipes(arrOfActualRecipe, actualRecipe)
 
