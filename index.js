@@ -1,5 +1,6 @@
-import "./styles.css";
-import recipes from "./recipes.js";
+import { recipes } from './data/recipes.js'
+import { displayRecipes} from './utils/articleModel.js'
+
 let datas = {};
 let datasProxy = new Proxy(datas, {
   set: function (target, key, value) {
@@ -11,8 +12,7 @@ let datasProxy = new Proxy(datas, {
       container.innerHTML = "";
       target[key].map((recipe) => {
         console.log(recipe);
-        const elt = `<h1>${recipe.name}</h1>`;
-        container.innerHTML += elt;
+        displayRecipes(recipe);
         return true;
       });
     }
@@ -23,7 +23,9 @@ let datasProxy = new Proxy(datas, {
 datasProxy.recipes = [...recipes];
 datasProxy.searchLength = 0;
 console.log(datas);
-document.querySelector("input").addEventListener("input", (e) => {
+
+
+document.querySelector("#search__input").addEventListener("input", (e) => {
   const str = e.target.value;
 
   if (str.length >= 3 && str.length > datas.searchLength) {
