@@ -1,4 +1,6 @@
 const ingredientsDataList = document.querySelector('#ingredientsList')
+const appliancesDataList = document.querySelector('#applianceList')
+const ustensilDataList = document.querySelector('#ustensilsList')
 
 export const getIngredients = (datasProxy) => {
   let ingredients = []
@@ -13,4 +15,37 @@ export const getIngredients = (datasProxy) => {
     option.value = ingredient
     ingredientsDataList.appendChild(option)
   })
+}
+
+export const getAppliiances = (datasProxy) => {
+  let appliances = []
+  datasProxy.recipes.forEach((recipe) => {
+    appliances.push(recipe.appliance)
+  }
+  )
+  const uniqueAppliances = [...new Set(appliances)]
+  uniqueAppliances.forEach((appliance) => {
+    const option = document.createElement('option')
+    option.value = appliance
+    appliancesDataList.appendChild(option)
+  }
+  )
+}
+
+export const getUstensils = (datasProxy) => {
+  let ustensils = []
+  datasProxy.recipes.forEach((recipe) => {
+    recipe.ustensils.forEach((ustensil) => {
+      ustensils.push(ustensil)
+    }
+    )
+  }
+  )
+  const uniqueUstensils = [...new Set(ustensils)]
+  uniqueUstensils.forEach((ustensil) => {
+    const option = document.createElement('option')
+    option.value = ustensil
+    ustensilDataList.appendChild(option)
+  }
+  )
 }
