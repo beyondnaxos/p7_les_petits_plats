@@ -1,3 +1,5 @@
+
+
 export const searchIngredients = (datasProxy, datas) => {
   document
     .querySelector('#search__input-ingredients')
@@ -5,7 +7,7 @@ export const searchIngredients = (datasProxy, datas) => {
       const str = e.target.value
 
       if (str.length >= 3 && str.length > datas.searchLength) {
-        const filter = datasProxy.recipes.filter((elt) =>
+        const filter = datas.recipes.filter((elt) =>
           elt.ingredients.some((ingredient) =>
             ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
           )
@@ -17,7 +19,6 @@ export const searchIngredients = (datasProxy, datas) => {
       datasProxy.searchLength = str.length
     })
 }
-
 
 export const searchAppliance = (datasProxy, datas) => {
   document

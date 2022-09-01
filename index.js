@@ -1,7 +1,15 @@
 import { recipes } from './data/recipes.js'
-import { getIngredients, getAppliiances, getUstensils } from './utils/dataList.js'
+import {
+  getIngredients,
+  getAppliiances,
+  getUstensils,
+} from './utils/dataList.js'
 import { displayRecipes } from './utils/articleModel.js'
-import { searchIngredients, searchAppliance, searchUstensil } from './utils/searchEngine.js'
+import {
+  searchIngredients,
+  searchAppliance,
+  searchUstensil,
+} from './utils/searchEngine.js'
 
 let datas = {}
 let datasProxy = new Proxy(datas, {
@@ -24,7 +32,6 @@ let datasProxy = new Proxy(datas, {
 
 datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
-
 
 document.querySelector('#search__input').addEventListener('input', (e) => {
   const str = e.target.value
@@ -50,7 +57,3 @@ searchUstensil(datasProxy, datas)
 getIngredients(datasProxy)
 getAppliiances(datasProxy)
 getUstensils(datasProxy)
-
-const inputAppliance = document.querySelector('#search__input-appliance')
-
-const inputUstensil = document.querySelector('#search__input-ustensils')

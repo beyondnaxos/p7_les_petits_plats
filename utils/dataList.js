@@ -7,9 +7,11 @@ export const getIngredients = (datasProxy) => {
   datasProxy.recipes.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
       ingredients.push(ingredient.ingredient)
+      console.log(ingredients)
     })
   })
   const uniqueIngredients = [...new Set(ingredients)]
+  console.log(uniqueIngredients)
   uniqueIngredients.forEach((ingredient) => {
     const option = document.createElement('option')
     option.value = ingredient
