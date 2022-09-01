@@ -11,7 +11,9 @@ import {
   searchUstensil,
 } from './utils/searchEngine.js'
 
+
 let datas = {}
+
 let datasProxy = new Proxy(datas, {
   set: function (target, key, value) {
     console.log(`${key} set to ${value}`)
@@ -32,6 +34,7 @@ let datasProxy = new Proxy(datas, {
 
 datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
+// let mainSearch = []
 
 document.querySelector('#search__input').addEventListener('input', (e) => {
   const str = e.target.value
@@ -41,12 +44,14 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
       elt.name.toLowerCase().includes(str.toLowerCase())
     )
     datasProxy.recipes = [...filter]
+
     console.log(datasProxy.recipes)
   } else {
     datasProxy.recipes = [...recipes]
   }
   datasProxy.searchLength = str.length
 })
+
 
 console.log(datas.recipes)
 
