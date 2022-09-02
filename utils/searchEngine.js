@@ -10,10 +10,11 @@ export const searchIngredients = (datasProxy, datas) => {
         const filter = datas.recipes.filter((elt) =>
           elt.ingredients.some((ingredient) =>
             ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
+            
           )
         )
         datasProxy.recipes = [...filter]
-      } else {
+      } else if (str == '') {
         datasProxy.recipes = [...datasProxy.recipes]
       }
       datasProxy.searchLength = str.length

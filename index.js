@@ -10,15 +10,16 @@ import {
   searchAppliance,
   searchUstensil,
 } from './utils/searchEngine.js'
+import {createFilterContainerForIngredients} from './utils/filterTag.js'
 
 
 let datas = {}
 
 let datasProxy = new Proxy(datas, {
   set: function (target, key, value) {
-    console.log(`${key} set to ${value}`)
+    // console.log(`${key} set to ${value}`)
     target[key] = value
-    console.log(key, typeof target[key])
+    // console.log(key, typeof target[key])
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
@@ -34,6 +35,7 @@ let datasProxy = new Proxy(datas, {
 
 datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
+
 // let mainSearch = []
 
 document.querySelector('#search__input').addEventListener('input', (e) => {
@@ -44,7 +46,6 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
       elt.name.toLowerCase().includes(str.toLowerCase())
     )
     datasProxy.recipes = [...filter]
-
     console.log(datasProxy.recipes)
   } else {
     datasProxy.recipes = [...recipes]
@@ -53,9 +54,9 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 })
 
 
+searchIngredients(datasProxy, datas)
 console.log(datas.recipes)
 
-searchIngredients(datasProxy, datas)
 searchAppliance(datasProxy, datas)
 searchUstensil(datasProxy, datas)
 
