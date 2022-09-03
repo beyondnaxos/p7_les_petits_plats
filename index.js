@@ -10,7 +10,7 @@ import {
   searchAppliance,
   searchUstensil,
 } from './utils/searchEngine.js'
-import {createFilterContainerForIngredients} from './utils/filterTag.js'
+// import {createFilterContainerForIngredients} from './utils/filterTag.js'
 
 
 let datas = {}
@@ -33,6 +33,7 @@ let datasProxy = new Proxy(datas, {
   },
 })
 
+console.log(datasProxy)
 datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
 
@@ -53,8 +54,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   datasProxy.searchLength = str.length
 })
 
-
-searchIngredients(datasProxy, datas)
+searchIngredients(datasProxy, datas, recipes)
 console.log(datas.recipes)
 
 searchAppliance(datasProxy, datas)

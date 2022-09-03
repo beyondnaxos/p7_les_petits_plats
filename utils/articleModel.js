@@ -33,6 +33,34 @@ export const displayRecipes = (el) => {
   const ingredients = document.createElement('ul')
   ingredients.classList.add('recipe__ingredients')
 
+  displayIngredients(el, ingredients)
+
+  titleIngredientsContainer.appendChild(ingredients)
+
+  //  handle  time Prototype
+
+  displayRecipesTime(el, timeAndInstructionsContainer)
+
+  //  handle  instructions Prototype
+  const instructions = document.createElement('div')
+  instructions.classList.add('recipe__instructions')
+
+  const instructionContent = el.description
+
+  const instruction = document.createElement('p')
+  instruction.classList.add('recipe__instruction')
+  instruction.textContent = instructionContent
+  instructions.appendChild(instruction)
+
+  timeAndInstructionsContainer.appendChild(instructions)
+
+  document.querySelector('.container').appendChild(recipe)
+}
+
+
+
+
+const displayIngredients = (el, ingredients) => {
   el.ingredients.forEach((ingredient) => {
     const ingredientItem = document.createElement('li')
     ingredientItem.classList.add('recipe__ingredient')
@@ -56,33 +84,18 @@ export const displayRecipes = (el) => {
       !ingredient.unit
     ) {
       ingredientItem.textContent = ingredient.ingredient
+    
     }
     ingredients.appendChild(ingredientItem)
   })
+}
 
-  titleIngredientsContainer.appendChild(ingredients)
 
-  //  handle  time Prototype
-
+const displayRecipesTime = (el, timeAndInstructionsContainer) => {
   const time = document.createElement('div')
   time.classList.add('recipe__time')
   time.innerHTML =
     "<img class='time__image' src='./assets/icons/clockIcon.png'></img>" +
     `<p class='time-duration'>${el.time} min</p>`
   timeAndInstructionsContainer.appendChild(time)
-
-  //  handle  instructions Prototype
-  const instructions = document.createElement('div')
-  instructions.classList.add('recipe__instructions')
-
-  const instructionContent = el.description
-
-  const instruction = document.createElement('p')
-  instruction.classList.add('recipe__instruction')
-  instruction.textContent = instructionContent
-  instructions.appendChild(instruction)
-
-  timeAndInstructionsContainer.appendChild(instructions)
-
-  document.querySelector('.container').appendChild(recipe)
 }

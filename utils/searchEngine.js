@@ -1,6 +1,4 @@
-
-
-export const searchIngredients = (datasProxy, datas) => {
+export const searchIngredients = (datasProxy, datas, recipes) => {
   document
     .querySelector('#search__input-ingredients')
     .addEventListener('input', (e) => {
@@ -15,7 +13,7 @@ export const searchIngredients = (datasProxy, datas) => {
         )
         datasProxy.recipes = [...filter]
       } else if (str == '') {
-        datasProxy.recipes = [...datasProxy.recipes]
+        datasProxy.recipes = [...recipes]
       }
       datasProxy.searchLength = str.length
     })
