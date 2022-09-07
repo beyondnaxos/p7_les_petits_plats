@@ -15,6 +15,7 @@ import {
 
 let datas = {}
 
+
 let datasProxy = new Proxy(datas, {
   set: function (target, key, value) {
     // console.log(`${key} set to ${value}`)
@@ -23,12 +24,26 @@ let datasProxy = new Proxy(datas, {
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
+      datasProxy.appliances = getAppliiances(datasProxy);
       target[key].map((recipe) => {
         console.log(recipe)
         displayRecipes(recipe)
         return true
-      })
+      });
     }
+      if (key === 'appliances') {
+        //lister les appliances dans ma liste déroulante
+        const appliancesDataList = document.querySelector('#applianceList');
+        appliancesDataList.innerHTML = '';
+        value.forEach((appliance) => {
+
+          const option = document.createElement('option')
+          option.value = appliance;
+          
+          appliancesDataList.appendChild(option)
+        });
+      }
+    
     return true
   },
 })
@@ -41,7 +56,7 @@ datasProxy.searchLength = 0
 
 document.querySelector('#search__input').addEventListener('input', (e) => {
   const str = e.target.value
-
+  datasProxy.mainSearch = str
   if (str.length >= 3 && str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>
       elt.name.toLowerCase().includes(str.toLowerCase())

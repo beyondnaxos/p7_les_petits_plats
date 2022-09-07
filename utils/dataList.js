@@ -24,14 +24,13 @@ export const getAppliiances = (datasProxy) => {
   datasProxy.recipes.forEach((recipe) => {
     appliances.push(recipe.appliance)
   }
+
   )
   const uniqueAppliances = [...new Set(appliances)]
-  uniqueAppliances.forEach((appliance) => {
-    const option = document.createElement('option')
-    option.value = appliance
-    appliancesDataList.appendChild(option)
-  }
-  )
+  console.log(uniqueAppliances);
+  return uniqueAppliances
+  
+  
 }
 
 export const getUstensils = (datasProxy) => {
