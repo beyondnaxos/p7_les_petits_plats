@@ -18,9 +18,7 @@ let datas = {}
 
 let datasProxy = new Proxy(datas, {
   set: function (target, key, value) {
-    // console.log(`${key} set to ${value}`)
     target[key] = value
-    // console.log(key, typeof target[key])
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
@@ -43,6 +41,25 @@ let datasProxy = new Proxy(datas, {
           appliancesDataList.appendChild(option)
         });
       }
+      if (key === 'ingredients') {
+        const ingredientsDataList = document.querySelector('#ingredientsList');
+        ingredientsDataList.innerHTML = '';
+        value.forEach((ingredient) => {
+          const option = document.createElement('option')
+          option.value = ingredient;
+          ingredientsDataList.appendChild(option)
+        });
+      }
+      if (key === 'ustensils') {
+        const ustensilsDataList = document.querySelector('#ustensilsList');
+        ustensilsDataList.innerHTML = '';
+        value.forEach((ustensil) => {
+          const option = document.createElement('option')
+          option.value = ustensil;
+          ustensilsDataList.appendChild(option)
+        });
+      }
+
     
     return true
   },
