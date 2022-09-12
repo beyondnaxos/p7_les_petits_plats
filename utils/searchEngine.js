@@ -24,7 +24,6 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
     })
 }
 
-
 // export const searchAppliance = (datasProxy, datas, recipes) => {
 //   document
 //     .querySelector('#search__input-appliance')
