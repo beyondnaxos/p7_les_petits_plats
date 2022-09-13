@@ -14,15 +14,22 @@ import {
 
 
 let datas = {}
-
-
+datas.recipes = [...recipes];
+console.log(datas);
+datas.allIngredients = getIngredients(datas)
+datas.allAppliances = getAppliiances(datas)
+datas.allUstensils = getUstensils(datas)
+console.log(datas);
 let datasProxy = new Proxy(datas, {
   set: function (target, key, value) {
     target[key] = value
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
-      datasProxy.appliances = getAppliiances(datasProxy);
+      datasProxy.appliances = [...datas.allAppliances];
+      datasProxy.ingrendients = getIngredients(datas);
+      datasProxy.ustensils = [...datas.allUstensils];
+
       target[key].map((recipe) => {
         console.log(recipe)
         displayRecipes(recipe)
@@ -41,9 +48,13 @@ let datasProxy = new Proxy(datas, {
           appliancesDataList.appendChild(option)
         });
       }
+      if (key === 'searchType'){
+        filterData(value, datas, datasProxy);
+      }
       if (key === 'ingredients') {
         const ingredientsDataList = document.querySelector('#ingredientsList');
         ingredientsDataList.innerHTML = '';
+        console.log('ingredients',value);
         value.forEach((ingredient) => {
           const option = document.createElement('option')
           option.value = ingredient;
@@ -92,6 +103,6 @@ console.log(datas.recipes)
 searchAppliance(datasProxy, datas)
 searchUstensil(datasProxy, datas)
 
-getIngredients(datasProxy)
-getAppliiances(datasProxy)
-getUstensils(datasProxy)
+getIngredients(datas)
+getAppliiances(datas)
+getUstensils(datas)

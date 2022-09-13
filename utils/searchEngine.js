@@ -24,6 +24,14 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
     })
 }
 
+export const ingredientsSearch = () => {
+  document.querySelector('#search__input-ingredients').addEventListener('input',e => {
+    const searchString = e.target.value;
+    datasProxy.searchString = e.target.value
+    datasProxy.searchType = 'ingredients';
+  })
+}
+
 // export const searchAppliance = (datasProxy, datas, recipes) => {
 //   document
 //     .querySelector('#search__input-appliance')
@@ -83,4 +91,12 @@ export const searchUstensil = (datasProxy, datas) => {
       }
       datasProxy.searchLength = str.length
     })
+}
+
+export function filterData(tagFilter, datas, datasProxy){
+  switch (tagFilter) {
+    case 'ingredients': 
+     const filtredIngredients = datas.allIngredients.filter(elt => elt.toLowerCase().includes(datas.searchString.toLowerCase()));
+     datasProxy.ingredients = [...filtredIngredients]
+  }
 }
