@@ -65,7 +65,7 @@ let datasProxy = new Proxy(datas, {
         ingredientsDataList.appendChild(option)
       })
     }
-    
+
     if (key === 'ustensils') {
       const ustensilsDataList = document.querySelector('#ustensilsList')
       ustensilsDataList.innerHTML = ''
@@ -102,10 +102,8 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 })
 
 searchIngredients(datasProxy, datas, recipes)
-console.log(datas.recipes)
-
-searchAppliance(datasProxy, datas)
-searchUstensil(datasProxy, datas)
+searchAppliance(datasProxy, datas, recipes)
+searchUstensil(datasProxy, datas,recipes)
 
 getIngredients(datas)
 getAppliiances(datas)
