@@ -10,68 +10,72 @@ import {
   searchAppliance,
   searchUstensil,
 } from './utils/searchEngine.js'
+import { filterData } from './utils/searchEngine.js'
 // import {createFilterContainerForIngredients} from './utils/filterTag.js'
 
-
 let datas = {}
-datas.recipes = [...recipes];
-console.log(datas);
+datas.recipes = [...recipes]
+console.log(datas)
 datas.allIngredients = getIngredients(datas)
 datas.allAppliances = getAppliiances(datas)
 datas.allUstensils = getUstensils(datas)
-console.log(datas);
+
+console.log(datas)
 let datasProxy = new Proxy(datas, {
   set: function (target, key, value) {
     target[key] = value
+
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
-      datasProxy.appliances = [...datas.allAppliances];
-      datasProxy.ingrendients = getIngredients(datas);
-      datasProxy.ustensils = [...datas.allUstensils];
+      datasProxy.appliances = [...datas.allAppliances]
+      datasProxy.ingredients = [...datas.allIngredients]
+      datasProxy.ustensils = [...datas.allUstensils]
+      console.log(datasProxy.ustensils)
 
       target[key].map((recipe) => {
         console.log(recipe)
         displayRecipes(recipe)
         return true
-      });
+      })
     }
-      if (key === 'appliances') {
-        //lister les appliances dans ma liste déroulante
-        const appliancesDataList = document.querySelector('#applianceList');
-        appliancesDataList.innerHTML = '';
-        value.forEach((appliance) => {
 
-          const option = document.createElement('option')
-          option.value = appliance;
-          
-          appliancesDataList.appendChild(option)
-        });
-      }
-      if (key === 'searchType'){
-        filterData(value, datas, datasProxy);
-      }
-      if (key === 'ingredients') {
-        const ingredientsDataList = document.querySelector('#ingredientsList');
-        ingredientsDataList.innerHTML = '';
-        console.log('ingredients',value);
-        value.forEach((ingredient) => {
-          const option = document.createElement('option')
-          option.value = ingredient;
-          ingredientsDataList.appendChild(option)
-        });
-      }
-      if (key === 'ustensils') {
-        const ustensilsDataList = document.querySelector('#ustensilsList');
-        ustensilsDataList.innerHTML = '';
-        value.forEach((ustensil) => {
-          const option = document.createElement('option')
-          option.value = ustensil;
-          ustensilsDataList.appendChild(option)
-        });
-      }
+    if (key === 'appliances') {
+      //lister les appliances dans ma liste déroulante
+      const appliancesDataList = document.querySelector('#applianceList')
+      appliancesDataList.innerHTML = ''
+      value.forEach((appliance) => {
+        const option = document.createElement('option')
+        option.value = appliance
+        appliancesDataList.appendChild(option)
+      })
+    }
 
+    if (key === 'searchType') {
+      filterData(value, datas, datasProxy)
+    }
+
+    if (key === 'ingredients') {
+      const ingredientsDataList = document.querySelector('#ingredientsList')
+      ingredientsDataList.innerHTML = ''
+      console.log('ingredients', value)
+      value.forEach((ingredient) => {
+        const option = document.createElement('option')
+        option.value = ingredient
+        ingredientsDataList.appendChild(option)
+      })
+    }
     
+    if (key === 'ustensils') {
+      const ustensilsDataList = document.querySelector('#ustensilsList')
+      ustensilsDataList.innerHTML = ''
+      value.forEach((ustensil) => {
+        const option = document.createElement('option')
+        option.value = ustensil
+        ustensilsDataList.appendChild(option)
+      })
+    }
+
     return true
   },
 })
