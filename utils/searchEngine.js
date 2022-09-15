@@ -78,6 +78,7 @@ export const ingredientsSearch = () => {
     const searchString = e.target.value;
     datasProxy.searchString = e.target.value
     datasProxy.searchType = 'ingredients';
+    
   })
 }
 
