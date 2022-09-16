@@ -82,6 +82,24 @@ export const ingredientsSearch = () => {
   })
 }
 
+export const applianceSearch = () => {
+  document.querySelector('#search__input-appliance').addEventListener('input',e => {
+    const searchString = e.target.value;
+    datasProxy.searchString = e.target.value
+    datasProxy.searchType = 'appliance';
+
+  })
+}
+
+export const ustensilSearch = () => {
+  document.querySelector('#search__input-ustensils').addEventListener('input',e => {
+    const searchString = e.target.value;
+    datasProxy.searchString = e.target.value
+    datasProxy.searchType = 'ustensils';
+
+  })
+}
+
 export function filterData(tagFilter, datas, datasProxy){
   switch (tagFilter) {
     case 'ingredients': 
