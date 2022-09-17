@@ -84,8 +84,6 @@ console.log(datasProxy)
 datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
 
-// let mainSearch = []
-
 document.querySelector('#search__input').addEventListener('input', (e) => {
   const str = e.target.value
   datasProxy.mainSearch = str
