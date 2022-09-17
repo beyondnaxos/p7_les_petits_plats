@@ -57,9 +57,6 @@ export const displayRecipes = (el) => {
   document.querySelector('.container').appendChild(recipe)
 }
 
-
-
-
 const displayIngredients = (el, ingredients) => {
   el.ingredients.forEach((ingredient) => {
     const ingredientItem = document.createElement('li')
@@ -84,12 +81,10 @@ const displayIngredients = (el, ingredients) => {
       !ingredient.unit
     ) {
       ingredientItem.textContent = ingredient.ingredient
-    
     }
     ingredients.appendChild(ingredientItem)
   })
 }
-
 
 const displayRecipesTime = (el, timeAndInstructionsContainer) => {
   const time = document.createElement('div')

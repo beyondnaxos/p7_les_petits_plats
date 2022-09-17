@@ -101,7 +101,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 
 searchIngredients(datasProxy, datas, recipes)
 searchAppliance(datasProxy, datas, recipes)
-searchUstensil(datasProxy, datas,recipes)
+searchUstensil(datasProxy, datas, recipes)
 
 getIngredients(datas)
 getAppliiances(datas)

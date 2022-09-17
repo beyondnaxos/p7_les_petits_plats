@@ -3,7 +3,7 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
     .querySelector('#search__input-ingredients')
     .addEventListener('input', (e) => {
       const str = e.target.value
-      console.log(datas);
+      console.log(datas)
       if (str.length >= 3 && str.length > datas.searchLength) {
         const filter = datas.recipes.filter((elt) =>
           elt.ingredients.some((ingredient) =>
@@ -13,34 +13,35 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
         datasProxy.recipes = [...filter]
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
-        if(datasProxy.mainSearch){
+        if (datasProxy.mainSearch) {
           const filter = datas.recipes.filter((elt) =>
-          elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
-        )
-        datasProxy.recipes = [...filter]
+            elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
+          )
+          datasProxy.recipes = [...filter]
         }
       }
       datasProxy.searchLength = str.length
     })
 }
 
-
 export const searchAppliance = (datasProxy, datas, recipes) => {
   document
     .querySelector('#search__input-appliance')
     .addEventListener('input', (e) => {
       const str = e.target.value
-      console.log(datas);
+      console.log(datas)
       if (str.length >= 3 && str.length > datas.searchLength) {
-        const filter = datas.recipes.filter(elt => elt.appliance.toLowerCase().includes(str.toLowerCase()));
+        const filter = datas.recipes.filter((elt) =>
+          elt.appliance.toLowerCase().includes(str.toLowerCase())
+        )
         datasProxy.recipes = [...filter]
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
-        if(datasProxy.mainSearch){
+        if (datasProxy.mainSearch) {
           const filter = datas.recipes.filter((elt) =>
-          elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
-        )
-        datasProxy.recipes = [...filter]
+            elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
+          )
+          datasProxy.recipes = [...filter]
         }
       }
       datasProxy.searchLength = str.length
@@ -52,21 +53,21 @@ export const searchUstensil = (datasProxy, datas, recipes) => {
     .querySelector('#search__input-ustensils')
     .addEventListener('input', (e) => {
       const str = e.target.value
-      console.log(datas);
+      console.log(datas)
       if (str.length >= 3 && str.length > datas.searchLength) {
         const filter = datas.recipes.filter((elt) =>
-                  elt.ustensils.some((ustensil) =>
-                    ustensil.toLowerCase().includes(str.toLowerCase())
-                  )
-                 )
+          elt.ustensils.some((ustensil) =>
+            ustensil.toLowerCase().includes(str.toLowerCase())
+          )
+        )
         datasProxy.recipes = [...filter]
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
-        if(datasProxy.mainSearch){
+        if (datasProxy.mainSearch) {
           const filter = datas.recipes.filter((elt) =>
-          elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
-        )
-        datasProxy.recipes = [...filter]
+            elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
+          )
+          datasProxy.recipes = [...filter]
         }
       }
       datasProxy.searchLength = str.length
@@ -74,48 +75,56 @@ export const searchUstensil = (datasProxy, datas, recipes) => {
 }
 
 export const ingredientsSearch = () => {
-  document.querySelector('#search__input-ingredients').addEventListener('input',e => {
-    const searchString = e.target.value;
-    datasProxy.searchString = e.target.value
-    datasProxy.searchType = 'ingredients';
-    
-  })
+  document
+    .querySelector('#search__input-ingredients')
+    .addEventListener('input', (e) => {
+      const searchString = e.target.value
+      datasProxy.searchString = e.target.value
+      datasProxy.searchType = 'ingredients'
+    })
 }
 
 export const applianceSearch = () => {
-  document.querySelector('#search__input-appliance').addEventListener('input',e => {
-    const searchString = e.target.value;
-    datasProxy.searchString = e.target.value
-    datasProxy.searchType = 'appliance';
-
-  })
+  document
+    .querySelector('#search__input-appliance')
+    .addEventListener('input', (e) => {
+      const searchString = e.target.value
+      datasProxy.searchString = e.target.value
+      datasProxy.searchType = 'appliance'
+    })
 }
 
 export const ustensilSearch = () => {
-  document.querySelector('#search__input-ustensils').addEventListener('input',e => {
-    const searchString = e.target.value;
-    datasProxy.searchString = e.target.value
-    datasProxy.searchType = 'ustensils';
-
-  })
+  document
+    .querySelector('#search__input-ustensils')
+    .addEventListener('input', (e) => {
+      const searchString = e.target.value
+      datasProxy.searchString = e.target.value
+      datasProxy.searchType = 'ustensils'
+    })
 }
 
-export function filterData(tagFilter, datas, datasProxy){
+export function filterData(tagFilter, datas, datasProxy) {
   switch (tagFilter) {
-    case 'ingredients': 
-     const filtredIngredients = datas.allIngredients.filter(elt => elt.toLowerCase().includes(datas.searchString.toLowerCase()));
-     datasProxy.ingredients = [...filtredIngredients]
-     console.log(datasProxy.ingredients);
-      break;
+    case 'ingredients':
+      const filtredIngredients = datas.allIngredients.filter((elt) =>
+        elt.toLowerCase().includes(datas.searchString.toLowerCase())
+      )
+      datasProxy.ingredients = [...filtredIngredients]
+      console.log(datasProxy.ingredients)
+      break
     case 'appliance':
-      const filtredAppliances = datas.allAppliances.filter(elt => elt.toLowerCase().includes(datas.searchString.toLowerCase()));
+      const filtredAppliances = datas.allAppliances.filter((elt) =>
+        elt.toLowerCase().includes(datas.searchString.toLowerCase())
+      )
       datasProxy.appliances = [...filtredAppliances]
-      break;
+      break
     case 'ustensils':
-      const filtredUstensils = datas.allUstensils.filter(elt => elt.toLowerCase().includes(datas.searchString.toLowerCase()));
+      const filtredUstensils = datas.allUstensils.filter((elt) =>
+        elt.toLowerCase().includes(datas.searchString.toLowerCase())
+      )
       datasProxy.ustensils = [...filtredUstensils]
-      break;
+      break
     default:
-    }
-
+  }
 }
