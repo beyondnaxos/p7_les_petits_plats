@@ -1,6 +1,6 @@
 const beforeContainer = document.querySelector('.before-container')
 
-const createFilterContainerForIngredients = (filterValue) => {
+export const createFilterContainerForIngredients = (filterValue) => {
   const filterContainer = document.createElement('div')
   filterContainer.classList.add('filter-container')
   filterContainer.appendChild(createFilter(filterValue))

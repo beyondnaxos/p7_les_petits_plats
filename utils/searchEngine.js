@@ -1,3 +1,6 @@
+// import {createFilterContainerForIngredients} from './utils/filterTag.js'
+// const beforeContainer = document.querySelector('.before-container')
+
 export const searchIngredients = (datasProxy, datas, recipes) => {
   document
     .querySelector('#search__input-ingredients')
@@ -11,6 +14,7 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
           )
         )
         datasProxy.recipes = [...filter]
+        // createFilterContainerForIngredients(str)
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
         if (datasProxy.mainSearch) {
