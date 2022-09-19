@@ -36,9 +36,9 @@ let datasProxy = new Proxy(datas, {
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
-      datasProxy.appliances = [...datas.allAppliances]
-      datasProxy.ingredients = [...datas.allIngredients]
-      datasProxy.ustensils = [...datas.allUstensils]
+      datasProxy.appliances = getAppliiances(datasProxy)
+      datasProxy.ingredients = getIngredients(datasProxy)
+      datasProxy.ustensils = getUstensils(datasProxy)
       console.log(datasProxy.ustensils)
       
        target[key].map((recipe) => {
@@ -119,6 +119,6 @@ searchIngredients(datasProxy, datas, recipes)
 searchAppliance(datasProxy, datas, recipes)
 searchUstensil(datasProxy, datas, recipes)
 
-getIngredients(datas)
-getAppliiances(datas)
-getUstensils(datas)
+// getIngredients(datas)
+// getAppliiances(datas)
+// getUstensils(datas)

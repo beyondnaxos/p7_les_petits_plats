@@ -10,7 +10,6 @@ export const buildIngredientTag = (filterValue) => {
 
 
 
-
 const createFilterContainerForAppliances = (filterValue) => {
   const filterContainer = document.createElement('div')
   filterContainer.classList.add('filter-container')

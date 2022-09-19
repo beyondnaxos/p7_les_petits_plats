@@ -16,16 +16,12 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
         )
         datasProxy.ingredientTag = [str.toLowerCase()]
 
-        // const searched = document.createElement('div')
-        // searched.classList.add('searched')
-        // searched.innerHTML = datasProxy.ingredientTag
-
-        // beforeContainer.appendChild(searched)
-
         buildIngredientTag(datasProxy.ingredientTag)
 
         console.log(datasProxy.ingredientTag);
         datasProxy.recipes = [...filter]
+        datasProxy.ingredients = getIngredients(datasProxy)
+
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
         if (datasProxy.mainSearch) {
