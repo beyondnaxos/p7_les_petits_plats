@@ -34,23 +34,23 @@ const createFilter = ( filterValue) => {
   return filter
 }
 
-const showFilters = () => {
-  beforeContainer.innerHTML = ''
-  const filterValue = inputIngredients.value
-  const filterValue2 = inputAppliance.value
-  const filterValue3 = inputUstensil.value
+// const showFilters = () => {
+//   beforeContainer.innerHTML = ''
+//   const filterValue = inputIngredients.value
+//   const filterValue2 = inputAppliance.value
+//   const filterValue3 = inputUstensil.value
 
-  if (filterValue !== '') {
-    beforeContainer.appendChild(
-      createFilterContainerForIngredients(filterValue)
-    )
-  }
-  if (filterValue2 !== '') {
-    beforeContainer.appendChild(
-      createFilterContainerForAppliances(filterValue2)
-    )
-  }
-  if (filterValue3 !== '') {
-    beforeContainer.appendChild(createFilterContainerForUstensils(filterValue3))
-  }
-}
+//   if (filterValue !== '') {
+//     beforeContainer.appendChild(
+//       createFilterContainerForIngredients(filterValue)
+//     )
+//   }
+//   if (filterValue2 !== '') {
+//     beforeContainer.appendChild(
+//       createFilterContainerForAppliances(filterValue2)
+//     )
+//   }
+//   if (filterValue3 !== '') {
+//     beforeContainer.appendChild(createFilterContainerForUstensils(filterValue3))
+//   }
+// }
