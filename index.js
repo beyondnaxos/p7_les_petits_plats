@@ -31,7 +31,8 @@ let datasProxy = new Proxy(datas, {
   set: function (target, key, value) {
 
     target[key] = value
-
+    
+    
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
@@ -39,8 +40,8 @@ let datasProxy = new Proxy(datas, {
       datasProxy.ingredients = [...datas.allIngredients]
       datasProxy.ustensils = [...datas.allUstensils]
       console.log(datasProxy.ustensils)
-
-      target[key].map((recipe) => {
+      
+       target[key].map((recipe) => {
         console.log(recipe)
         displayRecipes(recipe)
         return true

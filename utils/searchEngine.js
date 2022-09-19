@@ -1,5 +1,6 @@
-// import {createFilterContainerForIngredients} from './utils/filterTag.js'
-// const beforeContainer = document.querySelector('.before-container')
+import {buildIngredientTag} from './filterTag.js'
+
+const beforeContainer = document.querySelector('.before-container')
 
 export const searchIngredients = (datasProxy, datas, recipes) => {
   document
@@ -13,8 +14,18 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
             ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
           )
         )
+        datasProxy.ingredientTag = [str.toLowerCase()]
+
+        // const searched = document.createElement('div')
+        // searched.classList.add('searched')
+        // searched.innerHTML = datasProxy.ingredientTag
+
+        // beforeContainer.appendChild(searched)
+
+        buildIngredientTag(datasProxy.ingredientTag)
+
+        console.log(datasProxy.ingredientTag);
         datasProxy.recipes = [...filter]
-        // createFilterContainerForIngredients(str)
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
         if (datasProxy.mainSearch) {
@@ -78,13 +89,19 @@ export const searchUstensil = (datasProxy, datas, recipes) => {
     })
 }
 
-export const ingredientsSearch = () => {
+export const ingredientsSearch = (datas) => {
   document
     .querySelector('#search__input-ingredients')
     .addEventListener('input', (e) => {
       const searchString = e.target.value
       datasProxy.searchString = e.target.value
       datasProxy.searchType = 'ingredients'
+      const filter = datas.recipes.filter((elt) =>
+        elt.ingredients.some((ingredient) =>
+          ingredient.ingredient.toLowerCase().includes(searchString.toLowerCase())
+        )
+      )
+      return filter
     })
 }
 
