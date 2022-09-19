@@ -68,11 +68,29 @@ let datasProxy = new Proxy(datas, {
       ingredientsDataList.innerHTML = ''
       console.log('ingredients', value)
       value.forEach((ingredient) => {
-        const option = document.createElement('option')
+        const option = document.createElement('li')
         option.value = ingredient
+        option.classList.add('ingredientsLi')
+        option.innerText = ingredient
+        // option.style.display = 'none'
+        option.style.display = 'none'
         ingredientsDataList.appendChild(option)
+        
       })
     }
+
+
+
+    // if (key === 'ingredients') {
+    //   const ingredientsDataList = document.querySelector('#ingredientsList')
+    //   ingredientsDataList.innerHTML = ''
+    //   console.log('ingredients', value)
+    //   value.forEach((ingredient) => {
+    //     const option = document.createElement('li')
+    //     option.innerText = ingredient
+    //     ingredientsDataList.appendChild(option)
+    //   })
+    // }
 
     if (key === 'ustensils') {
       const ustensilsDataList = document.querySelector('#ustensilsList')
@@ -122,3 +140,23 @@ searchUstensil(datasProxy, datas, recipes)
 // getIngredients(datas)
 // getAppliiances(datas)
 // getUstensils(datas)
+
+
+const searchIngInput = document.querySelector('#search__input-ingredients')
+
+let clicked = false
+
+searchIngInput.addEventListener('click', (e) => {
+  const ingredientsLi = document.querySelectorAll('.ingredientsLi')
+  if (clicked === false) {
+  ingredientsLi.forEach((li) => {
+    li.style.display = 'block'
+  })
+  clicked = true
+  } else {
+    ingredientsLi.forEach((li) => {
+      li.style.display = 'none'
+    })
+    clicked = false
+  }
+})
