@@ -97,6 +97,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   if (str.length >= 3 && str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>  
       elt.name.toLowerCase().includes(str.toLowerCase()) ||
+      elt.description.toLowerCase().includes(str.toLowerCase()) ||
       elt.ingredients.some((ingredient) =>
         ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
       ) ||
