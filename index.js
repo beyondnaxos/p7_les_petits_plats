@@ -1,15 +1,19 @@
 import { recipes } from './data/recipes.js'
+
 import {
   getIngredients,
   getAppliiances,
   getUstensils,
 } from './utils/dataList.js'
+
 import { displayRecipes } from './utils/articleModel.js'
+
 import {
   searchIngredients,
   searchAppliance,
   searchUstensil,
 } from './utils/searchEngine.js'
+
 import { filterData } from './utils/searchEngine.js'
 // import {createFilterContainerForIngredients} from './utils/filterTag.js'
 
@@ -21,8 +25,11 @@ datas.allAppliances = getAppliiances(datas)
 datas.allUstensils = getUstensils(datas)
 
 console.log(datas)
+
 let datasProxy = new Proxy(datas, {
+
   set: function (target, key, value) {
+
     target[key] = value
 
     if (key == 'recipes') {
@@ -88,8 +95,15 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   const str = e.target.value
   datasProxy.mainSearch = str
   if (str.length >= 3 && str.length > datas.searchLength) {
-    const filter = datas.recipes.filter((elt) =>
-      elt.name.toLowerCase().includes(str.toLowerCase())
+    const filter = datas.recipes.filter((elt) =>  
+      elt.name.toLowerCase().includes(str.toLowerCase()) ||
+      elt.ingredients.some((ingredient) =>
+        ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
+      ) ||
+      elt.appliance.toLowerCase().includes(str.toLowerCase()) ||
+      elt.ustensils.some((ustensil) =>
+        ustensil.toLowerCase().includes(str.toLowerCase())
+      )
     )
     datasProxy.recipes = [...filter]
     console.log(datasProxy.recipes)
