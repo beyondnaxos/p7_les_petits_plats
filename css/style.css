@@ -337,7 +337,7 @@ font-size: 14px;
 
 
 
-ul > li {
+ul > .ingredientsLi {
     padding:5px 0;
     max-width: 200px ;
     margin: 0;
