@@ -154,15 +154,17 @@ searchIngInput.addEventListener('click', (e) => {
     ingUl.style.display = 'block'
     searchIngInput.style.width = '100%'
     searchIngContainer.style.width = '100%'
-    bigSearchIngredient.style.width = '800px'
+    searchIngContainer.style.height = '500px'
+    bigSearchIngredient.style.width = 'auto'
     searchIngInput.style.borderRadius = '5px 5px 0 0'
-    ingUl.style.width = '900px'
+    // ingUl.style.width = '900px'
     clicked = true
   } else {
     
     ingUl.style.display = 'none'
     searchIngContainer.style.width = '170px'
     searchIngInput.style.width = '170px'
+    searchIngContainer.style.height = '0'
     bigSearchIngredient.style.width = '170px'
     searchIngInput.style.borderRadius = '5px'
     
