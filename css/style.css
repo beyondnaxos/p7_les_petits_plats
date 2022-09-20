@@ -343,5 +343,5 @@ ul > li {
     margin: 0;
 }
 
-::-webkit-scrollbar{width:6px;border-left:1px solid #3282F7;}
-::-webkit-scrollbar-thumb{background-color:#68D9A4;}
+::-webkit-scrollbar{width:10px;border-left:1px solid #7dff03;}
+::-webkit-scrollbar-thumb{background-color:#68D9A4;border-radius: 5px ;}
