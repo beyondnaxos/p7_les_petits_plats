@@ -1,5 +1,9 @@
 import {buildIngredientTag} from './filterTag.js'
-
+import {
+  getIngredients,
+  getAppliiances,
+  getUstensils,
+} from './dataList.js'
 const beforeContainer = document.querySelector('.before-container')
 
 export const searchIngredients = (datasProxy, datas, recipes) => {
@@ -24,6 +28,7 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
 
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
+        
         if (datasProxy.mainSearch) {
           const filter = datas.recipes.filter((elt) =>
             elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
