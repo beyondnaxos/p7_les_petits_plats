@@ -73,7 +73,7 @@ let datasProxy = new Proxy(datas, {
         option.classList.add('ingredientsLi')
         option.innerText = ingredient
         // option.style.display = 'none'
-        option.style.display = 'none'
+        ingredientsDataList.style.display = 'none'
         ingredientsDataList.appendChild(option)
         
       })
@@ -143,20 +143,30 @@ searchUstensil(datasProxy, datas, recipes)
 
 
 const searchIngInput = document.querySelector('#search__input-ingredients')
-
+const searchIngContainer = document.querySelector('.test')
+const bigSearchIngredient = document.querySelector('.filterIngredient')
+const ingUl = document.querySelector('#ingredientsList')
 let clicked = false
 
 searchIngInput.addEventListener('click', (e) => {
-  const ingredientsLi = document.querySelectorAll('.ingredientsLi')
+
   if (clicked === false) {
-  ingredientsLi.forEach((li) => {
-    li.style.display = 'block'
-  })
-  clicked = true
+    ingUl.style.display = 'block'
+    searchIngInput.style.width = '100%'
+    searchIngContainer.style.width = '100%'
+    bigSearchIngredient.style.width = '800px'
+    searchIngInput.style.borderRadius = '5px 5px 0 0'
+    ingUl.style.width = '900px'
+    clicked = true
   } else {
-    ingredientsLi.forEach((li) => {
-      li.style.display = 'none'
-    })
+    
+    ingUl.style.display = 'none'
+    searchIngContainer.style.width = '170px'
+    searchIngInput.style.width = '170px'
+    bigSearchIngredient.style.width = '170px'
+    searchIngInput.style.borderRadius = '5px'
+    
+  
     clicked = false
   }
 })

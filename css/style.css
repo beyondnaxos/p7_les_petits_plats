@@ -224,42 +224,43 @@ ul {
     font-size: 18px;
 }
 
-.filter :nth-child(1){
+#search__input-ingredients{
    background-color: #3282F7;
    color: white;
    font-weight: bold;
+
 }
-.filter :nth-child(1)::placeholder {
+#search__input-ingredients::placeholder {
    color: white;
 }
 
-.filter :nth-child(1):focus {
+#search__input-ingredients:focus {
     outline: none;
 }
 
-.filter :nth-child(2) {
+#search__input-appliance{
    background-color: #68D9A4;
    color: white;
    font-weight: bold;
 }
-.filter :nth-child(2)::placeholder {
+#search__input-appliance::placeholder {
    color: white;
 }
 
-.filter :nth-child(2):focus {
+#search__input-appliance:focus {
     outline: none;
 }
 
-.filter :nth-child(3) {
+#search__input-ustensils {
    background-color: #ED6454;
    color: white;
    font-weight: bold;
 }
-.filter :nth-child(3)::placeholder {
+#search__input-ustensils::placeholder {
    color: white;
 }
 
-.filter :nth-child(3):focus {
+#search__input-ustensils:focus {
     outline: none;
 }
 
@@ -304,4 +305,38 @@ font-size: 14px;
 
 .filter-container p {
     margin: 0;
+}
+
+.filterIngredient {
+    width: 170px;
+}
+
+.filter {
+    overflow-x: hidden;
+}
+
+.test {
+    width: 500px;
+    height: 500px;
+    overflow: auto;
+}
+
+#ingredientsList {
+   
+    background-color: #3282F7;
+    color: white;
+    font-weight: bold;
+    columns:3;
+    list-style:none;
+    padding: 20px;
+    margin: 0;
+    border-radius: 0 0 5px 5px;
+    
+}
+
+
+
+ul > li {
+    padding:5px 0;
+    
 }

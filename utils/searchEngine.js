@@ -16,7 +16,7 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
         )
         datasProxy.ingredientTag = [str.toLowerCase()]
 
-        buildIngredientTag(datasProxy.ingredientTag)
+        // buildIngredientTag(datasProxy.ingredientTag)
 
         console.log(datasProxy.ingredientTag);
         datasProxy.recipes = [...filter]
