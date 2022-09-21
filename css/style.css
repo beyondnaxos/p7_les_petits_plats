@@ -355,6 +355,7 @@ ul>.ingredientsLi {
 
 ::-webkit-scrollbar-thumb {
     /* background-color: #68D9A4; */
+    
     background-color: rgb(241, 237, 237);
     border-radius: 5px;
 }
