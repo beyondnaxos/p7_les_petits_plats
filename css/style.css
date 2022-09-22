@@ -288,21 +288,22 @@ ul {
 }
 
 
-.filter-container {
+.filter-container-blue {
     color: white;
     font-weight: bold;
     padding: 10px 20px;
+    border-radius: 5px;
 }
 
-.filter-container:nth-child(1) {
+.filter-container-blue {
     background-color: #3282F7;
 }
 
-.filter-container:nth-child(2) {
+.filter-container {
     background-color: #68D9A4;
 }
 
-.filter-container:nth-child(3) {
+.filter-container {
     background-color: #ED6454;
 }
 
@@ -327,7 +328,6 @@ ul {
 }
 
 #ingredientsList {
-
     /* background-color: #3282F7; */
     color: white;
     font-weight: bold;

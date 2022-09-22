@@ -75,7 +75,7 @@ let datasProxy = new Proxy(datas, {
         // option.style.display = 'none'
         ingredientsDataList.style.display = 'none'
         ingredientsDataList.appendChild(option)
-        
+        // for each ingredient on click get value and add it to the filter
       })
     }
 
@@ -172,3 +172,24 @@ searchIngInput.addEventListener('click', (e) => {
     clicked = false
   }
 })
+
+
+const ingredientsLi = document.querySelectorAll('.ingredientsLi')
+ingredientsLi.forEach((ingredient) => {
+  ingredient.addEventListener('click', (e) => {
+    console.log(e.target.innerText)
+    createBlueTag(e.target.innerText)
+    
+  })
+}
+)
+
+// function create blue tag for filter selected ingredient 
+function createBlueTag (str) {
+  const blueTag = document.createElement('div')
+  blueTag.classList.add('filter-container-blue')
+  blueTag.innerText = str
+
+  document.querySelector('.before-container').appendChild(blueTag)
+} 
+
