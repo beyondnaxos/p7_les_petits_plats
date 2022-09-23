@@ -1,9 +1,10 @@
-import {buildIngredientTag} from './filterTag.js'
+
 import {
   getIngredients,
   getAppliiances,
   getUstensils,
 } from './dataList.js'
+
 const beforeContainer = document.querySelector('.before-container')
 
 export const searchIngredients = (datasProxy, datas, recipes) => {
@@ -50,7 +51,10 @@ export const searchAppliance = (datasProxy, datas, recipes) => {
         const filter = datas.recipes.filter((elt) =>
           elt.appliance.toLowerCase().includes(str.toLowerCase())
         )
+        datasProxy.applianceTag = [str.toLowerCase()]
         datasProxy.recipes = [...filter]
+        datasProxy.appliances = getAppliiances(datasProxy)
+
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
         if (datasProxy.mainSearch) {
@@ -76,7 +80,9 @@ export const searchUstensil = (datasProxy, datas, recipes) => {
             ustensil.toLowerCase().includes(str.toLowerCase())
           )
         )
+        datasProxy.ustensilTag = [str.toLowerCase()]
         datasProxy.recipes = [...filter]
+        datasProxy.ustensils = getUstensils(datasProxy)
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
         if (datasProxy.mainSearch) {
