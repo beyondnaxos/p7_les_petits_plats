@@ -14,7 +14,7 @@ import {
   searchUstensil,
 } from './utils/searchEngine.js'
 
-import { filterData } from './utils/searchEngine.js'
+import { filterData, handleIngSearch, createBlueTag } from './utils/searchEngine.js'
 // import {createFilterContainerForIngredients} from './utils/filterTag.js'
 
 let datas = {}
@@ -27,12 +27,9 @@ datas.allUstensils = getUstensils(datas)
 console.log(datas)
 
 let datasProxy = new Proxy(datas, {
-
   set: function (target, key, value) {
-
     target[key] = value
-    
-    
+
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
@@ -40,8 +37,8 @@ let datasProxy = new Proxy(datas, {
       datasProxy.ingredients = getIngredients(datasProxy)
       datasProxy.ustensils = getUstensils(datasProxy)
       console.log(datasProxy.ustensils)
-      
-       target[key].map((recipe) => {
+
+      target[key].map((recipe) => {
         console.log(recipe)
         displayRecipes(recipe)
         return true
@@ -75,7 +72,16 @@ let datasProxy = new Proxy(datas, {
         // option.style.display = 'none'
         ingredientsDataList.style.display = 'none'
         ingredientsDataList.appendChild(option)
-
+      })
+      const ingredientsLi = document.querySelectorAll('.ingredientsLi')
+      console.log(Array.from(ingredientsLi).length);
+      ingredientsLi.forEach((ingredient) => {
+        ingredient.addEventListener('click', (e) => {
+          const str = ingredient.innerText
+          console.log('le bon ' + str)
+          handleIngSearch(str, datasProxy, datas)
+          createBlueTag(str)
+        })
       })
     }
 
@@ -112,16 +118,17 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   const str = e.target.value
   datasProxy.mainSearch = str
   if (str.length >= 3 && str.length > datas.searchLength) {
-    const filter = datas.recipes.filter((elt) =>  
-      elt.name.toLowerCase().includes(str.toLowerCase()) ||
-      elt.description.toLowerCase().includes(str.toLowerCase()) ||
-      elt.ingredients.some((ingredient) =>
-        ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
-      ) ||
-      elt.appliance.toLowerCase().includes(str.toLowerCase()) ||
-      elt.ustensils.some((ustensil) =>
-        ustensil.toLowerCase().includes(str.toLowerCase())
-      )
+    const filter = datas.recipes.filter(
+      (elt) =>
+        elt.name.toLowerCase().includes(str.toLowerCase()) ||
+        elt.description.toLowerCase().includes(str.toLowerCase()) ||
+        elt.ingredients.some((ingredient) =>
+          ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
+        ) ||
+        elt.appliance.toLowerCase().includes(str.toLowerCase()) ||
+        elt.ustensils.some((ustensil) =>
+          ustensil.toLowerCase().includes(str.toLowerCase())
+        )
     )
     datasProxy.recipes = [...filter]
     console.log(datasProxy.recipes)
@@ -131,7 +138,6 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   datasProxy.searchLength = str.length
 })
 
-
 searchIngredients(datasProxy, datas, recipes)
 searchAppliance(datasProxy, datas, recipes)
 searchUstensil(datasProxy, datas, recipes)
@@ -140,7 +146,6 @@ searchUstensil(datasProxy, datas, recipes)
 // getAppliiances(datas)
 // getUstensils(datas)
 
-
 const searchIngInput = document.querySelector('#search__input-ingredients')
 const searchIngContainer = document.querySelector('.test')
 const bigSearchIngredient = document.querySelector('.filterIngredient')
@@ -148,7 +153,6 @@ const ingUl = document.querySelector('#ingredientsList')
 let clicked = false
 
 searchIngInput.addEventListener('click', (e) => {
-
   if (clicked === false) {
     ingUl.style.display = 'block'
     searchIngInput.style.width = '100%'
@@ -159,18 +163,13 @@ searchIngInput.addEventListener('click', (e) => {
     // ingUl.style.width = '900px'
     clicked = true
   } else {
-    
     ingUl.style.display = 'none'
     searchIngContainer.style.width = '170px'
     searchIngInput.style.width = '170px'
     searchIngContainer.style.height = '0'
     bigSearchIngredient.style.width = '170px'
     searchIngInput.style.borderRadius = '5px'
-    
-  
+
     clicked = false
   }
 })
-
-
-

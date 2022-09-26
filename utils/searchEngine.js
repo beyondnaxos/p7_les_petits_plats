@@ -7,7 +7,7 @@ import {
 
 const beforeContainer = document.querySelector('.before-container')
 
-function createBlueTag (str) {
+export function createBlueTag (str) {
   const blueTag = document.createElement('div')
   blueTag.classList.add('filter-container-blue')
   blueTag.innerText = str
@@ -15,30 +15,20 @@ function createBlueTag (str) {
 } 
 
 
-const handleIngSearch = (str, datasProxy, datas, recipes) => {
-  console.log(datas)
-  if (str.length >= 3 && str.length > datas.searchLength) {
+export const handleIngSearch = (str, datasProxy, datas) => {
+  if (str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>
-      elt.ingredients.some((ingredient) =>
-        ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
-      )
+    elt.ingredients.some((ingredient) =>
+    ingredient.ingredient.toLowerCase() === str.toLowerCase()
     )
-    datasProxy.ingredientTag = [str.toLowerCase()]
+    )
+    
     console.log(datasProxy.ingredientTag)
     datasProxy.recipes = [...filter]
     datasProxy.ingredients = getIngredients(datasProxy)
-
-  } else if (str == '') {
-    datasProxy.recipes = [...recipes]
-
-    if (datasProxy.mainSearch) {
-      const filter = datas.recipes.filter((elt) =>
-        elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
-      )
-      datasProxy.recipes = [...filter]
-    }
-  }
-  datasProxy.searchLength = str.length
+    
+  } 
+  console.log('c ici ' , datas)
 }
 
 export const searchIngredients = (datasProxy, datas, recipes) => {
@@ -46,20 +36,18 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
     .querySelector('#search__input-ingredients')
     .addEventListener('input', (e) => {
       const str = e.target.value
-      handleIngSearch(str, datasProxy, datas, recipes)
+      const filter = datas.ingredients.filter(ing => ing.toLowerCase().includes(str.toLowerCase()))
+      console.log('filter', filter);
+      datasProxy.ingredients = [...filter]
+     // handleIngSearch(str, datasProxy, datas, recipes)
+     document.querySelector('#ingredientsList').style.display = 'block';
     })
 
-  const ingredientsLi = document.querySelectorAll('.ingredientsLi')
-  ingredientsLi.forEach((ingredient) => {
-    ingredient.addEventListener('click', (e) => {
-      const str = ingredient.innerText
-      handleIngSearch(str, datasProxy, datas, recipes)
-      createBlueTag(e.target.innerText)
-      
-    })
-  }
-  )
+  
 }
+
+
+
 
 export const searchAppliance = (datasProxy, datas, recipes) => {
   document
