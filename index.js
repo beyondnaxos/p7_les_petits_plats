@@ -133,6 +133,25 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   datasProxy.searchLength = str.length
 })
 
+const ingredientsLi = document.querySelectorAll('.ingredientsLi')
+ingredientsLi.forEach((ingredient) => {
+  ingredient.addEventListener('click', (e) => {
+    console.log(e.target.innerText)
+    createBlueTag(e.target.innerText)
+  })
+}
+)
+
+// function create blue tag for filter selected ingredient 
+function createBlueTag (str) {
+  const blueTag = document.createElement('div')
+  blueTag.classList.add('filter-container-blue')
+  blueTag.innerText = str
+
+  document.querySelector('.before-container').appendChild(blueTag)
+} 
+
+
 searchIngredients(datasProxy, datas, recipes)
 searchAppliance(datasProxy, datas, recipes)
 searchUstensil(datasProxy, datas, recipes)
@@ -174,22 +193,4 @@ searchIngInput.addEventListener('click', (e) => {
 })
 
 
-const ingredientsLi = document.querySelectorAll('.ingredientsLi')
-ingredientsLi.forEach((ingredient) => {
-  ingredient.addEventListener('click', (e) => {
-    console.log(e.target.innerText)
-    createBlueTag(e.target.innerText)
-
-  })
-}
-)
-
-// function create blue tag for filter selected ingredient 
-function createBlueTag (str) {
-  const blueTag = document.createElement('div')
-  blueTag.classList.add('filter-container-blue')
-  blueTag.innerText = str
-
-  document.querySelector('.before-container').appendChild(blueTag)
-} 
 
