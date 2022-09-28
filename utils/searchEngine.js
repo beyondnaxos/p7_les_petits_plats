@@ -1,34 +1,31 @@
-
-import {
-  getIngredients,
-  getAppliiances,
-  getUstensils,
-} from './dataList.js'
+import { getIngredients, getAppliiances, getUstensils } from './dataList.js'
 
 const beforeContainer = document.querySelector('.before-container')
 
-export function createBlueTag (str) {
+export function createBlueTag(str) {
   const blueTag = document.createElement('div')
   blueTag.classList.add('filter-container-blue')
   blueTag.innerText = str
   document.querySelector('.before-container').appendChild(blueTag)
-} 
-
+}
 
 export const handleIngSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>
-    elt.ingredients.some((ingredient) =>
-    ingredient.ingredient.toLowerCase() === str.toLowerCase()
+      elt.ingredients.some(
+        (ingredient) =>
+          ingredient.ingredient.toLowerCase() === str.toLowerCase()
+      )
     )
-    )
-    
+
     console.log(datasProxy.ingredientTag)
     datasProxy.recipes = [...filter]
     datasProxy.ingredients = getIngredients(datasProxy)
-    
   } 
-  console.log('c ici ' , datas)
+
+
+
+  console.log('c ici ', datas)
 }
 
 export const searchIngredients = (datasProxy, datas, recipes) => {
@@ -36,18 +33,21 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
     .querySelector('#search__input-ingredients')
     .addEventListener('input', (e) => {
       const str = e.target.value
-      const filter = datas.ingredients.filter(ing => ing.toLowerCase().includes(str.toLowerCase()))
-      console.log('filter', filter);
+      const filter = datas.ingredients.filter((ing) =>
+        ing.toLowerCase().includes(str.toLowerCase())
+      )
+      console.log('filter', filter)
+      
       datasProxy.ingredients = [...filter]
-     // handleIngSearch(str, datasProxy, datas, recipes)
-     document.querySelector('#ingredientsList').style.display = 'block';
+
+      // // pas sur du tout de ce que je fais  
+      // datasProxy.searchLength = str.length
+      // if (str.length < 3) {
+      //   datasProxy.ingredients = getIngredients(datasProxy)
+      // }
+      document.querySelector('#ingredientsList').style.display = 'block'
     })
-
-  
 }
-
-
-
 
 export const searchAppliance = (datasProxy, datas, recipes) => {
   document
@@ -62,7 +62,6 @@ export const searchAppliance = (datasProxy, datas, recipes) => {
         datasProxy.applianceTag = [str.toLowerCase()]
         datasProxy.recipes = [...filter]
         datasProxy.appliances = getAppliiances(datasProxy)
-
       } else if (str == '') {
         datasProxy.recipes = [...recipes]
         if (datasProxy.mainSearch) {
@@ -70,6 +69,7 @@ export const searchAppliance = (datasProxy, datas, recipes) => {
             elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
           )
           datasProxy.recipes = [...filter]
+          
         }
       }
       datasProxy.searchLength = str.length
@@ -113,7 +113,9 @@ export const ingredientsSearch = (datas) => {
       datasProxy.searchType = 'ingredients'
       const filter = datas.recipes.filter((elt) =>
         elt.ingredients.some((ingredient) =>
-          ingredient.ingredient.toLowerCase().includes(searchString.toLowerCase())
+          ingredient.ingredient
+            .toLowerCase()
+            .includes(searchString.toLowerCase())
         )
       )
       return filter
@@ -164,5 +166,3 @@ export function filterData(tagFilter, datas, datasProxy) {
     default:
   }
 }
-
-
