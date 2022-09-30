@@ -39,14 +39,16 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
       console.log('filter', filter)
       
       datasProxy.ingredients = [...filter]
-
+      
+    
     // **************************************************
     datasProxy.searchLength = str.length
     if (str.length < 3) {
       datasProxy.ingredients = getIngredients(datasProxy)
+      document.querySelector('#ingredientsList').style.display = 'block'
     }
     // **************************************************
-      document.querySelector('#ingredientsList').style.display = 'block'
+    document.querySelector('#ingredientsList').style.display = 'block'
     })
 }
 
