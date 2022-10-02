@@ -145,27 +145,54 @@ export const ustensilSearch = () => {
     })
 }
 
+// export function filterData(tagFilter, datas, datasProxy) {
+//   switch (tagFilter) {
+//     case 'ingredients':
+//       const filtredIngredients = datas.allIngredients.filter((elt) =>
+//         elt.toLowerCase().includes(datas.searchString.toLowerCase())
+//       )
+//       datasProxy.ingredients = [...filtredIngredients]
+//       console.log(datasProxy.ingredients)
+//       break
+//     case 'appliance':
+//       const filtredAppliances = datas.allAppliances.filter((elt) =>
+//         elt.toLowerCase().includes(datas.searchString.toLowerCase())
+//       )
+//       datasProxy.appliances = [...filtredAppliances]
+//       break
+//     case 'ustensils':
+//       const filtredUstensils = datas.allUstensils.filter((elt) =>
+//         elt.toLowerCase().includes(datas.searchString.toLowerCase())
+//       )
+//       datasProxy.ustensils = [...filtredUstensils]
+//       break
+//     default:
+//   }
+// }
+
+
 export function filterData(tagFilter, datas, datasProxy) {
-  switch (tagFilter) {
-    case 'ingredients':
+  const filterFunctions = {
+    ingredients: () => {
       const filtredIngredients = datas.allIngredients.filter((elt) =>
         elt.toLowerCase().includes(datas.searchString.toLowerCase())
       )
       datasProxy.ingredients = [...filtredIngredients]
       console.log(datasProxy.ingredients)
-      break
-    case 'appliance':
+    },
+    appliance: () => {
       const filtredAppliances = datas.allAppliances.filter((elt) =>
         elt.toLowerCase().includes(datas.searchString.toLowerCase())
       )
       datasProxy.appliances = [...filtredAppliances]
-      break
-    case 'ustensils':
+    },
+    ustensils: () => {
       const filtredUstensils = datas.allUstensils.filter((elt) =>
         elt.toLowerCase().includes(datas.searchString.toLowerCase())
       )
       datasProxy.ustensils = [...filtredUstensils]
-      break
-    default:
+    },
   }
+
+  filterFunctions[tagFilter]()
 }
