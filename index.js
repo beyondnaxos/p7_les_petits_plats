@@ -138,6 +138,38 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   datasProxy.searchLength = str.length
 })
 
+
+// document.querySelector('#search__input').addEventListener('input', (e) => {
+//   const str = e.target.value
+//   datasProxy.mainSearch = str
+//   if (str.length >= 3 && str.length > datas.searchLength) {
+//     // use for loop 
+//     for (let i = 0; i < datas.recipes.length; i++) {
+//       const elt = datas.recipes[i]
+//       if (
+//         elt.name.toLowerCase().includes(str.toLowerCase()) ||
+//         elt.description.toLowerCase().includes(str.toLowerCase()) ||
+//         elt.ingredients.some((ingredient) =>
+
+//           ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
+//         ) ||
+//         elt.appliance.toLowerCase().includes(str.toLowerCase()) ||
+//         elt.ustensils.some((ustensil) =>
+//           ustensil.toLowerCase().includes(str.toLowerCase())
+//         )
+//       ) {
+//         datasProxy.recipes.push(elt)
+//       }
+//     }
+//     console.log(datasProxy.recipes)
+//   } else {
+//     datasProxy.recipes = [...recipes]
+//   }
+//   datasProxy.searchLength = str.length
+// })
+
+
+
 searchIngredients(datasProxy, datas, recipes)
 searchAppliance(datasProxy, datas, recipes)
 searchUstensil(datasProxy, datas, recipes)
