@@ -23,6 +23,7 @@ console.log(datas)
 datas.allIngredients = getIngredients(datas)
 datas.allAppliances = getAppliiances(datas)
 datas.allUstensils = getUstensils(datas)
+datas.selectedTags = []
 
 console.log(datas)
 
@@ -65,6 +66,7 @@ let datasProxy = new Proxy(datas, {
       ingredientsDataList.innerHTML = ''
       console.log('ingredients', value)
       value.forEach((ingredient) => {
+        if (!datas.selectedTags.includes(ingredient)) {
         const option = document.createElement('li')
         option.value = ingredient
         option.classList.add('ingredientsLi')
@@ -72,18 +74,23 @@ let datasProxy = new Proxy(datas, {
         // option.style.display = 'none'
         ingredientsDataList.style.display = 'block'
         ingredientsDataList.appendChild(option)
+        }
       })
       const ingredientsLi = document.querySelectorAll('.ingredientsLi')
       console.log(Array.from(ingredientsLi).length);
       ingredientsLi.forEach((ingredient) => {
         ingredient.addEventListener('click', (e) => {
           const str = ingredient.innerText
+          datasProxy.selectedTags.push(str)
           console.log('le bon ' + str)
           handleIngSearch(str, datasProxy, datas)
-          createBlueTag(str)
+          createBlueTag(str, datasProxy, datas)
+
         })
       })
     }
+
+
 
     // if (key === 'ingredients') {
     //   const ingredientsDataList = document.querySelector('#ingredientsList')

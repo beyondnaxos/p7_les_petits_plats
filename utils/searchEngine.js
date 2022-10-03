@@ -2,11 +2,29 @@ import { getIngredients, getAppliiances, getUstensils } from './dataList.js'
 
 const beforeContainer = document.querySelector('.before-container')
 
-export function createBlueTag(str) {
+export function createBlueTag(str, datasProxy, datas) {
   const blueTag = document.createElement('div')
   blueTag.classList.add('filter-container-blue')
+  blueTag.classList.add('filterTags')
   blueTag.innerText = str
   document.querySelector('.before-container').appendChild(blueTag)
+  blueTag.addEventListener('click', () => {
+    deleteTag(str, datasProxy, datas)  
+  })
+}
+
+export const deleteTag = ( str, datasProxy , datas) => {
+  console.log('hello ' , str)
+  // suppression du tag
+
+  // récupèration des recettes
+
+  // filtrage des recettes sur les tags restants
+
+  // observer si il y a une recherche (main ) on filtre sur la recette de main search
+
+  // actualisation du datasProxy pour les filteredRepices
+  
 }
 
 export const handleIngSearch = (str, datasProxy, datas) => {
