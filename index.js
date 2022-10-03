@@ -85,12 +85,9 @@ let datasProxy = new Proxy(datas, {
           console.log('le bon ' + str)
           handleIngSearch(str, datasProxy, datas)
           createBlueTag(str, datasProxy, datas)
-
         })
       })
     }
-
-
 
     // if (key === 'ingredients') {
     //   const ingredientsDataList = document.querySelector('#ingredientsList')
@@ -144,7 +141,6 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   }
   datasProxy.searchLength = str.length
 })
-
 
 // document.querySelector('#search__input').addEventListener('input', (e) => {
 //   const str = e.target.value
