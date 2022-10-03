@@ -70,7 +70,7 @@ let datasProxy = new Proxy(datas, {
         option.classList.add('ingredientsLi')
         option.innerText = ingredient
         // option.style.display = 'none'
-        ingredientsDataList.style.display = 'none'
+        ingredientsDataList.style.display = 'block'
         ingredientsDataList.appendChild(option)
       })
       const ingredientsLi = document.querySelectorAll('.ingredientsLi')
@@ -150,6 +150,7 @@ const searchIngInput = document.querySelector('#search__input-ingredients')
 const searchIngContainer = document.querySelector('.test')
 const bigSearchIngredient = document.querySelector('.filterIngredient')
 const ingUl = document.querySelector('#ingredientsList')
+
 let clicked = false
 
 searchIngInput.addEventListener('click', (e) => {
