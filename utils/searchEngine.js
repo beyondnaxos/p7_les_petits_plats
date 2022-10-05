@@ -16,15 +16,36 @@ export function createBlueTag(str, datasProxy, datas) {
 export const deleteTag = ( str, datasProxy , datas) => {
   console.log('hello ' , str)
   // suppression du tag
+  const blueTag = document.querySelector('.filter-container-blue')
+  blueTag.remove()
 
   // récupèration des recettes
-
+  const recipes = datas.recipes
+  console.log(recipes)
   // filtrage des recettes sur les tags restants
+  const filteredRecipes = recipes.filter((recipe) => {
+    return recipe.ingredients.some((ingredient) => {
+      return datasProxy.selectedTags.includes(ingredient.ingredient)
+    })
+  })
+  console.log(filteredRecipes)
 
   // observer si il y a une recherche (main ) on filtre sur la recette de main search
+  if (datasProxy.searchType === 'main') {
+    const mainSearch = datasProxy.mainSearch
+    const filteredRecipes = filteredRecipes.filter((recipe) => {
+      return recipe.name.toLowerCase().includes(mainSearch.toLowerCase())
+    })
+  }
 
   // actualisation du datasProxy pour les filteredRepices
+  datasProxy.recipes = filteredRecipes
+  datasProxy.appliances = getAppliiances(datasProxy)
+  datasProxy.ingredients = getIngredients(datasProxy)
+  datasProxy.ustensils = getUstensils(datasProxy)
+  console.log(datasProxy.ustensils)
   
+
 }
 
 export const handleIngSearch = (str, datasProxy, datas) => {
