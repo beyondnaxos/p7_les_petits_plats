@@ -40,7 +40,7 @@ let datasProxy = new Proxy(datas, {
       console.log(datasProxy.ustensils)
 
       target[key].map((recipe) => {
-        console.log(recipe)
+        // console.log(recipe)
         displayRecipes(recipe)
         return true
       })

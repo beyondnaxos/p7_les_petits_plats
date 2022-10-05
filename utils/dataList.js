@@ -10,7 +10,7 @@ export const getIngredients = (datasProxy) => {
     })
   })
   const uniqueIngredients = [...new Set(ingredients)]
-  console.log(uniqueIngredients)
+  // console.log(uniqueIngredients)
   return uniqueIngredients
 }
 
@@ -20,7 +20,7 @@ export const getAppliiances = (datasProxy) => {
     appliances.push(recipe.appliance)
   })
   const uniqueAppliances = [...new Set(appliances)]
-  console.log(uniqueAppliances)
+  // console.log(uniqueAppliances)
   return uniqueAppliances
 }
 

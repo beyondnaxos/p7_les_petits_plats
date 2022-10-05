@@ -44,7 +44,7 @@ export const deleteTag = ( str, datasProxy , datas) => {
   datasProxy.ingredients = getIngredients(datasProxy)
   datasProxy.ustensils = getUstensils(datasProxy)
   console.log(datasProxy.ustensils)
-  
+
 
 }
 
@@ -206,6 +206,12 @@ export function filterData(tagFilter, datas, datasProxy) {
       )
       datasProxy.ustensils = [...filtredUstensils]
     },
+    main: () => {
+      const filtredRecipes = datas.recipes.filter((elt) =>
+        elt.name.toLowerCase().includes(datas.searchString.toLowerCase())
+      )
+      datasProxy.recipes = [...filtredRecipes]
+    }
   }
 
   filterFunctions[tagFilter]()
