@@ -39,11 +39,11 @@ export const deleteTag = ( str, datasProxy , datas) => {
   }
 
   // actualisation du datasProxy pour les filteredRepices
-  // datasProxy.recipes = filteredRecipes
-  // datasProxy.appliances = getAppliiances(datasProxy)
-  // datasProxy.ingredients = getIngredients(datasProxy)
-  // datasProxy.ustensils = getUstensils(datasProxy)
-  // console.log(datasProxy.ustensils)
+  datasProxy.recipes = filteredRecipes
+  datasProxy.appliances = getAppliiances(datasProxy)
+  datasProxy.ingredients = getIngredients(datasProxy)
+  datasProxy.ustensils = getUstensils(datasProxy)
+  console.log(datasProxy.ustensils)
 
 
 }
