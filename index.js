@@ -121,6 +121,7 @@ datasProxy.searchLength = 0
 document.querySelector('#search__input').addEventListener('input', (e) => {
   const str = e.target.value
   datasProxy.mainSearch = str
+  datasProxy.searchType = 'main'
   if (str.length >= 3 && str.length > datas.searchLength) {
     const filter = datas.recipes.filter(
       (elt) =>
