@@ -20,7 +20,7 @@ export const deleteTag = (str, datasProxy, datas) => {
   blueTag.remove()
 
   // récupèration des recettes
-  const recipes = datas.recipes
+  const recipes = datasProxy.recipes
   console.log(recipes)
   // filtrage des recettes sur les tags restants
   const filteredRecipes = recipes.filter((recipe) => {
@@ -36,7 +36,7 @@ export const deleteTag = (str, datasProxy, datas) => {
     const filteredRecipes = filteredRecipes.filter((recipe) => {
       return recipe.name.toLowerCase().includes(mainSearch.toLowerCase())
     })
-  }
+  } 
 
   // actualisation du datasProxy pour les filteredRepices
   datasProxy.recipes = filteredRecipes
@@ -199,12 +199,7 @@ export function filterData(tagFilter, datas, datasProxy) {
       )
       datasProxy.ustensils = [...filtredUstensils]
     },
-    main: () => {
-      const filtredRecipes = datas.recipes.filter((elt) =>
-        elt.name.toLowerCase().includes(datas.searchString.toLowerCase())
-      )
-      datasProxy.recipes = [...filtredRecipes]
-    },
+    
   }
 
   filterFunctions[tagFilter]()
