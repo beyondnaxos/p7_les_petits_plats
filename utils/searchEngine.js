@@ -2,6 +2,8 @@ import { getIngredients, getAppliiances, getUstensils } from './dataList.js'
 
 const beforeContainer = document.querySelector('.before-container')
 
+
+// Permet de créer un tag 
 export function createBlueTag(str, datasProxy, datas) {
   const blueTag = document.createElement('div')
   blueTag.classList.add('filter-container-blue')
@@ -13,37 +15,32 @@ export function createBlueTag(str, datasProxy, datas) {
   })
 }
 
+// Permet de supprimer un tag lorsque l'on clique dessus
 export const deleteTag = (str, datasProxy, datas) => {
-  console.log('hello ', str)
+
   // suppression du tag
   const blueTag = document.querySelector('.filter-container-blue')
   blueTag.remove()
 
   // récupèration des recettes
   const recipes = datasProxy.recipes
-  console.log(recipes)
+  console.log("clg de datas.selectedTags", datasProxy.selectedTags)
+  console.log("clg de datas.ingredients", datasProxy.ingredients)
+
   // filtrage des recettes sur les tags restants
-  const filteredRecipes = recipes.filter((recipe) => {
-    return recipe.ingredients.some((ingredient) => {
-      return datasProxy.selectedTags.includes(ingredient.ingredient)
+  const filteredRecipes = datasProxy.recipes.filter((recipe) => {
+    recipe.ingredients.some((ingredient) => {
+    datas.ingredients.includes(ingredient.ingredient)
+
     })
   })
-  console.log(filteredRecipes)
+  console.log("clg de filtered Recipes", filteredRecipes)
 
-  // observer si il y a une recherche (main ) on filtre sur la recette de main search
-  if (datasProxy.searchType === 'main') {
-    const mainSearch = datasProxy.mainSearch
-    const filteredRecipes = filteredRecipes.filter((recipe) => {
-      return recipe.name.toLowerCase().includes(mainSearch.toLowerCase())
-    })
-  } 
+  // // observer si il y a une recherche (main ) on filtre sur la recette de main search
+  
 
-  // actualisation du datasProxy pour les filteredRepices
-  datasProxy.recipes = filteredRecipes
-  datasProxy.appliances = getAppliiances(datasProxy)
-  datasProxy.ingredients = getIngredients(datasProxy)
-  datasProxy.ustensils = getUstensils(datasProxy)
-  console.log(datasProxy.ustensils)
+  // // actualisation du datasProxy pour les filteredRepices
+
 }
 
 export const handleIngSearch = (str, datasProxy, datas) => {

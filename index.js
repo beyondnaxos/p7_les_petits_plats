@@ -14,7 +14,11 @@ import {
   searchUstensil,
 } from './utils/searchEngine.js'
 
-import { filterData, handleIngSearch, createBlueTag } from './utils/searchEngine.js'
+import {
+  filterData,
+  handleIngSearch,
+  createBlueTag,
+} from './utils/searchEngine.js'
 // import {createFilterContainerForIngredients} from './utils/filterTag.js'
 
 let datas = {}
@@ -41,9 +45,35 @@ let datasProxy = new Proxy(datas, {
       console.log(datasProxy.ustensils)
 
       target[key].map((recipe) => {
-        // console.log(recipe)
         displayRecipes(recipe)
         return true
+      })
+    }
+
+    if (key === 'ingredients') {
+      const ingredientsDataList = document.querySelector('#ingredientsList')
+      ingredientsDataList.innerHTML = ''
+      console.log('ingredients', value)
+      value.forEach((ingredient) => {
+        if (!datas.selectedTags.includes(ingredient)) {
+          const option = document.createElement('li')
+          option.value = ingredient
+          option.classList.add('ingredientsLi')
+          option.innerText = ingredient
+          ingredientsDataList.style.display = 'block'
+          ingredientsDataList.appendChild(option)
+        }
+      })
+      const ingredientsLi = document.querySelectorAll('.ingredientsLi')
+      console.log(Array.from(ingredientsLi).length)
+      ingredientsLi.forEach((ingredient) => {
+        ingredient.addEventListener('click', (e) => {
+          const str = ingredient.innerText
+          datasProxy.selectedTags.push(str)
+          console.log('le bon ' + str)
+          handleIngSearch(str, datasProxy, datas)
+          createBlueTag(str, datasProxy, datas)
+        })
       })
     }
 
@@ -61,45 +91,6 @@ let datasProxy = new Proxy(datas, {
     if (key === 'searchType') {
       filterData(value, datas, datasProxy)
     }
-
-    if (key === 'ingredients') {
-      const ingredientsDataList = document.querySelector('#ingredientsList')
-      ingredientsDataList.innerHTML = ''
-      console.log('ingredients', value)
-      value.forEach((ingredient) => {
-        if (!datas.selectedTags.includes(ingredient)) {
-        const option = document.createElement('li')
-        option.value = ingredient
-        option.classList.add('ingredientsLi')
-        option.innerText = ingredient
-        // option.style.display = 'none'
-        ingredientsDataList.style.display = 'block'
-        ingredientsDataList.appendChild(option)
-        }
-      })
-      const ingredientsLi = document.querySelectorAll('.ingredientsLi')
-      console.log(Array.from(ingredientsLi).length);
-      ingredientsLi.forEach((ingredient) => {
-        ingredient.addEventListener('click', (e) => {
-          const str = ingredient.innerText
-          datasProxy.selectedTags.push(str)
-          console.log('le bon ' + str)
-          handleIngSearch(str, datasProxy, datas)
-          createBlueTag(str, datasProxy, datas)
-        })
-      })
-    }
-
-    // if (key === 'ingredients') {
-    //   const ingredientsDataList = document.querySelector('#ingredientsList')
-    //   ingredientsDataList.innerHTML = ''
-    //   console.log('ingredients', value)
-    //   value.forEach((ingredient) => {
-    //     const option = document.createElement('li')
-    //     option.innerText = ingredient
-    //     ingredientsDataList.appendChild(option)
-    //   })
-    // }
 
     if (key === 'ustensils') {
       const ustensilsDataList = document.querySelector('#ustensilsList')
@@ -137,7 +128,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
         )
     )
     datasProxy.recipes = [...filter]
-      // datasProxy.searchType = 'main'
+    // datasProxy.searchType = 'main'
     console.log(datasProxy.recipes)
   } else {
     datasProxy.recipes = [...recipes]
@@ -149,7 +140,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 //   const str = e.target.value
 //   datasProxy.mainSearch = str
 //   if (str.length >= 3 && str.length > datas.searchLength) {
-//     // use for loop 
+//     // use for loop
 //     for (let i = 0; i < datas.recipes.length; i++) {
 //       const elt = datas.recipes[i]
 //       if (
@@ -174,15 +165,9 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 //   datasProxy.searchLength = str.length
 // })
 
-
-
 searchIngredients(datasProxy, datas, recipes)
 searchAppliance(datasProxy, datas, recipes)
 searchUstensil(datasProxy, datas, recipes)
-
-// getIngredients(datas)
-// getAppliiances(datas)
-// getUstensils(datas)
 
 const searchIngInput = document.querySelector('#search__input-ingredients')
 const searchIngContainer = document.querySelector('.test')
