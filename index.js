@@ -33,6 +33,12 @@ datas.selectedTags = []
 console.log(datas)
 
 let datasProxy = new Proxy(datas, {
+
+  get: (obj, prop) => {
+    return obj[prop]
+  },
+  
+
   set: function (target, key, value) {
     target[key] = value
 
@@ -88,9 +94,7 @@ let datasProxy = new Proxy(datas, {
       })
     }
 
-    if (key === 'searchType') {
-      filterData(value, datas, datasProxy)
-    }
+  
 
     if (key === 'ustensils') {
       const ustensilsDataList = document.querySelector('#ustensilsList')
@@ -100,6 +104,10 @@ let datasProxy = new Proxy(datas, {
         option.value = ustensil
         ustensilsDataList.appendChild(option)
       })
+    }
+
+    if (key === 'searchType') {
+      filterData(value, datas, datasProxy)
     }
 
     return true

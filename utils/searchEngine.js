@@ -27,7 +27,7 @@ export const deleteTag = (str, datasProxy, datas) => {
   console.log("clg de datas.selectedTags", datasProxy.selectedTags)
   console.log("clg de datas.ingredients", datasProxy.ingredients)
 
-  // filtrage des recettes sur les tags restants
+  // filtrage des recettes sur les tags restants 
   const filteredRecipes = datasProxy.recipes.filter((recipe) => {
     recipe.ingredients.some((ingredient) => {
     datas.ingredients.includes(ingredient.ingredient)
@@ -37,11 +37,12 @@ export const deleteTag = (str, datasProxy, datas) => {
   console.log("clg de filtered Recipes", filteredRecipes)
 
   // // observer si il y a une recherche (main ) on filtre sur la recette de main search
-  
+     
 
   // // actualisation du datasProxy pour les filteredRepices
 
 }
+
 
 export const handleIngSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
@@ -137,6 +138,8 @@ export const searchUstensil = (datasProxy, datas, recipes) => {
     })
 }
 
+
+// Permet d'effectuer une recherche en saisissant quelque chose dans l'input ingredients
 export const ingredientsSearch = (datas) => {
   document
     .querySelector('#search__input-ingredients')
@@ -155,6 +158,7 @@ export const ingredientsSearch = (datas) => {
     })
 }
 
+// Permet d'effectuer une recherche en saisissant quelque chose dans l'input appareil
 export const applianceSearch = () => {
   document
     .querySelector('#search__input-appliance')
@@ -165,6 +169,7 @@ export const applianceSearch = () => {
     })
 }
 
+// Permet d'effectuer une recherche en saisissant quelque chose dans l'input ustensiles
 export const ustensilSearch = () => {
   document
     .querySelector('#search__input-ustensils')
