@@ -282,7 +282,7 @@ ul {
     margin: 0;
 }
 
-.filterIngredient {
+.filterIngredient, .filterAppliances, .filterUtensils {
     width: 170px;
 }
 
@@ -319,7 +319,6 @@ ul {
     padding-top: 0;
     margin: 0;
     border-radius: 0 0 5px 5px;
-
 }
 
 

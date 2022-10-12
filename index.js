@@ -18,6 +18,8 @@ import {
   filterData,
   handleIngSearch,
   createBlueTag,
+  createGreenTag,
+  createRedTag
 } from './utils/searchEngine.js'
 // import {createFilterContainerForIngredients} from './utils/filterTag.js'
 
@@ -211,21 +213,23 @@ searchAppliances(datasProxy, datas, recipes)
 searchUstensils(datasProxy, datas, recipes)
 
 const searchIngInput = document.querySelector('#search__input-ingredients')
-const searchIngContainer = document.querySelector('.listContainer')
+const searchIngContainer = document.querySelector('.blue')
 const bigSearchIngredient = document.querySelector('.filterIngredient')
 const ingUl = document.querySelector('#ingredientsList')
 
-const searchUstInput = document.querySelector('#search__input-ustensils')
-const searchUstContainer = document.querySelector('.listContainer')
-const bigSearchUstensil = document.querySelector('.filterUstensils')
-const ustUl = document.querySelector('#ustensilsList')
-
 const searchAppInput = document.querySelector('#search__input-appliances')
-const searchAppContainer = document.querySelector('.listContainer')
+const searchAppContainer = document.querySelector('.green')
 const bigSearchAppliance = document.querySelector('.filterAppliances')
 const appUl = document.querySelector('#appliancesList')
 
+const searchUstInput = document.querySelector('#search__input-ustensils')
+const searchUstContainer = document.querySelector('.red')
+const bigSearchUstensil = document.querySelector('.filterUstensils')
+const ustUl = document.querySelector('#ustensilsList')
+
+
 const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
+  
   let clicked = false
 
   searchInput.addEventListener('click', (e) => {

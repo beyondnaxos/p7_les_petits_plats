@@ -169,7 +169,7 @@ const inputs = document.querySelectorAll('input')
 inputs.forEach((input) => input.addEventListener('input', handleSearch))
 
 const ingredientsDataList = document.querySelector('#ingredientsList') 
-const applianceDataList = document.querySelector('#applianceList')
+const applianceDataList = document.querySelector('#appliancesList')
 const ustensilsDataList = document.querySelector('#ustensilsList')
 
 
