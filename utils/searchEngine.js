@@ -15,6 +15,28 @@ export function createBlueTag(str, datasProxy, datas) {
   })
 }
 
+export function createRedTag(str, datasProxy, datas) {
+  const redTag = document.createElement('div')
+  redTag.classList.add('filter-container-red')
+  redTag.classList.add('filterTags')
+  redTag.innerText = str
+  document.querySelector('.before-container').appendChild(redTag)
+  redTag.addEventListener('click', () => {
+    deleteTag(str, datasProxy, datas)
+  })
+}
+
+export function createGreenTag(str, datasProxy, datas) {
+  const greenTag = document.createElement('div')
+  greenTag.classList.add('filter-container-green')
+  greenTag.classList.add('filterTags')
+  greenTag.innerText = str
+  document.querySelector('.before-container').appendChild(greenTag)
+  greenTag.addEventListener('click', () => {
+    deleteTag(str, datasProxy, datas)
+  })
+}
+
 // Permet de supprimer un tag lorsque l'on clique dessus
 export const deleteTag = (str, datasProxy, datas) => {
 
@@ -36,10 +58,12 @@ export const deleteTag = (str, datasProxy, datas) => {
   })
   console.log("clg de filtered Recipes", filteredRecipes)
 
-  // // observer si il y a une recherche (main ) on filtre sur la recette de main search
-     
-
+  // // observer si il y a une recherche (main ) on filtre sur la recette de main search ( str )
+  
+  
   // // actualisation du datasProxy pour les filteredRepices
+  datasProxy.recipes =[ ...filteredRecipes ]
+  
 
 }
 
