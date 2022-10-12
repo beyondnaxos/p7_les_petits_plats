@@ -9,8 +9,8 @@ export function createBlueTag(str, datasProxy, datas) {
   blueTag.classList.add('filterTags')
   blueTag.innerText = str
   document.querySelector('.before-container').appendChild(blueTag)
-  const blueTagSel = "filter-container-blue"
-  blueTag.addEventListener('click', () => {
+  const blueTagSel = 'filter-container-blue'
+  blueTag.addEventListener('click', (e) => {
     deleteTag(e, str, datasProxy, datas)
   })
 }
@@ -21,7 +21,7 @@ export function createGreenTag(str, datasProxy, datas) {
   greenTag.classList.add('filterTags')
   greenTag.innerText = str
   document.querySelector('.before-container').appendChild(greenTag)
-  const greenTagSel = "filter-container-green"
+  const greenTagSel = 'filter-container-green'
   greenTag.addEventListener('click', () => {
     deleteTag(str, datasProxy, datas, greenTagSel)
   })
@@ -33,7 +33,7 @@ export function createRedTag(str, datasProxy, datas) {
   redTag.classList.add('filterTags')
   redTag.innerText = str
   document.querySelector('.before-container').appendChild(redTag)
-  const redTagSel = "filter-container-red"
+  const redTagSel = 'filter-container-red'
   redTag.addEventListener('click', () => {
     deleteTag(str, datasProxy, datas, redTagSel)
   })
@@ -45,19 +45,29 @@ export const deleteTag = (event, str, datasProxy, datas) => {
   const blueTag = event.target
   blueTag.remove()
 
+  const index = datasProxy.selectedTags.findIndex(
+    (elt) => elt === event.target.innerText
+  )
+  datasProxy.selectedTags.splice(index, 1)
 
   // récupèration des recettes
-  const recipes = datasProxy.recipes
+  const recipes = datasProxy.allRecipes
   console.log('clg de datas.selectedTags', datasProxy.selectedTags)
   console.log('clg de datas.ingredients', datasProxy.ingredients)
 
   // filtrage des recettes sur les tags restants
-  const filteredRecipes = recipes.filter((recipe) => {
-    recipe.ingredients.some((ingredient) => {
-      datas.ingredients.includes(ingredient.ingredient)
+  let filteredRecipes = []
+
+  if (datasProxy.selectedTags.length > 0) {
+    filteredRecipes = recipes.filter((recipe) => {
+      let ingredients = recipe.ingredients.map(
+        (ingredient) => ingredient.ingredient
+      )
+      return datasProxy.selectedTags.some((tag) => ingredients.includes(tag))
     })
-  })
-  console.log('clg de filtered Recipes', filteredRecipes)
+  } else {
+    filteredRecipes = [...recipes]
+  }
 
   // // observer si il y a une recherche (main ) on filtre sur la recette de main search ( str )
 
