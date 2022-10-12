@@ -10,8 +10,8 @@ import { displayRecipes } from './utils/articleModel.js'
 
 import {
   searchIngredients,
-  searchAppliance,
-  searchUstensil,
+  searchAppliances,
+  searchUstensils,
 } from './utils/searchEngine.js'
 
 import {
@@ -84,25 +84,58 @@ let datasProxy = new Proxy(datas, {
     }
 
     if (key === 'appliances') {
-      //lister les appliances dans ma liste déroulante
-      const appliancesDataList = document.querySelector('#applianceList')
+      const appliancesDataList = document.querySelector('#appliancesList')
       appliancesDataList.innerHTML = ''
+      console.log('appliances', value)
       value.forEach((appliance) => {
-        const option = document.createElement('option')
-        option.value = appliance
-        appliancesDataList.appendChild(option)
+        if (!datas.selectedTags.includes(appliance)) {
+          const option = document.createElement('li')
+          option.value = appliance
+          option.classList.add('appliancesLi')
+          option.innerText = appliance
+          appliancesDataList.style.display = 'block'
+          appliancesDataList.appendChild(option)
+        }
+      })
+
+      const appliancesLi = document.querySelectorAll('.appliancesLi')
+      console.log(Array.from(appliancesLi).length)
+      appliancesLi.forEach((appliance) => {
+        appliance.addEventListener('click', (e) => {
+          const str = appliance.innerText
+          datasProxy.selectedTags.push(str)
+          console.log('le bon ' + str)
+          searchAppliances(str, datasProxy, datas)
+          createGreenTag(str, datasProxy, datas)
+        })
       })
     }
 
-  
-
     if (key === 'ustensils') {
-      const ustensilsDataList = document.querySelector('#ustensilsList')
-      ustensilsDataList.innerHTML = ''
+      const ustensilDataList = document.querySelector('#ustensilsList')
+      ustensilDataList.innerHTML = ''
+      console.log('ustensils', value)
       value.forEach((ustensil) => {
-        const option = document.createElement('option')
-        option.value = ustensil
-        ustensilsDataList.appendChild(option)
+        if (!datas.selectedTags.includes(ustensil)) {
+          const option = document.createElement('li')
+          option.value = ustensil
+          option.classList.add('ustensilLi')
+          option.innerText = ustensil
+          ustensilDataList.style.display = 'block'
+          ustensilDataList.appendChild(option)
+        }
+      })
+      
+      const ustensilLi = document.querySelectorAll('.ustensilLi')
+      console.log(Array.from(ustensilLi).length)
+      ustensilLi.forEach((ustensil) => {
+        ustensil.addEventListener('click', (e) => {
+          const str = ustensil.innerText
+          datasProxy.selectedTags.push(str)
+          console.log('le bon ' + str)
+          searchUstensils(str, datasProxy, datas)
+          createRedTag(str, datasProxy, datas)
+        })
       })
     }
 
@@ -174,34 +207,73 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 // })
 
 searchIngredients(datasProxy, datas, recipes)
-searchAppliance(datasProxy, datas, recipes)
-searchUstensil(datasProxy, datas, recipes)
+searchAppliances(datasProxy, datas, recipes)
+searchUstensils(datasProxy, datas, recipes)
 
 const searchIngInput = document.querySelector('#search__input-ingredients')
-const searchIngContainer = document.querySelector('.test')
+const searchIngContainer = document.querySelector('.listContainer')
 const bigSearchIngredient = document.querySelector('.filterIngredient')
 const ingUl = document.querySelector('#ingredientsList')
 
-let clicked = false
+const searchUstInput = document.querySelector('#search__input-ustensils')
+const searchUstContainer = document.querySelector('.listContainer')
+const bigSearchUstensil = document.querySelector('.filterUstensils')
+const ustUl = document.querySelector('#ustensilsList')
 
-searchIngInput.addEventListener('click', (e) => {
-  if (clicked === false) {
-    ingUl.style.display = 'block'
-    searchIngInput.style.width = '100%'
-    searchIngContainer.style.width = '100%'
-    searchIngContainer.style.height = '300px'
-    bigSearchIngredient.style.width = 'auto'
-    searchIngInput.style.borderRadius = '5px 5px 0 0'
-    // ingUl.style.width = '900px'
-    clicked = true
-  } else {
-    ingUl.style.display = 'none'
-    searchIngContainer.style.width = '170px'
-    searchIngInput.style.width = '170px'
-    searchIngContainer.style.height = '0'
-    bigSearchIngredient.style.width = '170px'
-    searchIngInput.style.borderRadius = '5px'
+const searchAppInput = document.querySelector('#search__input-appliances')
+const searchAppContainer = document.querySelector('.listContainer')
+const bigSearchAppliance = document.querySelector('.filterAppliances')
+const appUl = document.querySelector('#appliancesList')
 
-    clicked = false
-  }
-})
+const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
+  let clicked = false
+
+  searchInput.addEventListener('click', (e) => {
+    if (clicked === false) {
+      ul.style.display = 'block'
+      searchInput.style.width = '100%'
+      searchContainer.style.width = '100%'
+      searchContainer.style.height = '300px'
+      bigSearchBox.style.width = 'auto'
+      searchInput.style.borderRadius = '5px 5px 0 0'
+      // ingUl.style.width = '900px'
+      clicked = true
+    } else {
+      ul.style.display = 'none'
+      searchContainer.style.width = '170px'
+      searchInput.style.width = '170px'
+      searchContainer.style.height = '0'
+      bigSearchBox.style.width = '170px'
+      searchInput.style.borderRadius = '5px'
+  
+      clicked = false
+    }
+  })
+}
+
+
+handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl)
+handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl)
+handleOpenBox(searchAppInput, searchAppContainer, bigSearchAppliance, appUl)
+
+// searchIngInput.addEventListener('click', (e) => {
+//   if (clicked === false) {
+//     ingUl.style.display = 'block'
+//     searchIngInput.style.width = '100%'
+//     searchIngContainer.style.width = '100%'
+//     searchIngContainer.style.height = '300px'
+//     bigSearchIngredient.style.width = 'auto'
+//     searchIngInput.style.borderRadius = '5px 5px 0 0'
+//     // ingUl.style.width = '900px'
+//     clicked = true
+//   } else {
+//     ingUl.style.display = 'none'
+//     searchIngContainer.style.width = '170px'
+//     searchIngInput.style.width = '170px'
+//     searchIngContainer.style.height = '0'
+//     bigSearchIngredient.style.width = '170px'
+//     searchIngInput.style.borderRadius = '5px'
+
+//     clicked = false
+//   }
+// })

@@ -1,5 +1,5 @@
 const ingredientsDataList = document.querySelector('#ingredientsList')
-const appliancesDataList = document.querySelector('#applianceList')
+const appliancesDataList = document.querySelector('#appliancesList')
 const ustensilDataList = document.querySelector('#ustensilsList')
 
 export const getIngredients = (datasProxy) => {

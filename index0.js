@@ -333,3 +333,57 @@ inputUstensil.addEventListener('input', () => {
 
 
 
+// tests
+export const searchAppliance = (datasProxy, datas, recipes) => {
+  document
+    .querySelector('#search__input-appliance')
+    .addEventListener('input', (e) => {
+      const str = e.target.value
+      console.log(datas)
+      if (str.length >= 3 && str.length > datas.searchLength) {
+        const filter = datas.recipes.filter((elt) =>
+          elt.appliance.toLowerCase().includes(str.toLowerCase())
+        )
+        datasProxy.applianceTag = [str.toLowerCase()]
+        datasProxy.recipes = [...filter]
+        datasProxy.appliances = getAppliiances(datasProxy)
+      } else if (str == '') {
+        datasProxy.recipes = [...recipes]
+        if (datasProxy.mainSearch) {
+          const filter = datas.recipes.filter((elt) =>
+            elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
+          )
+          datasProxy.recipes = [...filter]
+        }
+      }
+      datasProxy.searchLength = str.length
+    })
+}
+
+export const searchUstensil = (datasProxy, datas, recipes) => {
+  document
+    .querySelector('#search__input-ustensils')
+    .addEventListener('input', (e) => {
+      const str = e.target.value
+      console.log(datas)
+      if (str.length >= 3 && str.length > datas.searchLength) {
+        const filter = datas.recipes.filter((elt) =>
+          elt.ustensils.some((ustensil) =>
+            ustensil.toLowerCase().includes(str.toLowerCase())
+          )
+        )
+        datasProxy.ustensilTag = [str.toLowerCase()]
+        datasProxy.recipes = [...filter]
+        datasProxy.ustensils = getUstensils(datasProxy)
+      } else if (str == '') {
+        datasProxy.recipes = [...recipes]
+        if (datasProxy.mainSearch) {
+          const filter = datas.recipes.filter((elt) =>
+            elt.name.toLowerCase().includes(datasProxy.mainSearch.toLowerCase())
+          )
+          datasProxy.recipes = [...filter]
+        }
+      }
+      datasProxy.searchLength = str.length
+    })
+}

@@ -119,9 +119,7 @@ header {
     align-items: start;
 }
 
-.recipe__title-ingredients {
-    /* background-color: rgb(238, 94, 219); */
-}
+
 
 
 .recipe__title {
@@ -164,10 +162,6 @@ header {
     text-overflow: ellipsis;
 }
 
-
-.recipe__time-instructions {
-    /* background-color: rgb(88, 198, 231); */
-}
 
 ul {
     list-style-type: none;
@@ -228,29 +222,12 @@ ul {
     background-color: #3282F7;
     color: white;
     font-weight: bold;
-
 }
 
-#search__input-ingredients::placeholder {
-    color: white;
-}
-
-#search__input-ingredients:focus {
-    outline: none;
-}
-
-#search__input-appliance {
+#search__input-appliances {
     background-color: #68D9A4;
     color: white;
     font-weight: bold;
-}
-
-#search__input-appliance::placeholder {
-    color: white;
-}
-
-#search__input-appliance:focus {
-    outline: none;
 }
 
 #search__input-ustensils {
@@ -259,11 +236,11 @@ ul {
     font-weight: bold;
 }
 
-#search__input-ustensils::placeholder {
+#search__input-ingredients::placeholder, #search__input-appliances::placeholder, #search__input-ustensils::placeholder {
     color: white;
 }
 
-#search__input-ustensils:focus {
+#search__input-ingredients:focus, #search__input-appliances:focus, #search__input-ustensils:focus {
     outline: none;
 }
 
@@ -276,19 +253,13 @@ ul {
     margin-bottom: 15px;
 }
 
-.filter-container {
-    /* width: 140px; */
-}
-
 .filter-button-stamp {
-    /* width: 100%; */
-
     font-family: 'Lato', sans-serif;
     font-size: 14px;
 }
 
 
-.filter-container-blue {
+.filter-container-blue, .filter-container-green, .filter-container-red {
     color: white;
     font-weight: bold;
     padding: 10px 20px;
@@ -299,11 +270,11 @@ ul {
     background-color: #3282F7;
 }
 
-.filter-container {
+.filter-container-green {
     background-color: #68D9A4;
 }
 
-.filter-container {
+.filter-container-red {
     background-color: #ED6454;
 }
 
@@ -319,15 +290,26 @@ ul {
     overflow-x: hidden;
 }
 
-.test {
+.listContainer {
     width: 500px;
     height: 0;
     overflow: auto;
     border-radius: 0 0 5px 5px;
+}
+
+.blue { 
     background-color: #3282F7;
 }
 
-#ingredientsList {
+.green {
+    background-color: #3FD765;
+}
+
+.red {
+    background-color: #ED6454;
+}
+
+#ingredientsList, #appliancesList , #ustensilsList {
     /* background-color: #3282F7; */
     color: white;
     font-weight: bold;
@@ -342,7 +324,7 @@ ul {
 
 
 
-ul>.ingredientsLi {
+ul>.ingredientsLi , ul>.appliancesLi , ul>.ustensilsLi {
     padding: 5px 0;
     max-width: 200px;
     margin: 0;
