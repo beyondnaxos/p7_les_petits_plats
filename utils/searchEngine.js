@@ -9,19 +9,9 @@ export function createBlueTag(str, datasProxy, datas) {
   blueTag.classList.add('filterTags')
   blueTag.innerText = str
   document.querySelector('.before-container').appendChild(blueTag)
+  const blueTagSel = "filter-container-blue"
   blueTag.addEventListener('click', () => {
-    deleteTag(str, datasProxy, datas)
-  })
-}
-
-export function createRedTag(str, datasProxy, datas) {
-  const redTag = document.createElement('div')
-  redTag.classList.add('filter-container-red')
-  redTag.classList.add('filterTags')
-  redTag.innerText = str
-  document.querySelector('.before-container').appendChild(redTag)
-  redTag.addEventListener('click', () => {
-    deleteTag(str, datasProxy, datas)
+    deleteTag(str, datasProxy, datas, blueTagSel)
   })
 }
 
@@ -31,16 +21,30 @@ export function createGreenTag(str, datasProxy, datas) {
   greenTag.classList.add('filterTags')
   greenTag.innerText = str
   document.querySelector('.before-container').appendChild(greenTag)
+  const greenTagSel = "filter-container-green"
   greenTag.addEventListener('click', () => {
-    deleteTag(str, datasProxy, datas)
+    deleteTag(str, datasProxy, datas, greenTagSel)
+  })
+}
+
+export function createRedTag(str, datasProxy, datas) {
+  const redTag = document.createElement('div')
+  redTag.classList.add('filter-container-red')
+  redTag.classList.add('filterTags')
+  redTag.innerText = str
+  document.querySelector('.before-container').appendChild(redTag)
+  const redTagSel = "filter-container-red"
+  redTag.addEventListener('click', () => {
+    deleteTag(str, datasProxy, datas, redTagSel)
   })
 }
 
 // Permet de supprimer un tag lorsque l'on clique dessus
-export const deleteTag = (str, datasProxy, datas) => {
+export const deleteTag = (str, datasProxy, datas, tag) => {
   // suppression du tag
-  const blueTag = document.querySelector('.filter-container-blue')
+  const blueTag = document.querySelector(`.${tag}`)
   blueTag.remove()
+
 
   // récupèration des recettes
   const recipes = datasProxy.recipes
