@@ -11,7 +11,7 @@ export function createBlueTag(str, datasProxy, datas) {
   document.querySelector('.before-container').appendChild(blueTag)
   const blueTagSel = "filter-container-blue"
   blueTag.addEventListener('click', () => {
-    deleteTag(str, datasProxy, datas, blueTagSel)
+    deleteTag(e, str, datasProxy, datas)
   })
 }
 
@@ -40,9 +40,9 @@ export function createRedTag(str, datasProxy, datas) {
 }
 
 // Permet de supprimer un tag lorsque l'on clique dessus
-export const deleteTag = (str, datasProxy, datas, tag) => {
+export const deleteTag = (event, str, datasProxy, datas) => {
   // suppression du tag
-  const blueTag = document.querySelector(`.${tag}`)
+  const blueTag = event.target
   blueTag.remove()
 
 

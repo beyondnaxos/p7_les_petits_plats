@@ -27,6 +27,7 @@ let datas = {}
 datas.recipes = [...recipes]
 console.log(datas)
 
+datas.allRecipes = [...recipes]
 datas.allIngredients = getIngredients(datas)
 datas.allAppliances = getAppliiances(datas)
 datas.allUstensils = getUstensils(datas)
