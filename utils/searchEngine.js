@@ -9,7 +9,6 @@ export function createBlueTag(str, datasProxy, datas) {
   blueTag.classList.add('filterTags')
   blueTag.innerText = str
   document.querySelector('.before-container').appendChild(blueTag)
-  const blueTagSel = 'filter-container-blue'
   blueTag.addEventListener('click', (e) => {
     deleteTag(e, str, datasProxy, datas)
   })
@@ -21,9 +20,8 @@ export function createGreenTag(str, datasProxy, datas) {
   greenTag.classList.add('filterTags')
   greenTag.innerText = str
   document.querySelector('.before-container').appendChild(greenTag)
-  const greenTagSel = 'filter-container-green'
-  greenTag.addEventListener('click', () => {
-    deleteTag(str, datasProxy, datas, greenTagSel)
+  greenTag.addEventListener('click', (e) => {
+    deleteTag(e, str, datasProxy, datas)
   })
 }
 
@@ -33,9 +31,8 @@ export function createRedTag(str, datasProxy, datas) {
   redTag.classList.add('filterTags')
   redTag.innerText = str
   document.querySelector('.before-container').appendChild(redTag)
-  const redTagSel = 'filter-container-red'
-  redTag.addEventListener('click', () => {
-    deleteTag(str, datasProxy, datas, redTagSel)
+  redTag.addEventListener('click', (e) => {
+    deleteTag(e, str, datasProxy, datas)
   })
 }
 
@@ -65,13 +62,12 @@ export const deleteTag = (event, str, datasProxy, datas) => {
       )
       return datasProxy.selectedTags.some((tag) => ingredients.includes(tag))
     })
+    // } else if ( datasProxy.mainSearch ) {
+    //   datasProxy.recipes = [...datasProxy.mainSearch]
   } else {
     filteredRecipes = [...recipes]
   }
 
-  // // observer si il y a une recherche (main ) on filtre sur la recette de main search ( str )
-
-  // // actualisation du datasProxy pour les filteredRepices
   datasProxy.recipes = [...filteredRecipes]
 }
 
