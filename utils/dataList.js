@@ -32,10 +32,25 @@ export const getUstensils = (datasProxy) => {
     })
   })
   const uniqueUstensils = [...new Set(ustensils)]
-  uniqueUstensils.forEach((ustensil) => {
-    const option = document.createElement('option')
-    option.value = ustensil
-    ustensilDataList.appendChild(option)
-  })
+  // console.log(uniqueUstensils)
   return uniqueUstensils
 }
+
+
+
+
+// export const getUstensils = (datasProxy) => {
+//   let ustensils = []
+//   datasProxy.recipes.forEach((recipe) => {
+//     recipe.ustensils.forEach((ustensil) => {
+//       ustensils.push(ustensil)
+//     })
+//   })
+//   const uniqueUstensils = [...new Set(ustensils)]
+//   uniqueUstensils.forEach((ustensil) => {
+//     const option = document.createElement('option')
+//     option.value = ustensil
+//     ustensilDataList.appendChild(option)
+//   })
+//   return uniqueUstensils
+// }

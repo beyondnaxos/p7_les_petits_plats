@@ -47,8 +47,8 @@ let datasProxy = new Proxy(datas, {
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
-      datasProxy.appliances = getAppliiances(datasProxy)
       datasProxy.ingredients = getIngredients(datasProxy)
+      datasProxy.appliances = getAppliiances(datasProxy)
       datasProxy.ustensils = getUstensils(datasProxy)
       console.log(datasProxy.ustensils)
 
