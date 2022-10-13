@@ -389,14 +389,3 @@ export const searchUstensil = (datasProxy, datas, recipes) => {
 }
 
 
-const cartProducts = [{ car: 'BMW', marque: 'BMW' }, { car: 'Ford', marque: 'Ford' }]
-
-cartProducts.map(cartProduct => {
-  if (cartProduct.idproduct == idproduct && cartProduct.color == color) {
-    console.log('il y a blablabla')
-  } else if ( cartProduct.color != color) {
-   inc quantity
-  } 
-
-
-})
