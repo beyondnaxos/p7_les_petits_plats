@@ -67,7 +67,6 @@ export const deleteTag = (event, str, datasProxy, datas) => {
   } else {
     filteredRecipes = [...recipes]
   }
-
   datasProxy.recipes = [...filteredRecipes]
 }
 
