@@ -100,10 +100,15 @@ export const handleAppSearch = (str, datasProxy, datas) => {
   console.log('c ici ', datas)
 }
 
+// ************** Erreur de recherche ************** //
+
 export const handleUstSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>
-      elt.ustensils.toLowerCase().includes(str.toLowerCase())
+      elt.ustensils.some(
+        (ustensil) =>
+        ustensil.toLowerCase() === str.toLowerCase()
+        )
     )
 
     datasProxy.recipes = [...filter]
@@ -112,6 +117,8 @@ export const handleUstSearch = (str, datasProxy, datas) => {
 
   console.log('c ici ', datas)
 }
+
+// ************** Erreur de recherche ************** //
 
 export const searchIngredients = (datasProxy, datas, recipes) => {
   document

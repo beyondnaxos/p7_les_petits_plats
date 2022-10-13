@@ -17,6 +17,9 @@ import {
 import {
   filterData,
   handleIngSearch,
+  handleAppSearch,
+  handleUstSearch,
+
   createBlueTag,
   createGreenTag,
   createRedTag
@@ -108,7 +111,7 @@ let datasProxy = new Proxy(datas, {
           const str = appliance.innerText
           datasProxy.selectedTags.push(str)
           console.log('le bon ' + str)
-          searchAppliances(str, datasProxy, datas)
+          handleAppSearch(str, datasProxy, datas)
           createGreenTag(str, datasProxy, datas)
         })
       })
@@ -136,7 +139,7 @@ let datasProxy = new Proxy(datas, {
           const str = ustensil.innerText
           datasProxy.selectedTags.push(str)
           console.log('le bon ' + str)
-          searchUstensils(str, datasProxy, datas)
+          handleUstSearch(str, datasProxy, datas)
           createRedTag(str, datasProxy, datas)
         })
       })
