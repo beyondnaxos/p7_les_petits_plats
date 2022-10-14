@@ -19,10 +19,9 @@ import {
   handleIngSearch,
   handleAppSearch,
   handleUstSearch,
-
   createBlueTag,
   createGreenTag,
-  createRedTag
+  createRedTag,
 } from './utils/searchEngine.js'
 // import {createFilterContainerForIngredients} from './utils/filterTag.js'
 
@@ -39,11 +38,9 @@ datas.selectedTags = []
 console.log(datas)
 
 let datasProxy = new Proxy(datas, {
-
   get: (obj, prop) => {
     return obj[prop]
   },
-  
 
   set: function (target, key, value) {
     target[key] = value
@@ -131,7 +128,7 @@ let datasProxy = new Proxy(datas, {
           ustensilDataList.appendChild(option)
         }
       })
-      
+
       const ustensilLi = document.querySelectorAll('.ustensilLi')
       console.log(Array.from(ustensilLi).length)
       ustensilLi.forEach((ustensil) => {
@@ -231,9 +228,7 @@ const searchUstContainer = document.querySelector('.red')
 const bigSearchUstensil = document.querySelector('.filterUstensils')
 const ustUl = document.querySelector('#ustensilsList')
 
-
 const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
-  
   let clicked = false
 
   searchInput.addEventListener('click', (e) => {
@@ -253,12 +248,11 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
       searchContainer.style.height = '0'
       bigSearchBox.style.width = '170px'
       searchInput.style.borderRadius = '5px'
-  
+
       clicked = false
     }
   })
 }
-
 
 handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl)
 handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl)

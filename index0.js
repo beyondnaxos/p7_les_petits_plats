@@ -144,9 +144,7 @@ const handleSearch = () => {
   const inputApplianceValue = inputAppliance.value
   const inputUstensilValue = inputUstensil.value
 
-
   recipesDiv.forEach((recipeDiv) => {
-
     const recipeId = recipeDiv.dataset.id
     const { name, ingredients, ustensils, appliance } = recipeReduce[recipeId]
 
@@ -162,16 +160,14 @@ const handleSearch = () => {
       ? recipeDiv.classList.remove('hide')
       : recipeDiv.classList.add('hide')
   })
-
 }
 
 const inputs = document.querySelectorAll('input')
 inputs.forEach((input) => input.addEventListener('input', handleSearch))
 
-const ingredientsDataList = document.querySelector('#ingredientsList') 
+const ingredientsDataList = document.querySelector('#ingredientsList')
 const applianceDataList = document.querySelector('#appliancesList')
 const ustensilsDataList = document.querySelector('#ustensilsList')
-
 
 //  get ingredients , remove duplicates and display them in the data list
 const getIngredients = () => {
@@ -179,28 +175,27 @@ const getIngredients = () => {
   arrOfActualRecipe.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
       ingredients.push(ingredient.ingredient)
-    } )
-  } )
+    })
+  })
   const uniqueIngredients = [...new Set(ingredients)]
   uniqueIngredients.forEach((ingredient) => {
     const option = document.createElement('option')
     option.value = ingredient
     ingredientsDataList.appendChild(option)
-
-  } )
+  })
 }
 
 const getAppliiances = () => {
   const appliances = []
   arrOfActualRecipe.forEach((recipe) => {
     appliances.push(recipe.appliance)
-  } )
+  })
   const uniqueAppliances = [...new Set(appliances)]
   uniqueAppliances.forEach((appliance) => {
     const option = document.createElement('option')
     option.value = appliance
     applianceDataList.appendChild(option)
-  } )
+  })
 }
 
 const getUstensils = () => {
@@ -208,14 +203,14 @@ const getUstensils = () => {
   arrOfActualRecipe.forEach((recipe) => {
     recipe.ustensils.forEach((ustensil) => {
       ustensils.push(ustensil)
-    } )
-  } )
+    })
+  })
   const uniqueUstensils = [...new Set(ustensils)]
   uniqueUstensils.forEach((ustensil) => {
     const option = document.createElement('option')
     option.value = ustensil
     ustensilsDataList.appendChild(option)
-  } )
+  })
 }
 
 getIngredients()
@@ -224,7 +219,7 @@ getUstensils()
 
 const beforeContainer = document.querySelector('.before-container')
 
-const createFilter = ( filterValue) => {
+const createFilter = (filterValue) => {
   const filter = document.createElement('div')
   filter.classList.add('filter-button-stamp')
   filter.innerHTML = ` <p>${filterValue}</p>`
@@ -239,7 +234,7 @@ const createFilterContainer = (filterValue) => {
   return filterContainer
 }
 
-const createFilterContainerForIngredients = ( filterValue) => {
+const createFilterContainerForIngredients = (filterValue) => {
   const filterContainer = document.createElement('div')
   filterContainer.classList.add('filter-container')
   filterContainer.appendChild(createFilter(filterValue))
@@ -250,32 +245,34 @@ const createFilterContainerForIngredients = ( filterValue) => {
 const createFilterContainerForAppliances = (filterValue) => {
   const filterContainer = document.createElement('div')
   filterContainer.classList.add('filter-container')
-  filterContainer.appendChild(createFilter( filterValue))
+  filterContainer.appendChild(createFilter(filterValue))
 
   return filterContainer
 }
 
-const createFilterContainerForUstensils = ( filterValue) => {
+const createFilterContainerForUstensils = (filterValue) => {
   const filterContainer = document.createElement('div')
   filterContainer.classList.add('filter-container')
-  filterContainer.appendChild(createFilter( filterValue))
+  filterContainer.appendChild(createFilter(filterValue))
 
   return filterContainer
 }
 
-
 const showFilters = () => {
-  
   beforeContainer.innerHTML = ''
   const filterValue = inputIngredients.value
   const filterValue2 = inputAppliance.value
   const filterValue3 = inputUstensil.value
-  
+
   if (filterValue !== '') {
-    beforeContainer.appendChild(createFilterContainerForIngredients(filterValue))
+    beforeContainer.appendChild(
+      createFilterContainerForIngredients(filterValue)
+    )
   }
   if (filterValue2 !== '') {
-    beforeContainer.appendChild(createFilterContainerForAppliances(filterValue2))
+    beforeContainer.appendChild(
+      createFilterContainerForAppliances(filterValue2)
+    )
   }
   if (filterValue3 !== '') {
     beforeContainer.appendChild(createFilterContainerForUstensils(filterValue3))
@@ -291,47 +288,35 @@ console.log(inputIngredients.currentTarget)
 //  on change on input ingredients, show filters in the filter container
 inputIngredients.addEventListener('change', () => {
   showFilters()
-}
-)
+})
 
 inputAppliance.addEventListener('change', () => {
   showFilters()
-}
-)
+})
 
 inputUstensil.addEventListener('change', () => {
   showFilters()
-}
-)
+})
 
 // remove filters if empty input
 inputIngredients.addEventListener('input', () => {
   if (inputIngredients.value === '') {
     removeFilters(beforeContainer)
   }
-}
-)
+})
 
-inputAppliance.addEventListener('input', () => {  
+inputAppliance.addEventListener('input', () => {
   if (inputAppliance.value === '') {
     removeFilters(beforeContainer)
   }
-}
-
-)
+})
 
 inputUstensil.addEventListener('input', () => {
   if (inputUstensil.value === '') {
     removeFilters(beforeContainer)
     // only remove filter before container nth:child(3)
-    
-
-
   }
-}
-)
-
-
+})
 
 // tests
 export const searchAppliance = (datasProxy, datas, recipes) => {
@@ -387,5 +372,3 @@ export const searchUstensil = (datasProxy, datas, recipes) => {
       datasProxy.searchLength = str.length
     })
 }
-
-

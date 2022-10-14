@@ -8,8 +8,6 @@ export const buildIngredientTag = (filterValue) => {
   return filterContainer
 }
 
-
-
 const createFilterContainerForAppliances = (filterValue) => {
   const filterContainer = document.createElement('div')
   filterContainer.classList.add('filter-container')
@@ -26,7 +24,7 @@ const createFilterContainerForUstensils = (filterValue) => {
   return filterContainer
 }
 
-const createFilter = ( filterValue) => {
+const createFilter = (filterValue) => {
   const filter = document.createElement('div')
   filter.classList.add('filter-button-stamp')
   filter.innerHTML = ` <p>${filterValue}</p>`

@@ -106,9 +106,8 @@ export const handleUstSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>
       elt.ustensils.some(
-        (ustensil) =>
-        ustensil.toLowerCase() === str.toLowerCase()
-        )
+        (ustensil) => ustensil.toLowerCase() === str.toLowerCase()
+      )
     )
 
     datasProxy.recipes = [...filter]

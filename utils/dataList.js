@@ -36,9 +36,6 @@ export const getUstensils = (datasProxy) => {
   return uniqueUstensils
 }
 
-
-
-
 // export const getUstensils = (datasProxy) => {
 //   let ustensils = []
 //   datasProxy.recipes.forEach((recipe) => {
