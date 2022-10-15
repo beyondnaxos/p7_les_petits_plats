@@ -164,28 +164,28 @@ export const searchAppliances = (datasProxy, datas, recipes) => {
     })
 }
 
-export const searchUstensils = (datasProxy, datas, recipes) => {
-  document
-    .querySelector('#search__input-ustensils')
-    .addEventListener('input', (e) => {
-      const str = e.target.value
-      const filter = datas.ustensils.filter((ustensil) =>
-        ustensil.toLowerCase().includes(str.toLowerCase())
-      )
+// export const searchUstensils = (datasProxy, datas, recipes) => {
+//   document
+//     .querySelector('#search__input-ustensils')
+//     .addEventListener('input', (e) => {
+//       const str = e.target.value
+//       const filter = datas.ustensils.filter((ustensil) =>
+//         ustensil.toLowerCase().includes(str.toLowerCase())
+//       )
 
-      datasProxy.ustensils = [...filter]
+//       datasProxy.ustensils = [...filter]
 
-      // **************************************************
-      datasProxy.searchLength = str.length
-      if (str.length < 3) {
-        datasProxy.ustensils = getUstensils(datasProxy)
-        document.querySelector('#ustensilsList').style.display = 'block'
-      }
-      // **************************************************
+//       // **************************************************
+//       datasProxy.searchLength = str.length
+//       if (str.length < 3) {
+//         datasProxy.ustensils = getUstensils(datasProxy)
+//         document.querySelector('#ustensilsList').style.display = 'block'
+//       }
+//       // **************************************************
 
-      document.querySelector('#ustensilsList').style.display = 'block'
-    })
-}
+//       document.querySelector('#ustensilsList').style.display = 'block'
+//     })
+// }
 
 // Permet d'effectuer une recherche en saisissant quelque chose dans l'input ingredients
 export const ingredientsSearch = (datas) => {
