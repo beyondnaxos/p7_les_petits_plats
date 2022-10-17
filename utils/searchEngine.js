@@ -56,14 +56,28 @@ export const deleteTag = (event, str, datasProxy, datas) => {
   let filteredRecipes = []
 
   if (datasProxy.selectedTags.length > 0) {
+
     filteredRecipes = recipes.filter((recipe) => {
       let ingredients = recipe.ingredients.map(
         (ingredient) => ingredient.ingredient
       )
       return datasProxy.selectedTags.some((tag) => ingredients.includes(tag))
     })
-    // } else if ( datasProxy.mainSearch ) {
-    //   datasProxy.recipes = [...datasProxy.mainSearch]
+
+    if (filteredRecipes.length === 0) {
+      filteredRecipes = recipes.filter((recipe) => {
+        let ustensils = recipe.ustensils
+        return datasProxy.selectedTags.some((tag) => ustensils.includes(tag))
+      })
+    }
+
+    if (filteredRecipes.length === 0) {
+      filteredRecipes = recipes.filter((recipe) => {
+        let appliances = recipe.appliance
+        return datasProxy.selectedTags.some((tag) => appliances.includes(tag))
+      })
+    }
+
   } else {
     filteredRecipes = [...recipes]
   }
@@ -181,7 +195,7 @@ export const searchUstensils = (datasProxy, datas, recipes) => {
         datasProxy.ustensils = getUstensils(datasProxy)
         document.querySelector('#ustensilsList').style.display = 'block'
       }
-      // ************************************************** 
+      // **************************************************
       document.querySelector('#ustensilsList').style.display = 'block'
     })
 }
