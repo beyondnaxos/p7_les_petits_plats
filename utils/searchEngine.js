@@ -10,7 +10,7 @@ export function createBlueTag(str, datasProxy, datas) {
   blueTag.innerText = str
   document.querySelector('.before-container').appendChild(blueTag)
   blueTag.addEventListener('click', (e) => {
-    deleteTag(e, str, datasProxy, datas)
+    deleteTag(e, datasProxy, datas)
   })
 }
 
@@ -21,7 +21,7 @@ export function createGreenTag(str, datasProxy, datas) {
   greenTag.innerText = str
   document.querySelector('.before-container').appendChild(greenTag)
   greenTag.addEventListener('click', (e) => {
-    deleteTag(e, str, datasProxy, datas)
+    deleteTag(e, datasProxy, datas)
   })
 }
 
@@ -32,12 +32,12 @@ export function createRedTag(str, datasProxy, datas) {
   redTag.innerText = str
   document.querySelector('.before-container').appendChild(redTag)
   redTag.addEventListener('click', (e) => {
-    deleteTag(e, str, datasProxy, datas)
+    deleteTag(e, datasProxy, datas)
   })
 }
 
 // Permet de supprimer un tag lorsque l'on clique dessus
-export const deleteTag = (event, str, datasProxy, datas) => {
+export const deleteTag = (event, datasProxy, datas) => {
   // suppression du tag
   const blueTag = event.target
   blueTag.remove()
@@ -56,7 +56,6 @@ export const deleteTag = (event, str, datasProxy, datas) => {
   let filteredRecipes = []
 
   if (datasProxy.selectedTags.length > 0) {
-
     filteredRecipes = recipes.filter((recipe) => {
       let ingredients = recipe.ingredients.map(
         (ingredient) => ingredient.ingredient
@@ -77,9 +76,30 @@ export const deleteTag = (event, str, datasProxy, datas) => {
         return datasProxy.selectedTags.some((tag) => appliances.includes(tag))
       })
     }
-
   } else {
     filteredRecipes = [...recipes]
+  }
+
+  console.log('clg de data ', filteredRecipes.length, datas)
+
+  if (datas.mainSearch) {
+    console.log('hello')
+    const str = datas.mainSearch
+    if (str.length >= 3) {
+      const filter = filteredRecipes.filter(
+        (elt) =>
+          elt.name.toLowerCase().includes(str.toLowerCase()) ||
+          elt.description.toLowerCase().includes(str.toLowerCase()) ||
+          elt.ingredients.some((ingredient) =>
+            ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
+          ) ||
+          elt.appliance.toLowerCase().includes(str.toLowerCase()) ||
+          elt.ustensils.some((ustensil) =>
+            ustensil.toLowerCase().includes(str.toLowerCase())
+          )
+      )
+      filteredRecipes = [...filter]
+    }
   }
   datasProxy.recipes = [...filteredRecipes]
 }
@@ -130,8 +150,6 @@ export const handleUstSearch = (str, datasProxy, datas) => {
 
   console.log('c ici ', datas)
 }
-
-// ************** Erreur de recherche ************** //
 
 export const searchIngredients = (datasProxy, datas, recipes) => {
   document

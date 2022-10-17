@@ -23,7 +23,7 @@ import {
   createGreenTag,
   createRedTag,
 } from './utils/searchEngine.js'
-// import {createFilterContainerForIngredients} from './utils/filterTag.js'
+
 
 let datas = {}
 datas.recipes = [...recipes]
@@ -51,7 +51,6 @@ let datasProxy = new Proxy(datas, {
       datasProxy.ingredients = getIngredients(datasProxy)
       datasProxy.appliances = getAppliiances(datasProxy)
       datasProxy.ustensils = getUstensils(datasProxy)
-      console.log(datasProxy.ustensils)
 
       target[key].map((recipe) => {
         displayRecipes(recipe)
@@ -172,8 +171,6 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
         )
     )
     datasProxy.recipes = [...filter]
-    // datasProxy.searchType = 'main'
-    console.log(datasProxy.recipes)
   } else {
     datasProxy.recipes = [...recipes]
   }
@@ -190,6 +187,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 //       if (
 //         elt.name.toLowerCase().includes(str.toLowerCase()) ||
 //         elt.description.toLowerCase().includes(str.toLowerCase()) ||
+//  REMPLACER PAR UNE FOR LOOP / some 
 //         elt.ingredients.some((ingredient) =>
 
 //           ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
@@ -236,7 +234,9 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
       ul.style.display = 'block'
       searchInput.style.width = '100%'
       searchContainer.style.width = '100%'
-      searchContainer.style.height = '300px'
+      searchContainer.style.height = 'auto'
+      searchContainer.style.maxHeight = '300px'
+      
       bigSearchBox.style.width = 'auto'
       searchInput.style.borderRadius = '5px 5px 0 0'
       // ingUl.style.width = '900px'
@@ -258,24 +258,3 @@ handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl)
 handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl)
 handleOpenBox(searchAppInput, searchAppContainer, bigSearchAppliance, appUl)
 
-// searchIngInput.addEventListener('click', (e) => {
-//   if (clicked === false) {
-//     ingUl.style.display = 'block'
-//     searchIngInput.style.width = '100%'
-//     searchIngContainer.style.width = '100%'
-//     searchIngContainer.style.height = '300px'
-//     bigSearchIngredient.style.width = 'auto'
-//     searchIngInput.style.borderRadius = '5px 5px 0 0'
-//     // ingUl.style.width = '900px'
-//     clicked = true
-//   } else {
-//     ingUl.style.display = 'none'
-//     searchIngContainer.style.width = '170px'
-//     searchIngInput.style.width = '170px'
-//     searchIngContainer.style.height = '0'
-//     bigSearchIngredient.style.width = '170px'
-//     searchIngInput.style.borderRadius = '5px'
-
-//     clicked = false
-//   }
-// })
