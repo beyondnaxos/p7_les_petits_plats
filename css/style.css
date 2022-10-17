@@ -327,6 +327,7 @@ ul>.ingredientsLi , ul>.appliancesLi , ul>.ustensilsLi {
     padding: 5px 0;
     max-width: 200px;
     margin: 0;
+    break-inside: avoid;
 }
 
 ::-webkit-scrollbar {
