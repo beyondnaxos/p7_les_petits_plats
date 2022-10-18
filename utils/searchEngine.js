@@ -7,10 +7,12 @@ export function createBlueTag(str, datasProxy, datas) {
   const blueTag = document.createElement('div')
   blueTag.classList.add('filter-container-blue')
   blueTag.classList.add('filterTags')
-  blueTag.innerText = str
+  const par = document.createElement('p')
+  par.innerText = str
+  blueTag.appendChild(par)
   const image = new Image()
   image.src = '../assets/icons/cross.png'
-  blueTag.innerHTML += image.outerHTML
+  blueTag.appendChild(image)
   document.querySelector('.before-container').appendChild(blueTag)
   blueTag.addEventListener('click', (e) => {
     deleteTag(e, datasProxy, datas)
@@ -48,7 +50,7 @@ export function createRedTag(str, datasProxy, datas) {
 // Permet de supprimer un tag lorsque l'on clique dessus
 export const deleteTag = (event, datasProxy, datas) => {
   // suppression du tag
-  const blueTag = event.target
+  const blueTag = event.currentTarget
   blueTag.remove()
 
   const index = datasProxy.selectedTags.findIndex(
