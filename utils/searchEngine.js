@@ -8,6 +8,9 @@ export function createBlueTag(str, datasProxy, datas) {
   blueTag.classList.add('filter-container-blue')
   blueTag.classList.add('filterTags')
   blueTag.innerText = str
+  const image = new Image()
+  image.src = '../assets/icons/cross.png'
+  blueTag.innerHTML += image.outerHTML
   document.querySelector('.before-container').appendChild(blueTag)
   blueTag.addEventListener('click', (e) => {
     deleteTag(e, datasProxy, datas)
@@ -19,6 +22,9 @@ export function createGreenTag(str, datasProxy, datas) {
   greenTag.classList.add('filter-container-green')
   greenTag.classList.add('filterTags')
   greenTag.innerText = str
+  const image = new Image()
+  image.src = '../assets/icons/cross.png'
+  greenTag.innerHTML += image.outerHTML
   document.querySelector('.before-container').appendChild(greenTag)
   greenTag.addEventListener('click', (e) => {
     deleteTag(e, datasProxy, datas)
@@ -30,6 +36,9 @@ export function createRedTag(str, datasProxy, datas) {
   redTag.classList.add('filter-container-red')
   redTag.classList.add('filterTags')
   redTag.innerText = str
+  const image = new Image()
+  image.src = '../assets/icons/cross.png'
+  redTag.innerHTML += image.outerHTML
   document.querySelector('.before-container').appendChild(redTag)
   redTag.addEventListener('click', (e) => {
     deleteTag(e, datasProxy, datas)
