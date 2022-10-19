@@ -236,7 +236,6 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
       searchContainer.style.width = '100%'
       searchContainer.style.height = 'auto'
       searchContainer.style.maxHeight = '300px'
-      
       bigSearchBox.style.width = 'auto'
       searchInput.style.borderRadius = '5px 5px 0 0'
       // ingUl.style.width = '900px'
