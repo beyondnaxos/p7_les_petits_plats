@@ -24,7 +24,6 @@ import {
   createRedTag,
 } from './utils/searchEngine.js'
 
-
 let datas = {}
 datas.recipes = [...recipes]
 console.log(datas)
@@ -187,7 +186,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 //       if (
 //         elt.name.toLowerCase().includes(str.toLowerCase()) ||
 //         elt.description.toLowerCase().includes(str.toLowerCase()) ||
-//  REMPLACER PAR UNE FOR LOOP / some 
+//  REMPLACER PAR UNE FOR LOOP / some
 //         elt.ingredients.some((ingredient) =>
 
 //           ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
@@ -256,4 +255,3 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
 handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl)
 handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl)
 handleOpenBox(searchAppInput, searchAppContainer, bigSearchAppliance, appUl)
-
