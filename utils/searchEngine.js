@@ -154,11 +154,9 @@ export const handleUstSearch = (str, datasProxy, datas) => {
         (ustensil) => ustensil.toLowerCase() === str.toLowerCase()
       )
     )
-
     datasProxy.recipes = [...filter]
     datasProxy.ustensils = getUstensils(datasProxy)
   }
-
   console.log('c ici ', datas)
 }
 
@@ -171,9 +169,7 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
         ing.toLowerCase().includes(str.toLowerCase())
       )
       console.log('filter', filter)
-
       datasProxy.ingredients = [...filter]
-
       // **************************************************
       datasProxy.searchLength = str.length
       if (str.length < 3) {
@@ -193,9 +189,7 @@ export const searchAppliances = (datasProxy, datas, recipes) => {
       const filter = datas.appliances.filter((elt) =>
         elt.toLowerCase().includes(str.toLowerCase())
       )
-
       datasProxy.appliances = [...filter]
-
       // **************************************************
       datasProxy.searchLength = str.length
       if (str.length < 3) {
