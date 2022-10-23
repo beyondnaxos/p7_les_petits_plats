@@ -169,12 +169,14 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
           ustensil.toLowerCase().includes(str.toLowerCase())
         )
     )
-    datasProxy.recipes = [...filter]
+    if (filter.length > 0) {
+      datasProxy.recipes = [...filter]
+    } else {
+      const container = document.querySelector('.container')
+      container.innerHTML = 'Aucune recette ne correspond'
+    }
   } else {
     datasProxy.recipes = [...datas.allRecipes]
-    // const container = document.querySelector('.container')
-    // container.innerHTML = ''
-    // container.innerHTML = 'Aucune recette ne correspond'
   }
   datasProxy.searchLength = str.length
 })
@@ -183,17 +185,24 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 //   const str = e.target.value
 //   datasProxy.mainSearch = str
 //   if (str.length >= 3 && str.length > datas.searchLength) {
-//     // use for loop
 //     for (let i = 0; i < datas.recipes.length; i++) {
 //       const elt = datas.recipes[i]
 //       if (
-//         elt.name.toLowerCase().includes(str.toLowerCase()) ||
-//         elt.description.toLowerCase().includes(str.toLowerCase()) ||
-//  REMPLACER PAR UNE FOR LOOP / some
-//         elt.ingredients.some((ingredient) =>
 
+//         elt.name.toLowerCase().includes(str.toLowerCase()) ||
+
+//         elt.description.toLowerCase().includes(str.toLowerCase()) ||
+
+//         elt.ingredients.some((ingredient) =>
 //           ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
-//         ) ||
+//         ) 
+//         // for (let i = 0; i < elt.ingredients.length; i++) {
+//         //   const ingredient = elt.ingredients[i]
+//         //   if (ingredient.ingredient.toLowerCase().includes(str.toLowerCase())) {
+//         //     return true
+//         //   }
+//         // }
+//         ||
 //         elt.appliance.toLowerCase().includes(str.toLowerCase()) ||
 //         elt.ustensils.some((ustensil) =>
 //           ustensil.toLowerCase().includes(str.toLowerCase())
