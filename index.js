@@ -171,7 +171,10 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
     )
     datasProxy.recipes = [...filter]
   } else {
-    datasProxy.recipes = [...recipes]
+    datasProxy.recipes = [...datas.allRecipes]
+    // const container = document.querySelector('.container')
+    // container.innerHTML = ''
+    // container.innerHTML = 'Aucune recette ne correspond'
   }
   datasProxy.searchLength = str.length
 })
