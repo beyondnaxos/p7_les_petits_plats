@@ -37,9 +37,6 @@ datas.selectedTags = []
 console.log(datas)
 
 let datasProxy = new Proxy(datas, {
-  get: (obj, prop) => {
-    return obj[prop]
-  },
 
   set: function (target, key, value) {
     target[key] = value
