@@ -54,7 +54,7 @@ export const deleteTag = (event, datasProxy, datas) => {
   blueTag.remove()
 
   const index = datasProxy.selectedTags.findIndex(
-    (elt) => elt === event.target.innerText
+    (elt) => elt === event.currentTarget.innerText
   )
   datasProxy.selectedTags.splice(index, 1)
 

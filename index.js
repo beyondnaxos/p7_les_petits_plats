@@ -37,7 +37,6 @@ datas.selectedTags = []
 console.log(datas)
 
 let datasProxy = new Proxy(datas, {
-
   set: function (target, key, value) {
     target[key] = value
 
@@ -150,27 +149,25 @@ datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
 
 document.querySelector('#search__input').addEventListener('input', (e) => {
+  let searchRecipes = []
   const str = e.target.value
   datasProxy.mainSearch = str
-
-  if (str.length >= 3 && str.length > datas.searchLength) {
-    const filter = datas.recipes.filter(
+  searchRecipes = str.length < datas.searchLength ? [...datas.allRecipes] : [...datas.recipes]
+  if (str.length >= 3) {
+    const filter = searchRecipes.filter(
       (elt) =>
         elt.name.toLowerCase().includes(str.toLowerCase()) ||
         elt.description.toLowerCase().includes(str.toLowerCase()) ||
         elt.ingredients.some((ingredient) =>
           ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
-        ) ||
-        elt.appliance.toLowerCase().includes(str.toLowerCase()) ||
-        elt.ustensils.some((ustensil) =>
-          ustensil.toLowerCase().includes(str.toLowerCase())
         )
     )
     if (filter.length > 0) {
       datasProxy.recipes = [...filter]
     } else {
       const container = document.querySelector('.container')
-      container.innerHTML = 'Aucune recette ne correspond'
+      container.innerHTML =
+        'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc'
     }
   } else {
     datasProxy.recipes = [...datas.allRecipes]
@@ -192,7 +189,8 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 
 //         elt.ingredients.some((ingredient) =>
 //           ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
-//         ) 
+//         )
+//         // faire un fonction avec un for qui retourne true si l'ingrédient est trouvé
 //         // for (let i = 0; i < elt.ingredients.length; i++) {
 //         //   const ingredient = elt.ingredients[i]
 //         //   if (ingredient.ingredient.toLowerCase().includes(str.toLowerCase())) {
