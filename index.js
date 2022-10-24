@@ -152,7 +152,8 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   let searchRecipes = []
   const str = e.target.value
   datasProxy.mainSearch = str
-  searchRecipes = str.length < datas.searchLength ? [...datas.allRecipes] : [...datas.recipes]
+  searchRecipes =
+    str.length < datas.searchLength ? [...datas.allRecipes] : [...datas.recipes]
   if (str.length >= 3) {
     const filter = searchRecipes.filter(
       (elt) =>
@@ -182,22 +183,9 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 //     for (let i = 0; i < datas.recipes.length; i++) {
 //       const elt = datas.recipes[i]
 //       if (
-
 //         elt.name.toLowerCase().includes(str.toLowerCase()) ||
-
 //         elt.description.toLowerCase().includes(str.toLowerCase()) ||
-
-//         elt.ingredients.some((ingredient) =>
-//           ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
-//         )
-//         // faire un fonction avec un for qui retourne true si l'ingrédient est trouvé
-//         // for (let i = 0; i < elt.ingredients.length; i++) {
-//         //   const ingredient = elt.ingredients[i]
-//         //   if (ingredient.ingredient.toLowerCase().includes(str.toLowerCase())) {
-//         //     return true
-//         //   }
-//         // }
-//         ||
+//         filterForIng(elt, str) ||
 //         elt.appliance.toLowerCase().includes(str.toLowerCase()) ||
 //         elt.ustensils.some((ustensil) =>
 //           ustensil.toLowerCase().includes(str.toLowerCase())
@@ -212,6 +200,15 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 //   }
 //   datasProxy.searchLength = str.length
 // })
+
+// function filterForIng(elt, str) {
+//   for (let i = 0; i < elt.ingredients.length; i++) {
+//     const ingredient = elt.ingredients[i]
+//     if (ingredient.ingredient.toLowerCase().includes(str.toLowerCase())) {
+//       return true
+//     }
+//   }
+// }
 
 searchIngredients(datasProxy, datas, recipes)
 searchAppliances(datasProxy, datas, recipes)
