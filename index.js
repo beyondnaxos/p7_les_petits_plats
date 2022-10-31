@@ -1,5 +1,7 @@
 import { recipes } from './data/recipes.js'
 
+import './css/style.css'
+
 import {
   getIngredients,
   getAppliiances,
@@ -175,6 +177,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   }
   datasProxy.searchLength = str.length
 })
+
 
 // document.querySelector('#search__input').addEventListener('input', (e) => {
 //   const str = e.target.value

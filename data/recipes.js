@@ -213,7 +213,6 @@ export const recipes = [
                 "ingredient": "Sucre vanillé",
                 "quantity": 1,
                 "unit": "sachets"
-
             }
         ],
         "time": 50,
