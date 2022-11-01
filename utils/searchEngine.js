@@ -257,6 +257,7 @@ export const appliancesSearch = (datas) => {
     })
 }
 
+
 // Permet d'effectuer une recherche en saisissant quelque chose dans l'input ustensiles
 export const ustensilsSearch = (datas) => {
   document
@@ -273,6 +274,7 @@ export const ustensilsSearch = (datas) => {
       return filter
     })
 }
+
 
 export function filterData(tagFilter, datas, datasProxy) {
   const filterFunctions = {
