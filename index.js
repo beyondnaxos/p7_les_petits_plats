@@ -39,15 +39,15 @@ datas.selectedTags = []
 console.log(datas)
 
 let datasProxy = new Proxy(datas, {
-  set: function (target, key, value) {
+  set: function (target, key, value, receiver) {
     target[key] = value
 
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
-      datasProxy.ingredients = getIngredients(datasProxy)
-      datasProxy.appliances = getAppliiances(datasProxy)
-      datasProxy.ustensils = getUstensils(datasProxy)
+      receiver.ingredients = getIngredients(datasProxy)
+      receiver.appliances = getAppliiances(datasProxy)
+      receiver.ustensils = getUstensils(datasProxy)
 
       target[key].map((recipe) => {
         displayRecipes(recipe)
@@ -178,6 +178,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
   datasProxy.searchLength = str.length
 })
 
+// ***************************************
 
 // document.querySelector('#search__input').addEventListener('input', (e) => {
 //   const str = e.target.value
@@ -212,6 +213,48 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
 //     }
 //   }
 // }
+
+// *********************************************
+
+// const isStrIncluded = (strCompare, str) => {
+//   const regexStr = new RegExp(str, "i");
+//   return regexStr.test(strCompare);
+// };
+
+// document.querySelector('#search__input').addEventListener('input', (e) => {
+//   const str = e.target.value;
+//   datasProxy.mainSearch = str;
+//   datasProxy.searchLength = str.length;
+//   let searchRecipes = str.length < datas.searchLength ? [...datas.allRecipes] : [...datas.recipes];
+
+//   if (str.length < 3) {
+//     return datasProxy.recipes = [...datas.allRecipes];
+//   }
+
+//   const filter = [];
+
+//   mainLoop: for (let i = 0; i < searchRecipes.length; i++) {
+//     const { name, description, ingredients } = searchRecipes[i];
+
+//     for (let k = 0; k < ingredients.length; k++) {
+//       if (isStrIncluded(ingredients[k].ingredient, str)) {
+//         filter.push(searchRecipes[i]);
+//         continue mainLoop;
+//       }
+//     }
+
+//     if (isStrIncluded(name, str) || isStrIncluded(description, str)) {
+//       filter.push(searchRecipes[i]);
+//     }
+//   }
+
+//   if (filter.length > 0) {
+//     datasProxy.recipes = [...filter];
+//   } else {
+//     const container = document.querySelector('.container');
+//     container.innerHTML = 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc';
+//   }
+// });
 
 searchIngredients(datasProxy, datas, recipes)
 searchAppliances(datasProxy, datas, recipes)
