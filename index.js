@@ -176,7 +176,7 @@ datasProxy.searchLength = 0
 //     }
 //   } else {
 //     datasProxy.recipes = [...datas.allRecipes]
-//   }
+//   }F
 //   datasProxy.searchLength = str.length
 // })
 
@@ -192,7 +192,7 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
       if (
         elt.name.toLowerCase().includes(str.toLowerCase()) ||
         elt.description.toLowerCase().includes(str.toLowerCase()) ||
-        filterForIng(elt, str) 
+        filterForIng(elt, str)
       ) {
         filtredRecipes.push(elt)
       }
