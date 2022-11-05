@@ -152,70 +152,35 @@ datasProxy.searchLength = 0
 
 // *************************************
 
-// document.querySelector('#search__input').addEventListener('input', (e) => {
-//   let searchRecipes = []
-//   const str = e.target.value
-//   datasProxy.mainSearch = str
-//   searchRecipes =
-//     str.length < datas.searchLength ? [...datas.allRecipes] : [...datas.recipes]
-//   if (str.length >= 3) {
-//     const filter = searchRecipes.filter(
-//       (elt) =>
-//         elt.name.toLowerCase().includes(str.toLowerCase()) ||
-//         elt.description.toLowerCase().includes(str.toLowerCase()) ||
-//         elt.ingredients.some((ingredient) =>
-//           ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
-//         )
-//     )
-//     if (filter.length > 0) {
-//       datasProxy.recipes = [...filter]
-//     } else {
-//       const container = document.querySelector('.container')
-//       container.innerHTML =
-//         'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc'
-//     }
-//   } else {
-//     datasProxy.recipes = [...datas.allRecipes]
-//   }F
-//   datasProxy.searchLength = str.length
-// })
-
-// ***************************************
-
 document.querySelector('#search__input').addEventListener('input', (e) => {
+  let searchRecipes = []
   const str = e.target.value
   datasProxy.mainSearch = str
-  const filtredRecipes = []
-  if (str.length >= 3 && str.length > datas.searchLength) {
-    for (let i = 0; i < datas.recipes.length; i++) {
-      const elt = datas.recipes[i]
-      if (
+  searchRecipes =
+    str.length < datas.searchLength ? [...datas.allRecipes] : [...datas.recipes]
+  if (str.length >= 3) {
+    const filter = searchRecipes.filter(
+      (elt) =>
         elt.name.toLowerCase().includes(str.toLowerCase()) ||
         elt.description.toLowerCase().includes(str.toLowerCase()) ||
-        filterForIng(elt, str)
-      ) {
-        filtredRecipes.push(elt)
-      }
+        elt.ingredients.some((ingredient) =>
+          ingredient.ingredient.toLowerCase().includes(str.toLowerCase())
+        )
+    )
+    if (filter.length > 0) {
+      datasProxy.recipes = [...filter]
+    } else {
+      const container = document.querySelector('.container')
+      container.innerHTML =
+        'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc'
     }
-    datasProxy.recipes = [...filtredRecipes]
-    console.log(datasProxy.recipes)
   } else {
-    datasProxy.recipes = [...recipes]
-  }
+    datasProxy.recipes = [...datas.allRecipes]
+  }F
   datasProxy.searchLength = str.length
 })
 
-function filterForIng(elt, str) {
-  for (let i = 0; i < elt.ingredients.length; i++) {
-    const ingredient = elt.ingredients[i]
-    if (ingredient.ingredient.toLowerCase().includes(str.toLowerCase())) {
-      return true
-    }
-  }
-  return false
-}
 
-// ***************************************
 
 searchIngredients(datasProxy, datas, recipes)
 searchAppliances(datasProxy, datas, recipes)
