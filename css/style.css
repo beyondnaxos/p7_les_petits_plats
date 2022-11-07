@@ -350,3 +350,13 @@ ul>.ingredientsLi, ul>.appliancesLi, ul>.ustensilLi {
     background-color: rgb(241, 237, 237);
     border-radius: 5px;
 }
+
+.noResult {
+    width: 100%;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 21px;
+    line-height: 21px;
+    font-weight: 600;
+    margin-top: 50px;
+}

@@ -171,12 +171,16 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
       datasProxy.recipes = [...filter]
     } else {
       const container = document.querySelector('.container')
-      container.innerHTML =
-        'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc'
+      const par = document.createElement('p')
+      par.classList.add('noResult')
+      par.innerHTML = 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc'
+      container.innerHTML = ''
+      container.appendChild(par)
+
     }
   } else {
     datasProxy.recipes = [...datas.allRecipes]
-  }F
+  }
   datasProxy.searchLength = str.length
 })
 
