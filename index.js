@@ -178,7 +178,6 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
           'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc'
         container.innerHTML = ''
         container.appendChild(par)
-      
     }
     console.log(datasProxy.recipes)
   } else {
