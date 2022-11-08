@@ -151,12 +151,15 @@ datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
 
 document.querySelector('#search__input').addEventListener('input', (e) => {
+  let searchRecipes = []
   const str = e.target.value
   datasProxy.mainSearch = str
+  searchRecipes =
+  str.length < datas.searchLength ? [...datas.allRecipes] : [...datas.recipes]
   const filtredRecipes = []
-  if (str.length >= 3 && str.length > datas.searchLength) {
-    for (let i = 0; i < datas.recipes.length; i++) {
-      const elt = datas.recipes[i]
+  if (str.length >= 3 ) {
+    for (let i = 0; i < searchRecipes.length ; i++) {
+      const elt = searchRecipes[i]
       if (
         elt.name.toLowerCase().includes(str.toLowerCase()) ||
         elt.description.toLowerCase().includes(str.toLowerCase()) ||
