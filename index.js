@@ -150,7 +150,6 @@ console.log(datasProxy)
 datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
 
-
 document.querySelector('#search__input').addEventListener('input', (e) => {
   const str = e.target.value
   datasProxy.mainSearch = str
@@ -164,9 +163,20 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
         filterForIng(elt, str)
       ) {
         filtredRecipes.push(elt)
-      }
+      } 
     }
     datasProxy.recipes = [...filtredRecipes]
+    if ( filtredRecipes.length === 0) {
+      
+        const container = document.querySelector('.container')
+        const par = document.createElement('p')
+        par.classList.add('noResult')
+        par.innerHTML =
+          'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc'
+        container.innerHTML = ''
+        container.appendChild(par)
+      
+    }
     console.log(datasProxy.recipes)
   } else {
     datasProxy.recipes = [...recipes]
@@ -183,8 +193,6 @@ function filterForIng(elt, str) {
   }
   return false
 }
-
-
 
 searchIngredients(datasProxy, datas, recipes)
 searchAppliances(datasProxy, datas, recipes)
