@@ -1,8 +1,6 @@
 import { getIngredients, getAppliiances, getUstensils } from './dataList.js'
 
-const beforeContainer = document.querySelector('.before-container')
-
-// Permet de créer un tag
+// Craete a blue tag
 export function createBlueTag(str, datasProxy, datas) {
   const blueTag = document.createElement('div')
   blueTag.classList.add('filter-container-blue')
@@ -19,6 +17,7 @@ export function createBlueTag(str, datasProxy, datas) {
   })
 }
 
+// Craete a green tag
 export function createGreenTag(str, datasProxy, datas) {
   const greenTag = document.createElement('div')
   greenTag.classList.add('filter-container-green')
@@ -33,6 +32,7 @@ export function createGreenTag(str, datasProxy, datas) {
   })
 }
 
+// Craete a red tag
 export function createRedTag(str, datasProxy, datas) {
   const redTag = document.createElement('div')
   redTag.classList.add('filter-container-red')
@@ -47,7 +47,7 @@ export function createRedTag(str, datasProxy, datas) {
   })
 }
 
-// Permet de supprimer un tag lorsque l'on clique dessus
+// on click delete the tag
 export const deleteTag = (event, datasProxy, datas) => {
   // suppression du tag
   const blueTag = event.currentTarget
@@ -115,6 +115,7 @@ export const deleteTag = (event, datasProxy, datas) => {
   datasProxy.recipes = [...filteredRecipes]
 }
 
+//  handle ingredient search
 export const handleIngSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>
@@ -132,6 +133,7 @@ export const handleIngSearch = (str, datasProxy, datas) => {
   console.log('c ici ', datas)
 }
 
+//  handle appliance search
 export const handleAppSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>
@@ -145,6 +147,7 @@ export const handleAppSearch = (str, datasProxy, datas) => {
   console.log('c ici ', datas)
 }
 
+//  handle ustensil search
 export const handleUstSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
     const filter = datas.recipes.filter((elt) =>
@@ -158,6 +161,7 @@ export const handleUstSearch = (str, datasProxy, datas) => {
   console.log('c ici ', datas)
 }
 
+// handle input ingredient search
 export const searchIngredients = (datasProxy, datas, recipes) => {
   document
     .querySelector('#search__input-ingredients')
@@ -168,17 +172,17 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
       )
       console.log('filter', filter)
       datasProxy.ingredients = [...filter]
-      // **************************************************
       datasProxy.searchLength = str.length
       if (str.length < 3) {
         datasProxy.ingredients = getIngredients(datasProxy)
         document.querySelector('#ingredientsList').style.display = 'block'
       }
-      // **************************************************
+     
       document.querySelector('#ingredientsList').style.display = 'block'
     })
 }
 
+// handle input appliance search
 export const searchAppliances = (datasProxy, datas, recipes) => {
   document
     .querySelector('#search__input-appliances')
@@ -199,6 +203,7 @@ export const searchAppliances = (datasProxy, datas, recipes) => {
     })
 }
 
+// handle input ustensil search
 export const searchUstensils = (datasProxy, datas, recipes) => {
   document
     .querySelector('#search__input-ustensils')
@@ -218,57 +223,6 @@ export const searchUstensils = (datasProxy, datas, recipes) => {
       }
       // **************************************************
       document.querySelector('#ustensilsList').style.display = 'block'
-    })
-}
-
-// Permet d'effectuer une recherche en saisissant quelque chose dans l'input ingredients
-export const ingredientsSearch = (datas) => {
-  document
-    .querySelector('#search__input-ingredients')
-    .addEventListener('input', (e) => {
-      const searchString = e.target.value
-      datasProxy.searchString = e.target.value
-      datasProxy.searchType = 'ingredients'
-      const filter = datas.recipes.filter((elt) =>
-        elt.ingredients.some((ingredient) =>
-          ingredient.ingredient
-            .toLowerCase()
-            .includes(searchString.toLowerCase())
-        )
-      )
-      return filter
-    })
-}
-
-// Permet d'effectuer une recherche en saisissant quelque chose dans l'input appareil
-export const appliancesSearch = (datas) => {
-  document
-    .querySelector('#search__input-appliance')
-    .addEventListener('input', (e) => {
-      const searchString = e.target.value
-      datasProxy.searchString = e.target.value
-      datasProxy.searchType = 'appliance'
-      const filter = datas.recipes.filter((elt) =>
-        elt.appliance.toLowerCase().includes(searchString.toLowerCase())
-      )
-      return filter
-    })
-}
-
-// Permet d'effectuer une recherche en saisissant quelque chose dans l'input ustensiles
-export const ustensilsSearch = (datas) => {
-  document
-    .querySelector('#search__input-ustensil')
-    .addEventListener('input', (e) => {
-      const searchString = e.target.value
-      datasProxy.searchString = e.target.value
-      datasProxy.searchType = 'ustensils'
-      const filter = datas.recipes.filter((elt) =>
-        elt.ustensils.some((ustensil) =>
-          ustensil.toLowerCase().includes(searchString.toLowerCase())
-        )
-      )
-      return filter
     })
 }
 

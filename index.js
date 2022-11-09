@@ -1,47 +1,26 @@
-import { recipes } from './data/recipes.js'
-
 import './css/style.css'
-
-import {
-  getIngredients,
-  getAppliiances,
-  getUstensils,
-} from './utils/dataList.js'
-
+import { recipes } from './data/recipes.js'
+import { getIngredients, getAppliiances, getUstensils } from './utils/dataList.js'
 import { displayRecipes } from './utils/articleModel.js'
-
-import {
-  searchIngredients,
-  searchAppliances,
-  searchUstensils,
-} from './utils/searchEngine.js'
-
-import {
-  filterData,
-  handleIngSearch,
-  handleAppSearch,
-  handleUstSearch,
-  createBlueTag,
-  createGreenTag,
-  createRedTag,
-} from './utils/searchEngine.js'
+import {searchIngredients, searchAppliances, searchUstensils } from './utils/searchEngine.js'
+import {filterData, handleIngSearch, handleAppSearch, handleUstSearch, createBlueTag, createGreenTag, createRedTag } from './utils/searchEngine.js'
 
 let datas = {}
-datas.recipes = [...recipes]
-console.log(datas)
 
+// init datas object
+datas.recipes = [...recipes]
 datas.allRecipes = [...recipes]
 datas.allIngredients = getIngredients(datas)
 datas.allAppliances = getAppliiances(datas)
 datas.allUstensils = getUstensils(datas)
 datas.selectedTags = []
 
-console.log(datas)
-
+// setup proxy for datas object
 let datasProxy = new Proxy(datas, {
   set: function (target, key, value, receiver) {
     target[key] = value
 
+    // if key is recipes, display recipes
     if (key == 'recipes') {
       const container = document.querySelector('.container')
       container.innerHTML = ''
@@ -55,6 +34,7 @@ let datasProxy = new Proxy(datas, {
       })
     }
 
+    // if key is ingredients, display ingredients and handle actions
     if (key === 'ingredients') {
       const ingredientsDataList = document.querySelector('#ingredientsList')
       ingredientsDataList.innerHTML = ''
@@ -82,6 +62,7 @@ let datasProxy = new Proxy(datas, {
       })
     }
 
+    // if key is appliances, display appliances and handle actions
     if (key === 'appliances') {
       const appliancesDataList = document.querySelector('#appliancesList')
       appliancesDataList.innerHTML = ''
@@ -110,6 +91,7 @@ let datasProxy = new Proxy(datas, {
       })
     }
 
+    // if key is ustensils, display ustensils and handle actions
     if (key === 'ustensils') {
       const ustensilDataList = document.querySelector('#ustensilsList')
       ustensilDataList.innerHTML = ''
@@ -138,6 +120,7 @@ let datasProxy = new Proxy(datas, {
       })
     }
 
+    // if key is searchString, filter datas 
     if (key === 'searchType') {
       filterData(value, datas, datasProxy)
     }
@@ -146,12 +129,12 @@ let datasProxy = new Proxy(datas, {
   },
 })
 
-console.log(datasProxy)
+// update datas object
 datasProxy.recipes = [...recipes]
 datasProxy.searchLength = 0
 
-// *************************************
 
+// handle main search ( funcitonnals methods)
 document.querySelector('#search__input').addEventListener('input', (e) => {
   let searchRecipes = []
   const str = e.target.value
@@ -205,6 +188,7 @@ const searchUstContainer = document.querySelector('.red')
 const bigSearchUstensil = document.querySelector('.filterUstensils')
 const ustUl = document.querySelector('#ustensilsList')
 
+// handle toggle filter list 
 const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
   let clicked = false
 
