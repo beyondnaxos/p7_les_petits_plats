@@ -159,15 +159,12 @@ document.querySelector('#search__input').addEventListener('input', (e) => {
       par.innerHTML = 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc'
       container.innerHTML = ''
       container.appendChild(par)
-
     }
   } else {
     datasProxy.recipes = [...datas.allRecipes]
   }
   datasProxy.searchLength = str.length
 })
-
-
 
 searchIngredients(datasProxy, datas, recipes)
 searchAppliances(datasProxy, datas, recipes)
