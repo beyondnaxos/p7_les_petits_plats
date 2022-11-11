@@ -1,5 +1,6 @@
 import { getIngredients, getAppliiances, getUstensils } from './dataList.js'
 
+
 // Craete a blue tag
 export function createBlueTag(str, datasProxy, datas) {
   const blueTag = document.createElement('div')
@@ -17,6 +18,7 @@ export function createBlueTag(str, datasProxy, datas) {
   })
 }
 
+
 // Craete a green tag
 export function createGreenTag(str, datasProxy, datas) {
   const greenTag = document.createElement('div')
@@ -32,6 +34,7 @@ export function createGreenTag(str, datasProxy, datas) {
   })
 }
 
+
 // Craete a red tag
 export function createRedTag(str, datasProxy, datas) {
   const redTag = document.createElement('div')
@@ -46,6 +49,7 @@ export function createRedTag(str, datasProxy, datas) {
     deleteTag(e, datasProxy, datas)
   })
 }
+
 
 // on click delete the tag
 export const deleteTag = (event, datasProxy, datas) => {
@@ -115,6 +119,7 @@ export const deleteTag = (event, datasProxy, datas) => {
   datasProxy.recipes = [...filteredRecipes]
 }
 
+
 //  handle ingredient search
 export const handleIngSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
@@ -133,6 +138,7 @@ export const handleIngSearch = (str, datasProxy, datas) => {
   console.log('c ici ', datas)
 }
 
+
 //  handle appliance search
 export const handleAppSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
@@ -147,6 +153,7 @@ export const handleAppSearch = (str, datasProxy, datas) => {
   console.log('c ici ', datas)
 }
 
+
 //  handle ustensil search
 export const handleUstSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
@@ -160,6 +167,7 @@ export const handleUstSearch = (str, datasProxy, datas) => {
   }
   console.log('c ici ', datas)
 }
+
 
 // handle input ingredient search
 export const searchIngredients = (datasProxy, datas, recipes) => {
@@ -182,6 +190,7 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
     })
 }
 
+
 // handle input appliance search
 export const searchAppliances = (datasProxy, datas, recipes) => {
   document
@@ -202,6 +211,7 @@ export const searchAppliances = (datasProxy, datas, recipes) => {
       document.querySelector('#appliancesList').style.display = 'block'
     })
 }
+
 
 // handle input ustensil search
 export const searchUstensils = (datasProxy, datas, recipes) => {
@@ -225,6 +235,7 @@ export const searchUstensils = (datasProxy, datas, recipes) => {
       document.querySelector('#ustensilsList').style.display = 'block'
     })
 }
+
 
 export function filterData(tagFilter, datas, datasProxy) {
   const filterFunctions = {
