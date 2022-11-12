@@ -2,6 +2,7 @@ export const displayRecipes = (el) => {
   const recipe = document.createElement('article')
   recipe.classList.add('recipe')
   recipe.dataset.id = el.id
+  
   // handle Image Prototype
   const img = new Image()
   img.src = './assets/recipes_photos/limonade_coco.jpg'
