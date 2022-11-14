@@ -214,12 +214,38 @@ ul {
 
 .filter input {
     height: 69px;
-    width: 170px;
-    border-radius: 5px;
+    width: 150px;
+    /* border-radius: 5px 0 0 5px; */
     border: none;
     padding-left: 15px;
     font-size: 18px;
 }
+
+.input-container-blue, .input-container-green, .input-container-red {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.input-container-blue .icon-container {
+    background-color: #3282F7;
+}
+
+.input-container-green .icon-container {
+    background-color: #68D9A4;
+}
+
+.input-container-red .icon-container {
+    background-color: #ED6454;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+
+
 
 #search__input-ingredients {
     background-color: #3282F7;

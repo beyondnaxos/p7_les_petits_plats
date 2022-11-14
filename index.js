@@ -184,6 +184,7 @@ const searchUstInput = document.querySelector('#search__input-ustensils')
 const searchUstContainer = document.querySelector('.red')
 const bigSearchUstensil = document.querySelector('.filterUstensils')
 const ustUl = document.querySelector('#ustensilsList')
+const inputContainerBlue = document.querySelector('.input-container-blue')
 
 const recipeContainer = document.querySelector('#recipes')
 // handle toggle filter list 
@@ -198,7 +199,7 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
       searchContainer.style.height = 'auto'
       searchContainer.style.maxHeight = '300px'
       bigSearchBox.style.width = 'auto'
-      searchInput.style.borderRadius = '5px 5px 0 0'
+      // searchInput.style.borderRadius = '5px 5px 0 0'
       // recipeContainer.style.marginTop = '50px'
  
       // ingUl.style.width = '900px'
@@ -206,10 +207,10 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
     } else {
       ul.style.display = 'none'
       searchContainer.style.width = '170px'
-      searchInput.style.width = '170px'
+      searchInput.style.width = '150px'
       searchContainer.style.height = '0'
       bigSearchBox.style.width = '170px'
-      searchInput.style.borderRadius = '5px'
+      // searchInput.style.borderRadius = '5px'
       // recipeContainer.style.marginTop = '20px'
 
       clicked = false

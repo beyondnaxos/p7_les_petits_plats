@@ -8,7 +8,7 @@
     <!-- <link rel="stylesheet" href="css/style.css" /> -->
     <title>Les petits plats</title>
   </head>
-  
+
   <body>
     <nav aria-label="Logo Les petits plats" tabindex="1">
       <img
@@ -36,36 +36,63 @@
 
     <div class="filter">
       <div class="filterIngredient">
-        <input
-          id="search__input-ingredients"
-          type="text"
-          placeholder="Ingredients"
-          class="filter__input"
-        />
+        <div class="input-container-blue">
+          <input
+            id="search__input-ingredients"
+            type="text"
+            placeholder="Ingredients"
+            class="filter__input"
+          />
+          <div class="icon-container">
+            <img
+              src="assets/icons/arrowIconOpen.png"
+              class="iconArrow"
+              alt=""
+            />
+          </div>
+        </div>
         <div class="listContainer blue">
           <ul id="ingredientsList"></ul>
         </div>
       </div>
 
       <div class="filterAppliances">
-        <input
-          id="search__input-appliances"
-          type="text"
-          placeholder="Appliances"
-          class="filter__input"
-        />
+        <div class="input-container-green">
+          <input
+            id="search__input-appliances"
+            type="text"
+            placeholder="Appliances"
+            class="filter__input"
+          />
+          <div class="icon-container">
+            <img
+              src="assets/icons/arrowIconOpen.png"
+              class="iconArrow"
+              alt=""
+            />
+          </div>
+        </div>
         <div class="listContainer green">
           <ul id="appliancesList"></ul>
         </div>
       </div>
 
       <div class="filterUstensils">
-        <input
-          id="search__input-ustensils"
-          type="text"
-          placeholder="Ustensils"
-          class="filter__input"
-        />
+        <div class="input-container-red">
+          <input
+            id="search__input-ustensils"
+            type="text"
+            placeholder="Ustensils"
+            class="filter__input"
+          />
+          <div class="icon-container">
+            <img
+              src="assets/icons/arrowIconOpen.png"
+              class="iconArrow"
+              alt=""
+            />
+          </div>
+        </div>
         <div class="listContainer red">
           <ul id="ustensilsList"></ul>
         </div>
