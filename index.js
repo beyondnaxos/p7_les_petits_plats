@@ -214,7 +214,7 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul, inputCont
       searchContainer.style.width = '170px'
       searchInput.style.width = '150px'
       searchContainer.style.height = '0'
-      bigSearchBox.style.width = '170px'
+      bigSearchBox.style.width = '180px'
       arrow.style.transform = 'rotate(0deg)'
       clicked = false
     }
