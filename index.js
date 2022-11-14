@@ -185,6 +185,7 @@ const searchUstContainer = document.querySelector('.red')
 const bigSearchUstensil = document.querySelector('.filterUstensils')
 const ustUl = document.querySelector('#ustensilsList')
 
+const recipeContainer = document.querySelector('#recipes')
 // handle toggle filter list 
 const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
   let clicked = false
@@ -198,6 +199,8 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
       searchContainer.style.maxHeight = '300px'
       bigSearchBox.style.width = 'auto'
       searchInput.style.borderRadius = '5px 5px 0 0'
+      // recipeContainer.style.marginTop = '50px'
+ 
       // ingUl.style.width = '900px'
       clicked = true
     } else {
@@ -207,11 +210,26 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
       searchContainer.style.height = '0'
       bigSearchBox.style.width = '170px'
       searchInput.style.borderRadius = '5px'
+      // recipeContainer.style.marginTop = '20px'
 
       clicked = false
     }
   })
 }
+
+const advancedSearchContainer = document.querySelector(".filter");
+
+
+const resizeObserver = new ResizeObserver((entries) => {
+  entries.forEach((entry) => {
+    console.log(entry);
+    const contentRect = entry.contentRect;
+    const totalMargin = contentRect.height;
+    entry.target.style.marginBottom = `-${totalMargin}px`;
+  });
+});
+
+resizeObserver.observe(advancedSearchContainer);
 
 handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl)
 handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl)
