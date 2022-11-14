@@ -193,8 +193,10 @@ const blueArrow = document.querySelector('#blueArrow')
 const greenArrow = document.querySelector('#greenArrow')
 const redArrow = document.querySelector('#redArrow')
 
+const iconContainer = document.querySelector('.icon-container')
+
 // toggle filter list 
-const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul, inputContainer, arrow) => {
+const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul, inputContainer, arrow, iconContainer) => {
   let clicked = false
 
   inputContainer.addEventListener('click', () => {
@@ -205,11 +207,7 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul, inputCont
       searchContainer.style.height = 'auto'
       searchContainer.style.maxHeight = '300px'
       bigSearchBox.style.width = 'auto'
-      // searchContainer.style.borderRadius = '5px 5px 0 0'
-      // recipeContainer.style.marginTop = '50px'
       arrow.style.transform = 'rotate(180deg)'
-      inputContainer.style.borderRadius = '5px 5px 0 0'
-      // ingUl.style.width = '900px'
       clicked = true
     } else {
       ul.style.display = 'none'
@@ -218,10 +216,6 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul, inputCont
       searchContainer.style.height = '0'
       bigSearchBox.style.width = '170px'
       arrow.style.transform = 'rotate(0deg)'
-      inputContainer.style.borderRadius = '5px'
-      // searchContainer.style.borderRadius = '5px'
-      // recipeContainer.style.marginTop = '20px'
-
       clicked = false
     }
   })
@@ -241,6 +235,6 @@ const resizeObserver = new ResizeObserver((entries) => {
 
 resizeObserver.observe(advancedSearchContainer);
 
-handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl, inputContainerBlue, blueArrow)
-handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl, inputContainerRed , redArrow)
-handleOpenBox(searchAppInput, searchAppContainer, bigSearchAppliance, appUl, inputContainerGreen,   greenArrow)
+handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl, inputContainerBlue, blueArrow, iconContainer)
+handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl, inputContainerRed , redArrow , iconContainer)
+handleOpenBox(searchAppInput, searchAppContainer, bigSearchAppliance, appUl, inputContainerGreen,   greenArrow , iconContainer)

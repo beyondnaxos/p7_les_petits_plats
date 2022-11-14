@@ -210,32 +210,53 @@ ul {
     flex-direction: row;
     column-gap: 30px;
     z-index: 20000;
+    align-items: flex-start;
+    /* border-radius: 5px; */
 }
 
 .filter input {
     height: 69px;
     width: 150px;
-    /* border-radius: 5px 0 0 5px; */
+    
     border: none;
     padding-left: 15px;
     font-size: 18px;
 }
 
+.filterIngredient {
+    background-color: #3282F7;
+    border-radius: 5px ;
+}
+
+.filterAppliances {
+    background-color: #68D9A4;
+    border-radius: 5px ;
+    
+}
+
+.filterUstensils {
+    background-color: #ED6454;
+    border-radius: 5px ;
+
+}
+
+
 .input-container-blue, .input-container-green, .input-container-red {
     display: flex;
     justify-content: flex-start;
+    background-color: transparent;
 }
 
 .input-container-blue .icon-container {
-    background-color: #3282F7;
+  
 }
 
 .input-container-green .icon-container {
-    background-color: #68D9A4;
+ 
 }
 
 .input-container-red .icon-container {
-    background-color: #ED6454;
+
 }
 
 .icon-container {
@@ -244,23 +265,22 @@ ul {
     padding-right: 10px;
 }
 
-
-
-
 #search__input-ingredients {
-    background-color: #3282F7;
+    background-color: transparent;
     color: white;
     font-weight: bold;
 }
 
 #search__input-appliances {
-    background-color: #68D9A4;
+    background-color: transparent;
+    /* background-color: #68D9A4; */
     color: white;
     font-weight: bold;
 }
 
 #search__input-ustensils {
-    background-color: #ED6454;
+    background-color: transparent;
+    /* background-color: #ED6454; */
     color: white;
     font-weight: bold;
 }
@@ -287,13 +307,11 @@ ul {
     font-size: 14px;
 }
 
-
 .filter-container-blue, .filter-container-green, .filter-container-red {
     color: white;
     font-weight: bold;
     padding: 0 20px;
-    border-radius: 5px;
-
+    /* border-radius: 5px; */
 }
 
 .filter-container-blue {
@@ -324,7 +342,7 @@ ul {
     width: 500px;
     height: 0;
     overflow: auto;
-    border-radius: 0 0 5px 5px;
+    /* border-radius: 0 0 5px 5px; */
 }
 
 .blue {
@@ -347,7 +365,7 @@ ul {
     padding: 20px;
     padding-top: 0;
     margin: 0;
-    border-radius: 0 0 5px 5px;
+    /* border-radius: 0 0 5px 5px; */
 }
 
 .filterTags {
