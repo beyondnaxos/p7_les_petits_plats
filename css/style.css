@@ -342,7 +342,7 @@ ul {
     width: 500px;
     height: 0;
     overflow: auto;
-    /* border-radius: 0 0 5px 5px; */
+    border-radius: 0 0 5px 5px;
 }
 
 .blue {
