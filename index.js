@@ -184,14 +184,20 @@ const searchUstInput = document.querySelector('#search__input-ustensils')
 const searchUstContainer = document.querySelector('.red')
 const bigSearchUstensil = document.querySelector('.filterUstensils')
 const ustUl = document.querySelector('#ustensilsList')
-const inputContainerBlue = document.querySelector('.input-container-blue')
 
-const recipeContainer = document.querySelector('#recipes')
-// handle toggle filter list 
-const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
+const inputContainerBlue = document.querySelector('.input-container-blue')
+const inputContainerGreen = document.querySelector('.input-container-green')
+const inputContainerRed = document.querySelector('.input-container-red')
+
+const blueArrow = document.querySelector('#blueArrow')
+const greenArrow = document.querySelector('#greenArrow')
+const redArrow = document.querySelector('#redArrow')
+
+// toggle filter list 
+const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul, inputContainer, arrow) => {
   let clicked = false
 
-  searchInput.addEventListener('click', (e) => {
+  inputContainer.addEventListener('click', () => {
     if (clicked === false) {
       ul.style.display = 'block'
       searchInput.style.width = '100%'
@@ -199,9 +205,10 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
       searchContainer.style.height = 'auto'
       searchContainer.style.maxHeight = '300px'
       bigSearchBox.style.width = 'auto'
-      // searchInput.style.borderRadius = '5px 5px 0 0'
+      // searchContainer.style.borderRadius = '5px 5px 0 0'
       // recipeContainer.style.marginTop = '50px'
- 
+      arrow.style.transform = 'rotate(180deg)'
+      inputContainer.style.borderRadius = '5px 5px 0 0'
       // ingUl.style.width = '900px'
       clicked = true
     } else {
@@ -210,7 +217,9 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul) => {
       searchInput.style.width = '150px'
       searchContainer.style.height = '0'
       bigSearchBox.style.width = '170px'
-      // searchInput.style.borderRadius = '5px'
+      arrow.style.transform = 'rotate(0deg)'
+      inputContainer.style.borderRadius = '5px'
+      // searchContainer.style.borderRadius = '5px'
       // recipeContainer.style.marginTop = '20px'
 
       clicked = false
@@ -232,6 +241,6 @@ const resizeObserver = new ResizeObserver((entries) => {
 
 resizeObserver.observe(advancedSearchContainer);
 
-handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl)
-handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl)
-handleOpenBox(searchAppInput, searchAppContainer, bigSearchAppliance, appUl)
+handleOpenBox(searchIngInput, searchIngContainer, bigSearchIngredient, ingUl, inputContainerBlue, blueArrow)
+handleOpenBox(searchUstInput, searchUstContainer, bigSearchUstensil, ustUl, inputContainerRed , redArrow)
+handleOpenBox(searchAppInput, searchAppContainer, bigSearchAppliance, appUl, inputContainerGreen,   greenArrow)
