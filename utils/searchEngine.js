@@ -19,7 +19,6 @@ export function createBlueTag(str, datasProxy, datas) {
   })
 }
 
-
 // Craete a green tag
 export function createGreenTag(str, datasProxy, datas) {
   const greenTag = document.createElement('div')
@@ -34,7 +33,6 @@ export function createGreenTag(str, datasProxy, datas) {
     deleteTag(e, datasProxy, datas)
   })
 }
-
 
 // Craete a red tag
 export function createRedTag(str, datasProxy, datas) {
@@ -51,7 +49,6 @@ export function createRedTag(str, datasProxy, datas) {
   })
 }
 
-
 // on click delete the tag
 export const deleteTag = (event, datasProxy, datas) => {
   // suppression du tag
@@ -65,8 +62,6 @@ export const deleteTag = (event, datasProxy, datas) => {
 
   // récupèration des recettes
   const recipes = datasProxy.allRecipes
-  console.log('clg de datas.selectedTags', datasProxy.selectedTags)
-  console.log('clg de datas.ingredients', datasProxy.ingredients)
 
   // filtrage des recettes sur les tags restants
   let filteredRecipes = []
@@ -96,10 +91,7 @@ export const deleteTag = (event, datasProxy, datas) => {
     filteredRecipes = [...recipes]
   }
 
-  console.log('clg de data ', filteredRecipes.length, datas)
-
   if (datas.mainSearch) {
-    console.log('hello')
     const str = datas.mainSearch
     if (str.length >= 3) {
       const filter = filteredRecipes.filter(
@@ -120,7 +112,6 @@ export const deleteTag = (event, datasProxy, datas) => {
   datasProxy.recipes = [...filteredRecipes]
 }
 
-
 //  handle ingredient search
 export const handleIngSearch = (str, datasProxy, datas) => {
   if (str.length > datas.searchLength) {
@@ -131,14 +122,10 @@ export const handleIngSearch = (str, datasProxy, datas) => {
       )
     )
 
-    console.log(datasProxy.ingredientTag)
     datasProxy.recipes = [...filter]
     datasProxy.ingredients = getIngredients(datasProxy)
-  }
-
-  console.log('c ici ', datas)
+  } 
 }
-
 
 //  handle appliance search
 export const handleAppSearch = (str, datasProxy, datas) => {
@@ -151,9 +138,8 @@ export const handleAppSearch = (str, datasProxy, datas) => {
     datasProxy.appliances = getAppliiances(datasProxy)
   }
 
-  console.log('c ici ', datas)
-}
 
+}
 
 //  handle ustensil search
 export const handleUstSearch = (str, datasProxy, datas) => {
@@ -166,9 +152,8 @@ export const handleUstSearch = (str, datasProxy, datas) => {
     datasProxy.recipes = [...filter]
     datasProxy.ustensils = getUstensils(datasProxy)
   }
-  console.log('c ici ', datas)
-}
 
+}
 
 // handle input ingredient search
 export const searchIngredients = (datasProxy, datas, recipes) => {
@@ -179,7 +164,6 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
       const filter = datas.ingredients.filter((ing) =>
         ing.toLowerCase().includes(str.toLowerCase())
       )
-      console.log('filter', filter)
       datasProxy.ingredients = [...filter]
       datasProxy.searchLength = str.length
       if (str.length < 3) {
@@ -191,7 +175,6 @@ export const searchIngredients = (datasProxy, datas, recipes) => {
     })
 }
 
-
 // handle input appliance search
 export const searchAppliances = (datasProxy, datas, recipes) => {
   document
@@ -202,17 +185,15 @@ export const searchAppliances = (datasProxy, datas, recipes) => {
         elt.toLowerCase().includes(str.toLowerCase())
       )
       datasProxy.appliances = [...filter]
-      // **************************************************
       datasProxy.searchLength = str.length
       if (str.length < 3) {
         datasProxy.appliances = getAppliiances(datasProxy)
         document.querySelector('#appliancesList').style.display = 'block'
       }
-      // **************************************************
+
       document.querySelector('#appliancesList').style.display = 'block'
     })
 }
-
 
 // handle input ustensil search
 export const searchUstensils = (datasProxy, datas, recipes) => {
@@ -225,18 +206,15 @@ export const searchUstensils = (datasProxy, datas, recipes) => {
       )
 
       datasProxy.ustensils = [...filter]
-
-      // **************************************************
       datasProxy.searchLength = str.length
       if (str.length < 3) {
         datasProxy.ustensils = getUstensils(datasProxy)
         document.querySelector('#ustensilsList').style.display = 'block'
       }
-      // **************************************************
+
       document.querySelector('#ustensilsList').style.display = 'block'
     })
 }
-
 
 export function filterData(tagFilter, datas, datasProxy) {
   const filterFunctions = {
@@ -245,7 +223,6 @@ export function filterData(tagFilter, datas, datasProxy) {
         elt.toLowerCase().includes(datas.searchString.toLowerCase())
       )
       datasProxy.ingredients = [...filtredIngredients]
-      console.log(datasProxy.ingredients)
     },
     appliance: () => {
       const filtredAppliances = datas.allAppliances.filter((elt) =>

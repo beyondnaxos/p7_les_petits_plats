@@ -38,7 +38,6 @@ let datasProxy = new Proxy(datas, {
     if (key === 'ingredients') {
       const ingredientsDataList = document.querySelector('#ingredientsList')
       ingredientsDataList.innerHTML = ''
-      console.log('ingredients', value)
       value.forEach((ingredient) => {
         if (!datas.selectedTags.includes(ingredient)) {
           const option = document.createElement('li')
@@ -50,12 +49,10 @@ let datasProxy = new Proxy(datas, {
         }
       })
       const ingredientsLi = document.querySelectorAll('.ingredientsLi')
-      console.log(Array.from(ingredientsLi).length)
       ingredientsLi.forEach((ingredient) => {
         ingredient.addEventListener('click', (e) => {
           const str = ingredient.innerText
           datasProxy.selectedTags.push(str)
-          console.log('le bon ' + str)
           handleIngSearch(str, datasProxy, datas)
           createBlueTag(str, datasProxy, datas)
         })
@@ -66,7 +63,6 @@ let datasProxy = new Proxy(datas, {
     if (key === 'appliances') {
       const appliancesDataList = document.querySelector('#appliancesList')
       appliancesDataList.innerHTML = ''
-      console.log('appliances', value)
       value.forEach((appliance) => {
         if (!datas.selectedTags.includes(appliance)) {
           const option = document.createElement('li')
@@ -79,12 +75,10 @@ let datasProxy = new Proxy(datas, {
       })
 
       const appliancesLi = document.querySelectorAll('.appliancesLi')
-      console.log(Array.from(appliancesLi).length)
       appliancesLi.forEach((appliance) => {
         appliance.addEventListener('click', (e) => {
           const str = appliance.innerText
           datasProxy.selectedTags.push(str)
-          console.log('le bon ' + str)
           handleAppSearch(str, datasProxy, datas)
           createGreenTag(str, datasProxy, datas)
         })
@@ -95,7 +89,6 @@ let datasProxy = new Proxy(datas, {
     if (key === 'ustensils') {
       const ustensilDataList = document.querySelector('#ustensilsList')
       ustensilDataList.innerHTML = ''
-      console.log('ustensils', value)
       value.forEach((ustensil) => {
         if (!datas.selectedTags.includes(ustensil)) {
           const option = document.createElement('li')
@@ -108,12 +101,10 @@ let datasProxy = new Proxy(datas, {
       })
 
       const ustensilLi = document.querySelectorAll('.ustensilLi')
-      console.log(Array.from(ustensilLi).length)
       ustensilLi.forEach((ustensil) => {
         ustensil.addEventListener('click', (e) => {
           const str = ustensil.innerText
           datasProxy.selectedTags.push(str)
-          console.log('le bon ' + str)
           handleUstSearch(str, datasProxy, datas)
           createRedTag(str, datasProxy, datas)
         })
@@ -226,7 +217,6 @@ const advancedSearchContainer = document.querySelector(".filter");
 
 const resizeObserver = new ResizeObserver((entries) => {
   entries.forEach((entry) => {
-    console.log(entry);
     const contentRect = entry.contentRect;
     const totalMargin = contentRect.height;
     entry.target.style.marginBottom = `-${totalMargin}px`;
