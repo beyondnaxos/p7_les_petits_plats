@@ -11,6 +11,7 @@ export function createBlueTag(str, datasProxy, datas) {
   blueTag.appendChild(par)
   const image = new Image()
   image.src = '../assets/icons/cross.png'
+
   blueTag.appendChild(image)
   document.querySelector('.before-container').appendChild(blueTag)
   blueTag.addEventListener('click', (e) => {
