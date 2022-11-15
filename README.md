@@ -1,10 +1,9 @@
 # p7_les_petits_plats
- Site de recettes de cuisine avec tri
+Project bundled with webpack 
 
+### Starting the project
+npm install
 
-for each btn, add event on click event listener
-
-function (e) { e.currentTarget.dataset.id }
-
-html : <div class="recipe" data-id="{{recipe.id}}">
+### Launching the project
+npm run start
 
