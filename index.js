@@ -214,7 +214,6 @@ const handleOpenBox = (searchInput, searchContainer, bigSearchBox, ul, inputCont
 
 const advancedSearchContainer = document.querySelector(".filter");
 
-
 const resizeObserver = new ResizeObserver((entries) => {
   entries.forEach((entry) => {
     const contentRect = entry.contentRect;
